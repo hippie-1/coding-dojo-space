@@ -5,6 +5,7 @@ import App from './App';
 import { DataStructures } from './util/DataStructures';
 import { Sequence1, Sequence2, Iteration, IntroducingForkOnlyOddOrEvenNumbers, FibonacciNumbers } from './util/BasicElements';
 import { Algorithms } from './util/Algorithms';
+import { Sequence1, Sequence2, Iteration, IntroducingForkOnlyOddOrEvenNumbers, FibonacciNumbers, RandomNumberArray, RandomEvenNumberArray, BubbleSorting } from './util/BasicElements';
 //import { Counting, LienarSearch, Sorting, stb} from './util/Algorithms';
 import reportWebVitals from './reportWebVitals';
 
@@ -48,6 +49,7 @@ const arrayMaker = ReactDOM.createRoot(document.getElementById('counting'));
 arrayMaker.render(
   <React.StrictMode>
     <Algorithms />
+const randomNumbers = ReactDOM.createRoot(document.getElementById('random-numbers'));
   </React.StrictMode>
 );
 
