@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import { DataStructures } from './util/DataStructures';
 import { Sequence1, Sequence2, Iteration, IntroducingForkOnlyOddOrEvenNumbers, FibonacciNumbers } from './util/BasicElements';
+import { Algorithms } from './util/Algorithms';
 //import { Counting, LienarSearch, Sorting, stb} from './util/Algorithms';
 import reportWebVitals from './reportWebVitals';
 
@@ -43,6 +44,12 @@ fibonacci.render(
   </React.StrictMode>
 );
 
+const arrayMaker = ReactDOM.createRoot(document.getElementById('counting'));
+arrayMaker.render(
+  <React.StrictMode>
+    <Algorithms />
+  </React.StrictMode>
+);
 
 
 
