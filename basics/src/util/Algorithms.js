@@ -8,6 +8,8 @@ export const Algorithms = () => {
         arr[i] = Math.floor(Math.random()*10)-5;
     }
 
+  //töltsünk fel egy array-t random számokkal és írassuk is ki valahová.
+  
     //1.feladat: számlálás
     //számoljuk meg, hogy hány negatív szám van benne
     let counter = 0;
@@ -32,8 +34,14 @@ export const Algorithms = () => {
         }
     }
     
-    //3.feladat: lineáris keresés x=1; írja ki az indexét, ha nincs benne, akkor return -1
-    //keressünk meg egy konkrét számot
+
+//3.feladat: lineáris keresés 
+//keressünk meg egy konkrét számot
+//a konkrét elemet keressük
+//ha van a tömbben, akkor
+//-- tudjuk, hogy az értéke maga a korkrét szám, amit kerestünk
+//-- kiírhatjuk inkább azt, hogy az hányadik eleme a tömbnek
+//ha nincs benne, akkor olyan írjunk, ki, amiből kiderül, hogy nincs benne, lehet azt is, hogy az index ilyenkor -1
     let index = -1;
     for (let i=0; i<arr.length; i++) {
         if (arr[i] === 1) {
@@ -51,11 +59,3 @@ export const Algorithms = () => {
         </div>
     )
 }
-
-//4.feladat: rendezés
-//rendezzük a számokat emelkedő/csökkenő sorrendbe
-
-//5.feladat bináris keresés
-//keressünk meg egy konkrét számot
-
-//string algoritmusok
