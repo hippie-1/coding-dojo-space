@@ -50,9 +50,21 @@ arrayMaker.render(
   <React.StrictMode>
     <Algorithms />
 const randomNumbers = ReactDOM.createRoot(document.getElementById('random-numbers'));
+randomNumbers.render(
   </React.StrictMode>
 );
 
+randomEvenNumbers.render(
+  <React.StrictMode>
+    <RandomEvenNumberArray />
+  </React.StrictMode>
+);
 
+const bubbleSortedNumbers = ReactDOM.createRoot(document.getElementById('bubble-sorted-numbers'));
+bubbleSortedNumbers.render(
+  <React.StrictMode>
+    <BubbleSorting />
+  </React.StrictMode>
+);
 
 reportWebVitals();
