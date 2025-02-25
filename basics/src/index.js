@@ -3,68 +3,41 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { DataStructures } from './util/DataStructures';
-import { Sequence1, Sequence2, Iteration, IntroducingForkOnlyOddOrEvenNumbers, FibonacciNumbers } from './util/BasicElements';
 import { Algorithms } from './util/Algorithms';
-import { Sequence1, Sequence2, Iteration, IntroducingForkOnlyOddOrEvenNumbers, FibonacciNumbers, RandomNumberArray, RandomEvenNumberArray, BubbleSorting } from './util/BasicElements';
+import { Sequence1, Sequence2, Iteration, IntroducingForkOnlyOddOrEvenNumbers, FibonacciNumbers, RandomNumberArray, RandomEvenNumberArray} from './util/BasicElements';
+import { initRandomNumberArray, initInputBasedArray } from './util/BasicFunctions';
+import { BubbleSorting } from './util/ListAlgorithms';
+
 //import { Counting, LienarSearch, Sorting, stb} from './util/Algorithms';
 import reportWebVitals from './reportWebVitals';
 
-
-const dataStructures = ReactDOM.createRoot(document.getElementById('data-structures'));
-dataStructures.render(
-  <React.StrictMode>
-    <DataStructures />
-  </React.StrictMode>
+var originalNumberArray  = initRandomNumberArray(10, -20, 20);
+//var originalNumberArray  = initInputBasedArray("0 1, 2, 3, 4, 5, 6, 7, 8, 9");
+//var originalNumberArray  = initInputBasedArray("9, 8, 7, 6, 5, 4, 3, 2, 1, 0");
+console.log("Orig array: " + originalNumberArray.join(", "));
+const placeHolderOfOriginalArrayToWorkWith = ReactDOM.createRoot(document.getElementById('original-list-to-work-with'));
+placeHolderOfOriginalArrayToWorkWith.render(
+  <div>
+    <div className="display-linebreak">Original array to work with in the following functions: {originalNumberArray.join(", ")} </div>
+  </div>
 );
 
-const sequence = ReactDOM.createRoot(document.getElementById('sequence'));
-sequence.render(
-  <React.StrictMode>
-    <Sequence1 />
-  </React.StrictMode>
-);
-
-const iteration = ReactDOM.createRoot(document.getElementById('iteration'));
-iteration.render(
-  <React.StrictMode>
-    <Iteration />
-  </React.StrictMode>
-);
-
-const fork = ReactDOM.createRoot(document.getElementById('fork'));
-fork.render(
-  <React.StrictMode>
-    <IntroducingForkOnlyOddOrEvenNumbers />
-  </React.StrictMode>
-);
-
-const fibonacci = ReactDOM.createRoot(document.getElementById('fibonacci'));
-fibonacci.render(
-  <React.StrictMode>
-    <FibonacciNumbers />
-  </React.StrictMode>
-);
 
 const arrayMaker = ReactDOM.createRoot(document.getElementById('counting'));
 arrayMaker.render(
   <React.StrictMode>
     <Algorithms />
-const randomNumbers = ReactDOM.createRoot(document.getElementById('random-numbers'));
-randomNumbers.render(
   </React.StrictMode>
 );
 
-randomEvenNumbers.render(
-  <React.StrictMode>
-    <RandomEvenNumberArray />
-  </React.StrictMode>
-);
 
-const bubbleSortedNumbers = ReactDOM.createRoot(document.getElementById('bubble-sorted-numbers'));
-bubbleSortedNumbers.render(
-  <React.StrictMode>
-    <BubbleSorting />
-  </React.StrictMode>
+
+const bubbleSortedNumbersPlaceholder = ReactDOM.createRoot(document.getElementById('bubble-sorting'));
+var bubbleSortedArray = BubbleSorting(originalNumberArray);
+bubbleSortedNumbersPlaceholder.render(
+  <div>
+    <div className="display-linebreak">Bubble sorted numbers {bubbleSortedArray.join(", ")} </div>
+  </div>
 );
 
 reportWebVitals();

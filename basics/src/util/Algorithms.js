@@ -59,3 +59,5 @@ export const Algorithms = () => {
         </div>
     )
 }
+
+//rekurziv

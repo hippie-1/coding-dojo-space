@@ -1,5 +1,6 @@
 
 import './util.css';
+import { generateRandomNumber, initRandomNumberArray } from './BasicFunctions';
 
 export const Sequence1 = () => {
 
@@ -44,20 +45,6 @@ export const Iteration = () => {
   )
 }
 
-function generateRandomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-function initNumberArray (numberOfElements) {
-  var arrayOfNumbers = [];
-  var minValueInTheArray = -20;
-  var maxValueInTheArray = 20;
-  for (let i=0; i<numberOfElements; i++) {
-    arrayOfNumbers.push(generateRandomNumber(minValueInTheArray, maxValueInTheArray))
-  }
-  return arrayOfNumbers;
-}
-
 function evenNumbers (arrayOfNumbers) {
   var evenNumbersArray = [];
   for (let i=0; i<arrayOfNumbers.length; i++) {
@@ -79,7 +66,7 @@ function oddNumbers (arrayOfNumbers) {
 }
 
 export const RandomNumberArray = () => {
-  var randomNumberArray = initNumberArray (15);
+  var randomNumberArray = initRandomNumberArray (15)
   return (
     <div>
       <div className="display-linebreak">Random generated numbers: {randomNumberArray.join(", ")} </div>
@@ -89,7 +76,7 @@ export const RandomNumberArray = () => {
 }
 
 export const RandomEvenNumberArray = () => {
-  var randomNumberArray = initNumberArray (15);
+  var randomNumberArray = initRandomNumberArray (15);
   var randomEvenNumberArray = evenNumbers(randomNumberArray);
   return (
     <div>
@@ -142,28 +129,6 @@ export const FibonacciNumbers = () => {
   )
 }
 
-export const BubbleSorting = () => {
-  var arrayOfNumbers = initNumberArray(5);
-  var arrayOfNumbersBeforeSorting  = arrayOfNumbers.slice();
-  console.log("Orig array: " + arrayOfNumbersBeforeSorting.join(", "));
-  for (let i=arrayOfNumbers.length-1; i>0; i--) {
-    for (let j=0; j<=i-1; j++) {
-      console.log("i: " + i + ", j:"+ j);
-      if (arrayOfNumbers[j] > arrayOfNumbers[j+1]) {
-        console.log("i: " + i + ", j:"+ j);
-        var tempValue = arrayOfNumbers[j];
-        arrayOfNumbers[j] = arrayOfNumbers [j+1];
-        arrayOfNumbers [j+1] = tempValue;
-      }
-    }
-  }
-  return (
-    <div>
-      <div className="display-linebreak">Numvbers before bubble sorting: {arrayOfNumbersBeforeSorting.join(", ")} </div>
-      <div className="display-linebreak">Bubble sorted numbers: {arrayOfNumbers.join(", ")} </div>
-    </div>
-  )
-}
 
 
 
