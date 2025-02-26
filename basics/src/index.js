@@ -5,12 +5,10 @@ import App from './App';
 import { DataStructures } from './util/DataStructures';
 import { Algorithms } from './util/Algorithms';
 import { Sequence1, Sequence2, Iteration, IntroducingForkOnlyOddOrEvenNumbers, FibonacciNumbers, RandomNumberArray, RandomEvenNumberArray} from './util/BasicElements';
-import { initRandomNumberArray, initSortedNumberArray, initInputBasedArray } from './util/BasicFunctions';
-import { BubbleSorting, MaxValueBasedSorting } from './util/ListAlgorithms';
 import { PerformanciaTest } from './testing/performance/sortingAlgorithmsPerformanceTests';
 import { UnitTestsOfListSortingAlgorithms } from './testing/unit/listAlgorithmsUnitTests';
-import { initRandomNumberArray, initInputBasedArray } from './util/BasicFunctions';
-import { BubbleSorting, Counting, Max, MaxIndex, Min, MinIndex, LinearSearch, searchValue, SimpleSwapSorting, InsertionSorting } from './util/ListAlgorithms';
+import { initRandomNumberArray, initSortedNumberArray, initInputBasedArray } from './util/BasicFunctions';
+import { Counting, Max, MaxIndex, Min, MinIndex, LinearSearch, searchValue,  BubbleSorting, SimpleSwapSorting, InsertionSorting, MaxValueBasedSorting } from './util/ListAlgorithms';
 
 //import { Counting, LienarSearch, Sorting, stb} from './util/Algorithms';
 import reportWebVitals from './reportWebVitals';
@@ -26,13 +24,6 @@ placeHolderOfOriginalArrayToWorkWith.render(
   
 );
 
-
-// const arrayMaker = ReactDOM.createRoot(document.getElementById('counting'));
-// arrayMaker.render(
-//   <React.StrictMode>
-//     <Algorithms />
-//   </React.StrictMode>
-// );
 
 const countingPlaceholder = ReactDOM.createRoot(document.getElementById('counting'));
 countingPlaceholder.render(
@@ -76,7 +67,6 @@ minIndexPlaceholder.render(
   </div>
 );
 
-const bubbleSortedNumbersPlaceholder = ReactDOM.createRoot(document.getElementById('bubble-sorting'));
 var bubbleSortedArray = BubbleSorting(originalNumberArray);
 const bubbleSortedNumbersPlaceholder = ReactDOM.createRoot(document.getElementById('bubble-sorting'));
 bubbleSortedNumbersPlaceholder.render(
