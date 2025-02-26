@@ -87,24 +87,17 @@ maxValueBasedSortingPlaceholder.render(
   </div>
 );
 
-const linearSearchPlaceholder = ReactDOM.createRoot(document.getElementById('linear-search'));
-linearSearchPlaceholder.render(
-  <div>
-    <div className="display-linebreak">Index of linear search for { searchValue } is: { LinearSearch(originalNumberArray, searchValue) } </div>
-  </div>
-);
-
 const simpleSwapSortingPlaceholder = ReactDOM.createRoot(document.getElementById('simple-swap-sorting'));
 simpleSwapSortingPlaceholder.render(
   <div>
-    <div className="display-linebreak">Simple-swap sorted numbers: { SimpleSwapSorting(originalNumberArray).join(', ') } </div>
+    <div className="display-linebreak">Simple-swap sorted numbers: <br/>{ SimpleSwapSorting(originalNumberArray).join(', ') } </div>
   </div>
 );
 
 const InsertionSortingPlaceholder = ReactDOM.createRoot(document.getElementById('insertion-sorting'));
 InsertionSortingPlaceholder.render(
   <div>
-    <div className="display-linebreak">Insertion sorted numbers: { InsertionSorting(originalNumberArray).join(', ') } </div>
+    <div className="display-linebreak">Insertion sorted numbers: <br/> { InsertionSorting(originalNumberArray).join(', ') } </div>
   </div>
 );
 
@@ -114,5 +107,13 @@ InsertionSortingPlaceholder.render(
 //     <div className="display-linebreak">Minimum selection sorted numbers: { MinimumSelectionSorting(originalNumberArray).join(', ') } </div>
 //   </div>
 // );
+
+
+const linearSearchPlaceholder = ReactDOM.createRoot(document.getElementById('linear-search'));
+linearSearchPlaceholder.render(
+  <div>
+    <div className="display-linebreak">Index of linear search for { searchValue } is: { LinearSearch(originalNumberArray, searchValue) } </div>
+  </div>
+);
 
 reportWebVitals();

@@ -160,8 +160,8 @@ export function MaxValueBasedSorting (originalNumberArray) {
           numberOfElementExchanges++;
           maxIndex = j;
       }
-      console.log();
     }
+    elementExchange(arrayOfNumbers, maxIndex, i);
   }
   console.log("Max value based sorting ended with numberOfComparationSteps:" + numberOfComparationSteps + ", numberOfElementExchanges:" + numberOfElementExchanges);
   return arrayOfNumbers;
