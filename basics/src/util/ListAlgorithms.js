@@ -4,35 +4,12 @@ var numberOfComparationSteps = 0;
 var numberOfElementExchanges = 0;
 export let searchValue = 1;
 
-export function elementExchange(element1, element2) {
-    var tempValue = element1;
-    element1 = element2;
-    element2= tempValue;
+export function elementExchange(array, index1, index2) {
+  var tempValue = array[index1];
+  array[index1] = array[index2];
+  array[index2]= tempValue;
 }
 
-export function BubbleSorting (originalNumberArray) {
-    console.log("Bubble sorting staring");
-    numberOfComparationSteps = 0;
-    numberOfElementExchanges = 0;
-
-    var arrayOfNumbers = originalNumberArray.slice();
-    for (let i=arrayOfNumbers.length-1; i>0; i--) {
-      for (let j=0; j<=i-1; j++) {
-        numberOfComparationSteps++;
-        if (arrayOfNumbers[j] > arrayOfNumbers[j+1]) {
-            numberOfElementExchanges++;
-            var tempValue = arrayOfNumbers[j];
-            arrayOfNumbers[j] = arrayOfNumbers [j+1];
-            arrayOfNumbers [j+1] = tempValue;
-            //elementExchange(arrayOfNumbers[j], arrayOfNumbers [j+1]);
-        }
-      }
-    }
-
-    console.log("Bubble sorting ended with numberOfComparationSteps:" + numberOfComparationSteps + ", numberOfElementExchanges:" + numberOfElementExchanges);
-
-    return arrayOfNumbers;
-  }
 
 export function Counting (originalNumberArray) {
   let counterOfNegativeNumbers = 0;
@@ -46,25 +23,25 @@ export function Counting (originalNumberArray) {
 
 export function Max (originalNumberArray) {
   let maxValue = originalNumberArray[0];
-    for (let i=0; i<originalNumberArray.length-1; i++) {
-        if (originalNumberArray[i] > maxValue) {
+  for (let i=0; i<originalNumberArray.length-1; i++) {
+    if (originalNumberArray[i] > maxValue) {
             maxValue = originalNumberArray[i];
-        }
     }
-    return maxValue;
+  }
+  return maxValue;
 }
-
+      
 export function MaxIndex (originalNumberArray) {
   let indexOfTheMaximum = originalNumberArray[0];
   const maxValue = Max(originalNumberArray);
-    for (let i=0; i<originalNumberArray.length; i++) {
-        if (originalNumberArray[i] === maxValue) {
-          indexOfTheMaximum = i;
-        }
+  for (let i=0; i<originalNumberArray.length; i++) {
+    if (originalNumberArray[i] === maxValue) {
+      indexOfTheMaximum = i;
     }
-    return indexOfTheMaximum
+  }
+  return indexOfTheMaximum
 }
-
+  
 export function Min (originalNumberArray) {
   let minValue = originalNumberArray[0];
   for (let i=0; i<originalNumberArray.length-1; i++) {
@@ -74,19 +51,111 @@ export function Min (originalNumberArray) {
   }
   return minValue;
 }
-
+  
 export function MinIndex (originalNumberArray) {
   let indexOfTheMinimum = originalNumberArray[0];
   const minValue = Min(originalNumberArray);
-    for (let i=0; i<originalNumberArray.length; i++) {
-        if (originalNumberArray[i] === minValue) {
-          indexOfTheMinimum = i;
-        }
+  for (let i=0; i<originalNumberArray.length; i++) {
+    if (originalNumberArray[i] === minValue) {
+        indexOfTheMinimum = i;
+      }
+  }
+  return indexOfTheMinimum;
+}
+  
+export function BubbleSorting (originalNumberArray) {
+  console.log("Bubble sorting starting");
+  numberOfComparationSteps = 0;
+  numberOfElementExchanges = 0;
+
+  var arrayOfNumbers = originalNumberArray.slice();
+  for (let i=arrayOfNumbers.length-1; i>0; i--) {
+    for (let j=0; j<=i-1; j++) {
+      numberOfComparationSteps++;
+      if (arrayOfNumbers[j] > arrayOfNumbers[j+1]) {
+        numberOfElementExchanges++;
+        elementExchange(arrayOfNumbers, j, j+1);
+      }
     }
-    return indexOfTheMinimum;
+  }
+
+  console.log("Bubble sorting ended with numberOfComparationSteps:" + numberOfComparationSteps + ", numberOfElementExchanges:" + numberOfElementExchanges);
+
+  return arrayOfNumbers;
 }
 
-export function LinearSearch (originalNumberArray) {
+export function SimpleSwapSorting (originalNumberArray) {
+  console.log("Simple-swap sorting starting");
+  numberOfComparationSteps = 0;
+  numberOfElementExchanges = 0;
+
+  var arrayOfNumbers = originalNumberArray.slice();
+  for (let i=0; i<arrayOfNumbers.length; i++) {
+    for (let j=i+1; j<arrayOfNumbers.length; j++) {
+      numberOfComparationSteps++;
+      if (arrayOfNumbers[i] > arrayOfNumbers[j]) {
+        numberOfElementExchanges++;
+        elementExchange(arrayOfNumbers, i, j)
+      }
+    }
+  }
+
+  console.log("Simple-swap sorting ended with numberOfComparationSteps:" + numberOfComparationSteps + ", numberOfElementExchanges:" + numberOfElementExchanges);
+  
+  return arrayOfNumbers;
+}
+
+export function InsertionSorting (originalNumberArray) {
+  console.log("Insertion sorting starting");
+  numberOfComparationSteps = 0;
+  numberOfElementExchanges = 0;
+
+  var arrayOfNumbers = originalNumberArray.slice();
+  for (let i=1; i<arrayOfNumbers.length; i++) {
+    let j = i-1;
+    numberOfComparationSteps++;
+    while (j >= 0 && arrayOfNumbers[j] > arrayOfNumbers[j+1]) {
+      numberOfElementExchanges++;
+      elementExchange(arrayOfNumbers, j, j+1);
+      j = j-1
+    }
+  }
+
+  console.log("Insertion sorting ended with numberOfComparationSteps:" + numberOfComparationSteps + ", numberOfElementExchanges:" + numberOfElementExchanges);
+  
+  return arrayOfNumbers;
+}
+
+// export function MinimumSelectionSorting (originalNumberArray) {
+//   console.log("Minimum-selection sorting starting");
+//   numberOfComparationSteps = 0;
+//   numberOfElementExchanges = 0;
+
+//   var arrayOfNumbers = originalNumberArray.slice();
+//   for (let i=0; i<arrayOfNumbers.length; i++) {
+//     let min = i;
+//     for (let j=i+1; j<=arrayOfNumbers.length; j++) {
+//       if(arrayOfNumbers[min] > arrayOfNumbers[j]) {
+//         min = j;
+//       }
+//     }
+//   }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export function LinearSearch (originalNumberArray, searchValue) {
   let indexOfLinearSearch = -1;
   for (let i=0; i<originalNumberArray.length; i++) {
     if (originalNumberArray[i] === searchValue) {
