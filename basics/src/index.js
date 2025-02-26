@@ -6,7 +6,7 @@ import { DataStructures } from './util/DataStructures';
 import { Algorithms } from './util/Algorithms';
 import { Sequence1, Sequence2, Iteration, IntroducingForkOnlyOddOrEvenNumbers, FibonacciNumbers, RandomNumberArray, RandomEvenNumberArray} from './util/BasicElements';
 import { initRandomNumberArray, initInputBasedArray } from './util/BasicFunctions';
-import { BubbleSorting } from './util/ListAlgorithms';
+import { BubbleSorting, Counting, Max, MaxIndex, Min, MinIndex, LinearSearch, searchValue } from './util/ListAlgorithms';
 
 //import { Counting, LienarSearch, Sorting, stb} from './util/Algorithms';
 import reportWebVitals from './reportWebVitals';
@@ -23,20 +23,60 @@ placeHolderOfOriginalArrayToWorkWith.render(
 );
 
 
-const arrayMaker = ReactDOM.createRoot(document.getElementById('counting'));
-arrayMaker.render(
-  <React.StrictMode>
-    <Algorithms />
-  </React.StrictMode>
+// const arrayMaker = ReactDOM.createRoot(document.getElementById('counting'));
+// arrayMaker.render(
+//   <React.StrictMode>
+//     <Algorithms />
+//   </React.StrictMode>
+// );
+
+const countingPlaceholder = ReactDOM.createRoot(document.getElementById('counting'));
+countingPlaceholder.render(
+  <div>
+    <div className="display-linebreak">Count of negative numbers: { Counting(originalNumberArray) } </div>
+  </div>
 );
 
+const maxPlaceholder = ReactDOM.createRoot(document.getElementById('maximum'));
+maxPlaceholder.render(
+  <div>
+    <div className="display-linebreak">Maximum value: { Max(originalNumberArray) } </div>
+  </div>
+);
 
+const maxIndexPlaceholder = ReactDOM.createRoot(document.getElementById('maximum-index'));
+maxIndexPlaceholder.render(
+  <div>
+    <div className="display-linebreak">Index of the maximum value: { MaxIndex(originalNumberArray) } </div>
+  </div>
+);
+
+const minPlaceholder = ReactDOM.createRoot(document.getElementById('minimum'));
+minPlaceholder.render(
+  <div>
+    <div className="display-linebreak">Minimum value: { Min(originalNumberArray) } </div>
+  </div>
+);
+
+const minIndexPlaceholder = ReactDOM.createRoot(document.getElementById('minimum-index'));
+minIndexPlaceholder.render(
+  <div>
+    <div className="display-linebreak">Index of the minimum value: { MinIndex(originalNumberArray) } </div>
+  </div>
+);
 
 const bubbleSortedNumbersPlaceholder = ReactDOM.createRoot(document.getElementById('bubble-sorting'));
 var bubbleSortedArray = BubbleSorting(originalNumberArray);
 bubbleSortedNumbersPlaceholder.render(
   <div>
     <div className="display-linebreak">Bubble sorted numbers {bubbleSortedArray.join(", ")} </div>
+  </div>
+);
+
+const linearSearchPlaceholder = ReactDOM.createRoot(document.getElementById('linear-search'));
+linearSearchPlaceholder.render(
+  <div>
+    <div className="display-linebreak">Index of linear search for { searchValue } is: { LinearSearch(originalNumberArray) } </div>
   </div>
 );
 
