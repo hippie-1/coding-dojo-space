@@ -6,7 +6,7 @@ import { DataStructures } from './util/DataStructures';
 import { Algorithms } from './util/Algorithms';
 import { Sequence1, Sequence2, Iteration, IntroducingForkOnlyOddOrEvenNumbers, FibonacciNumbers, RandomNumberArray, RandomEvenNumberArray} from './util/BasicElements';
 import { initRandomNumberArray, initInputBasedArray } from './util/BasicFunctions';
-import { BubbleSorting, Counting, Max, MaxIndex, Min, MinIndex, LinearSearch, searchValue } from './util/ListAlgorithms';
+import { BubbleSorting, Counting, Max, MaxIndex, Min, MinIndex, LinearSearch, searchValue, SimpleSwapSorting, InsertionSorting } from './util/ListAlgorithms';
 
 //import { Counting, LienarSearch, Sorting, stb} from './util/Algorithms';
 import reportWebVitals from './reportWebVitals';
@@ -76,8 +76,29 @@ bubbleSortedNumbersPlaceholder.render(
 const linearSearchPlaceholder = ReactDOM.createRoot(document.getElementById('linear-search'));
 linearSearchPlaceholder.render(
   <div>
-    <div className="display-linebreak">Index of linear search for { searchValue } is: { LinearSearch(originalNumberArray) } </div>
+    <div className="display-linebreak">Index of linear search for { searchValue } is: { LinearSearch(originalNumberArray, searchValue) } </div>
   </div>
 );
+
+const simpleSwapSortingPlaceholder = ReactDOM.createRoot(document.getElementById('simple-swap-sorting'));
+simpleSwapSortingPlaceholder.render(
+  <div>
+    <div className="display-linebreak">Simple-swap sorted numbers: { SimpleSwapSorting(originalNumberArray).join(', ') } </div>
+  </div>
+);
+
+const InsertionSortingPlaceholder = ReactDOM.createRoot(document.getElementById('insertion-sorting'));
+InsertionSortingPlaceholder.render(
+  <div>
+    <div className="display-linebreak">Insertion sorted numbers: { InsertionSorting(originalNumberArray).join(', ') } </div>
+  </div>
+);
+
+// const MinimumSelectionSortingPlaceholder = ReactDOM.createRoot(document.getElementById('minimum-selection-sorting'));
+// MinimumSelectionSortingPlaceholder.render(
+//   <div>
+//     <div className="display-linebreak">Minimum selection sorted numbers: { MinimumSelectionSorting(originalNumberArray).join(', ') } </div>
+//   </div>
+// );
 
 reportWebVitals();
