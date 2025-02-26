@@ -5,6 +5,48 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      
+      /* Create two equal columns that floats next to each other */
+      .column1h {
+        float: left;
+        padding: 10px;
+        background-color:#ccc;
+        width: 20%;
+      }
+      .column2h {
+        float: left;
+        padding: 10px;
+        background-color:#ccc;
+        width: 70%;
+
+      }
+      .column1 {
+        float: left;
+        padding: 10px;
+        background-color:#aaa;
+        width: 20%;
+        height: 300px;
+
+      }
+      .column2 {
+        float: left;
+        padding: 10px;
+        background-color:#bbb;
+        width: 70%;
+        height: 300px;
+      }
+      /* Clear floats after the columns */
+      .row:after {
+        content: "";
+        margin: 1px;
+        display: table;
+        clear: both;
+      }
+      </style>
     <meta
       name="description"
       content="Web site created using create-react-app"
@@ -53,15 +95,48 @@
         <p id="minimum-index">Placeholder for minimum index</p>
       </p>
       <p id="sorting-list-algorithms"><h2>Sorting list algorithms</h2>
+
+        <h3>Unit testing for all sorting algorithms:</h3>
+        <p id="unit-testing-of-sorting-algorithms">Placeholder for unit testing of sorting algorithms</p>
+        <h3>Sorting algorithms</h3>
+        
+        <div class="row">
+          <div class="column1h">
+            <h4>Sorting algorithm</h4>
+          </div>
+          <div class="column2h">
+            <h4>Performance tests</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column1">
+            <p id="bubble-sorting">Placeholder for bubble-sorting</p>
+          </div>
+          <div class="column2">
+            <p id="bubble-sorting-perf-test">Placeholder for bubble sorting performance tests</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column1">
+            <p id="max-value-based-sorting">Placeholder for max value based sorting</p>
+          </div>
+          <div class="column2">
+            <p id="max-value-based-sorting-perf-test">Placeholder for max value based sorting performance tests</p>
+          </div>
+        </div>       
+        
+        <p id="simple-sorting">Placeholder for simple-sorting</p>
+        <p id="bubble-sorting">Placeholder for bubble-sorting</p>
+        <p id="insertion-sorting">Placeholder for insertion-sorting</p>
+        <p id="min-value-based-sorting">Placeholder for min-value-based-sorting</p>
+        <p id="quick-sorting">Placeholder for quick-sorting</p>
+        <p id="merg-sorting">Placeholder for merge-sorting</p>
         <p id="bubble-sorting">Placeholder for bubble-sorting</p>        
         <p id="simple-swap-sorting">Placeholder for simple-swap sorting</p>        
         <p id="insertion-sorting">Placeholder for insertion sorting</p>        
         <p id="minimum-selection-sorting">Placeholder for  minimum selection sorting</p>        
+
       </p>
-
-
-
-
 
       <p id="searching-list-algorithms"><h2>Searching element in list algorithms</h2>
         <p id="linear-search">Placeholder for linear search</p>
@@ -69,11 +144,13 @@
         <p id="skip-list-search">Placeholder for skip list search</p>      
       </p>
     </p>
+<!--    
     <hr/>      
     <p id="practicing"><h1>Practicing</h1>
       <p id="random-numbers">Random numbers placeholder</p>
       <p id="random-even-numbers">Random even numbers placeholder</p>
       <p id="fibonacci">Fibonacci placeholder</p>
     </p>
+  -->
   </body>
 </html>
