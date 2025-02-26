@@ -5,21 +5,23 @@ import App from './App';
 import { DataStructures } from './util/DataStructures';
 import { Algorithms } from './util/Algorithms';
 import { Sequence1, Sequence2, Iteration, IntroducingForkOnlyOddOrEvenNumbers, FibonacciNumbers, RandomNumberArray, RandomEvenNumberArray} from './util/BasicElements';
-import { initRandomNumberArray, initInputBasedArray } from './util/BasicFunctions';
-import { BubbleSorting } from './util/ListAlgorithms';
+import { initRandomNumberArray, initSortedNumberArray, initInputBasedArray } from './util/BasicFunctions';
+import { BubbleSorting, MaxValueBasedSorting } from './util/ListAlgorithms';
+import { PerformanciaTest } from './testing/performance/sortingAlgorithmsPerformanceTests';
+import { UnitTestsOfListSortingAlgorithms } from './testing/unit/listAlgorithmsUnitTests';
 
 //import { Counting, LienarSearch, Sorting, stb} from './util/Algorithms';
 import reportWebVitals from './reportWebVitals';
 
-var originalNumberArray  = initRandomNumberArray(10, -20, 20);
-//var originalNumberArray  = initInputBasedArray("0 1, 2, 3, 4, 5, 6, 7, 8, 9");
-//var originalNumberArray  = initInputBasedArray("9, 8, 7, 6, 5, 4, 3, 2, 1, 0");
+var originalNumberArray  = initRandomNumberArray(5, -20, 20);
+//var originalNumberArray  = initSortedNumberArray(10, -2, 2, 1, "DESC");
 console.log("Orig array: " + originalNumberArray.join(", "));
 const placeHolderOfOriginalArrayToWorkWith = ReactDOM.createRoot(document.getElementById('original-list-to-work-with'));
 placeHolderOfOriginalArrayToWorkWith.render(
   <div>
     <div className="display-linebreak">Original array to work with in the following functions: {originalNumberArray.join(", ")} </div>
   </div>
+  
 );
 
 
@@ -30,13 +32,30 @@ arrayMaker.render(
   </React.StrictMode>
 );
 
+const unitTestingOfSortingAlgorithmslaceholder = ReactDOM.createRoot(document.getElementById('unit-testing-of-sorting-algorithms'));
+unitTestingOfSortingAlgorithmslaceholder.render(
+  <div>
+    <UnitTestsOfListSortingAlgorithms />
+  </div>
+);
 
-
-const bubbleSortedNumbersPlaceholder = ReactDOM.createRoot(document.getElementById('bubble-sorting'));
 var bubbleSortedArray = BubbleSorting(originalNumberArray);
+const bubbleSortedNumbersPlaceholder = ReactDOM.createRoot(document.getElementById('bubble-sorting'));
 bubbleSortedNumbersPlaceholder.render(
   <div>
-    <div className="display-linebreak">Bubble sorted numbers {bubbleSortedArray.join(", ")} </div>
+    <div className="display-linebreak">Bubble sorted numbers:<br/> {bubbleSortedArray.join(", ")} </div>
+  </div>
+);
+const bubbleSortingPerformanceTestlaceholder = ReactDOM.createRoot(document.getElementById('bubble-sorting-perf-test'));
+bubbleSortingPerformanceTestlaceholder.render(
+    <PerformanciaTest />
+);
+
+var maxValueBasedSortedArray = MaxValueBasedSorting(originalNumberArray);
+const maxValueBasedSortingPlaceholder = ReactDOM.createRoot(document.getElementById('max-value-based-sorting'));
+maxValueBasedSortingPlaceholder.render(
+  <div>
+    <div className="display-linebreak">Max value based numbers<br/> {maxValueBasedSortedArray.join(", ")} </div>
   </div>
 );
 
