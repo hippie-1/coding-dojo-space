@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {TabsAndPanels} from './presentation/TabsAndPanels'
+import {TabsAndPanels} from './presentation/TabsAndPanels.js'
 
 import "./style.css";
 
