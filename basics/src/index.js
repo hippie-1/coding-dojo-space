@@ -1,7 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+//import React, { useRef, useEffect } from 'react';
+//import ReactDOM from 'react-dom/*';
+import { createElement } from 'react';
+
+import Tabs from "./Tabs";
+import Panel from "./Panel";
+
+import { htmlElements } from "./htmlElements";
+
+import "./style.css";
+
 import { DataStructures } from './util/DataStructures';
 import { Algorithms } from './util/Algorithms';
 import { Sequence1, Sequence2, Iteration, IntroducingForkOnlyOddOrEvenNumbers, FibonacciNumbers, RandomNumberArray, RandomEvenNumberArray} from './util/BasicElements';
@@ -9,111 +18,79 @@ import { PerformanciaTest } from './testing/performance/sortingAlgorithmsPerform
 import { UnitTestsOfListSortingAlgorithms } from './testing/unit/listAlgorithmsUnitTests';
 import { initRandomNumberArray, initSortedNumberArray, initInputBasedArray } from './util/BasicFunctions';
 import { Counting, Max, MaxIndex, Min, MinIndex, LinearSearch, searchValue,  BubbleSorting, SimpleSwapSorting, InsertionSorting, MaxValueBasedSorting } from './util/ListAlgorithms';
+import { CreateRowToPresentSortingAlg } from './presentation/elements';
+import { GenerateArrayToWorkWith, RunSimpleAlgorithms, RunSortingAlgorithms, RunSearchingAlgorithms, RunSortingPerformanceTest } from './RunAlgorithms';
 
-//import { Counting, LienarSearch, Sorting, stb} from './util/Algorithms';
-import reportWebVitals from './reportWebVitals';
+var rootElement = null;
 
-var originalNumberArray  = initRandomNumberArray(5, -20, 20);
+function App() {
+  return (
+    <Tabs>
+      <Panel title="Simple List Algorithms">
+        <button onClick={RunSimpleAlgorithms}>Start simple algorithms</button><br/><br/>
+        {
+        htmlElements
+          .filter(htmlElement => htmlElement.panelId === "simpleListAlgorithms")
+          .map(htmlElement => {
+            return <div id={htmlElement.id} key={htmlElement.id}>{htmlElement.title}</div>;
+          })
+          }
+      </Panel>
+
+      <Panel title="Sorting List Algorithms">
+        <button onClick={RunSortingAlgorithms}>Start sorting algorithms</button><br/><br/>
+        {htmlElements
+          .filter(htmlElement => htmlElement.panelId === "sortingListAlgorithms") 
+          .map(htmlElement => {
+            return <div id={htmlElement.id} key={htmlElement.id}>{htmlElement.title}</div>;
+          })}
+        <br/><br/><button onClick={RunSortingPerformanceTest}>Start sorting performance tests</button><br/><br/>
+        <div id="sortingPerformanceTestPlaceHolder">Result of sorting performance tests</div>
+      </Panel>
+
+      <Panel title="Searching List Algorithms">
+        <input 
+                id="valueToSearch"
+                type="text" 
+                defaultValue="20"
+                //value="20"
+                placeholder="search value"
+                //onChange={(e) => setNumberOfElementsInGeneratedArray(e.target.value)}
+        />
+        <button onClick={RunSearchingAlgorithms}>Start searching algorithms</button><br/><br/>
+        {
+        htmlElements
+          .filter(htmlElement => htmlElement.panelId === "searchingListAlgorithms")
+          .map(htmlElement => {
+          return <div id={htmlElement.id} key={htmlElement.id}>{htmlElement.title}</div>;
+        })
+        }
+      </Panel>
+
+      <Panel title="Others">
+        <button>Start others</button><br/><br/>
+        {htmlElements
+          .filter(htmlElement => htmlElement.panelId === "others")
+          .map(htmlElement => {
+          return <div id={htmlElement.id} key={htmlElement.id}>{htmlElement.title}</div>;
+        })}
+      </Panel>      
+    </Tabs>
+  );
+}
+
+
+
+var rootElement = ReactDOM.createRoot(document.getElementById("root"));
+rootElement.render(<App />);
+
+//var originalNumberArray  = initRandomNumberArray(5, -20, 20);
 //var originalNumberArray  = initSortedNumberArray(10, -2, 2, 1, "DESC");
-console.log("Orig array: " + originalNumberArray.join(", "));
-const placeHolderOfOriginalArrayToWorkWith = ReactDOM.createRoot(document.getElementById('original-list-to-work-with'));
-placeHolderOfOriginalArrayToWorkWith.render(
-  <div>
-    <div className="display-linebreak">Original array to work with in the following functions: {originalNumberArray.join(", ")} </div>
-  </div>
-  
+//console.log("Orig array: " + originalNumberArray.join(", "));
+const placeHolderOfGenerateArrayToWorkWith = ReactDOM.createRoot(document.getElementById('generate-list-to-work-with'));
+
+placeHolderOfGenerateArrayToWorkWith.render(
+  <GenerateArrayToWorkWith/>
 );
 
 
-const countingPlaceholder = ReactDOM.createRoot(document.getElementById('counting'));
-countingPlaceholder.render(
-  <div>
-    <div className="display-linebreak">Count of negative numbers: { Counting(originalNumberArray) } </div>
-  </div>
-);
-
-const unitTestingOfSortingAlgorithmslaceholder = ReactDOM.createRoot(document.getElementById('unit-testing-of-sorting-algorithms'));
-unitTestingOfSortingAlgorithmslaceholder.render(
-  <div>
-    <UnitTestsOfListSortingAlgorithms />
-  </div>
-);
-
-const maxPlaceholder = ReactDOM.createRoot(document.getElementById('maximum'));
-maxPlaceholder.render(
-  <div>
-    <div className="display-linebreak">Maximum value: { Max(originalNumberArray) } </div>
-  </div>
-);
-
-const maxIndexPlaceholder = ReactDOM.createRoot(document.getElementById('maximum-index'));
-maxIndexPlaceholder.render(
-  <div>
-    <div className="display-linebreak">Index of the maximum value: { MaxIndex(originalNumberArray) } </div>
-  </div>
-);
-
-const minPlaceholder = ReactDOM.createRoot(document.getElementById('minimum'));
-minPlaceholder.render(
-  <div>
-    <div className="display-linebreak">Minimum value: { Min(originalNumberArray) } </div>
-  </div>
-);
-
-const minIndexPlaceholder = ReactDOM.createRoot(document.getElementById('minimum-index'));
-minIndexPlaceholder.render(
-  <div>
-    <div className="display-linebreak">Index of the minimum value: { MinIndex(originalNumberArray) } </div>
-  </div>
-);
-
-var bubbleSortedArray = BubbleSorting(originalNumberArray);
-const bubbleSortedNumbersPlaceholder = ReactDOM.createRoot(document.getElementById('bubble-sorting'));
-bubbleSortedNumbersPlaceholder.render(
-  <div>
-    <div className="display-linebreak">Bubble sorted numbers:<br/> {bubbleSortedArray.join(", ")} </div>
-  </div>
-);
-const bubbleSortingPerformanceTestlaceholder = ReactDOM.createRoot(document.getElementById('bubble-sorting-perf-test'));
-bubbleSortingPerformanceTestlaceholder.render(
-    <PerformanciaTest />
-);
-
-var maxValueBasedSortedArray = MaxValueBasedSorting(originalNumberArray);
-const maxValueBasedSortingPlaceholder = ReactDOM.createRoot(document.getElementById('max-value-based-sorting'));
-maxValueBasedSortingPlaceholder.render(
-  <div>
-    <div className="display-linebreak">Max value based numbers<br/> {maxValueBasedSortedArray.join(", ")} </div>
-  </div>
-);
-
-const simpleSwapSortingPlaceholder = ReactDOM.createRoot(document.getElementById('simple-swap-sorting'));
-simpleSwapSortingPlaceholder.render(
-  <div>
-    <div className="display-linebreak">Simple-swap sorted numbers: <br/>{ SimpleSwapSorting(originalNumberArray).join(', ') } </div>
-  </div>
-);
-
-const InsertionSortingPlaceholder = ReactDOM.createRoot(document.getElementById('insertion-sorting'));
-InsertionSortingPlaceholder.render(
-  <div>
-    <div className="display-linebreak">Insertion sorted numbers: <br/> { InsertionSorting(originalNumberArray).join(', ') } </div>
-  </div>
-);
-
-// const MinimumSelectionSortingPlaceholder = ReactDOM.createRoot(document.getElementById('minimum-selection-sorting'));
-// MinimumSelectionSortingPlaceholder.render(
-//   <div>
-//     <div className="display-linebreak">Minimum selection sorted numbers: { MinimumSelectionSorting(originalNumberArray).join(', ') } </div>
-//   </div>
-// );
-
-
-const linearSearchPlaceholder = ReactDOM.createRoot(document.getElementById('linear-search'));
-linearSearchPlaceholder.render(
-  <div>
-    <div className="display-linebreak">Index of linear search for { searchValue } is: { LinearSearch(originalNumberArray, searchValue) } </div>
-  </div>
-);
-
-reportWebVitals();

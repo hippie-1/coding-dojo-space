@@ -70,6 +70,7 @@ export function BubbleSorting (originalNumberArray) {
   console.log("Bubble sorting starting");
   numberOfComparationSteps = 0;
   numberOfElementExchanges = 0;
+  var startTime = Date.now();
 
   var arrayOfNumbers = originalNumberArray.slice();
   for (let i=arrayOfNumbers.length-1; i>0; i--) {
@@ -81,9 +82,11 @@ export function BubbleSorting (originalNumberArray) {
       }
     }
   }
+  var endTime = Date.now();
+  var duration = endTime-startTime;
 
-  console.log("Bubble sorting ended with numberOfComparationSteps:" + numberOfComparationSteps + ", numberOfElementExchanges:" + numberOfElementExchanges);
-  saveAlgorithmLog("BubbleSorting", originalNumberArray.length, numberOfComparationSteps, numberOfElementExchanges);
+  console.log("Bubble sorting ended with numberOfComparationSteps:" + numberOfComparationSteps + ", numberOfElementExchanges:" + numberOfElementExchanges + " duration:" + duration + "ms");
+  saveAlgorithmLog("BubbleSorting", originalNumberArray.length, numberOfComparationSteps, numberOfElementExchanges, endTime-startTime);
 
   return arrayOfNumbers;
 }
@@ -92,6 +95,7 @@ export function SimpleSwapSorting (originalNumberArray) {
   console.log("Simple-swap sorting starting");
   numberOfComparationSteps = 0;
   numberOfElementExchanges = 0;
+  var startTime = Date.now();  
 
   var arrayOfNumbers = originalNumberArray.slice();
   for (let i=0; i<arrayOfNumbers.length; i++) {
@@ -104,8 +108,11 @@ export function SimpleSwapSorting (originalNumberArray) {
     }
   }
 
-  console.log("Simple-swap sorting ended with numberOfComparationSteps:" + numberOfComparationSteps + ", numberOfElementExchanges:" + numberOfElementExchanges);
-  
+  var endTime = Date.now();
+  var duration = endTime-startTime;
+  console.log("Simple-swap sorting ended with numberOfComparationSteps:" + numberOfComparationSteps + ", numberOfElementExchanges:" + numberOfElementExchanges + " duration:" + duration + "ms");
+  saveAlgorithmLog("SimpleSwapSorting", originalNumberArray.length, numberOfComparationSteps, numberOfElementExchanges, endTime-startTime);
+ 
   return arrayOfNumbers;
 }
 
@@ -113,6 +120,7 @@ export function InsertionSorting (originalNumberArray) {
   console.log("Insertion sorting starting");
   numberOfComparationSteps = 0;
   numberOfElementExchanges = 0;
+  var startTime = Date.now();  
 
   var arrayOfNumbers = originalNumberArray.slice();
   for (let i=1; i<arrayOfNumbers.length; i++) {
@@ -124,8 +132,10 @@ export function InsertionSorting (originalNumberArray) {
       j = j-1
     }
   }
-
-  console.log("Insertion sorting ended with numberOfComparationSteps:" + numberOfComparationSteps + ", numberOfElementExchanges:" + numberOfElementExchanges);
+  var endTime = Date.now();
+  var duration = endTime-startTime;
+  console.log("Insertion sorting ended with numberOfComparationSteps:" + numberOfComparationSteps + ", numberOfElementExchanges:" + numberOfElementExchanges + " duration:" + duration + "ms");
+  saveAlgorithmLog("InsertionSorting", originalNumberArray.length, numberOfComparationSteps, numberOfElementExchanges, endTime-startTime);
   
   return arrayOfNumbers;
 }
@@ -150,6 +160,7 @@ export function MaxValueBasedSorting (originalNumberArray) {
   console.log("Max value based sorting staring");
   numberOfComparationSteps = 0;
   numberOfElementExchanges = 0;
+  var startTime = Date.now();
 
   var arrayOfNumbers = originalNumberArray.slice();
   for (let i=arrayOfNumbers.length-1; i>=0; i--) {
@@ -163,19 +174,113 @@ export function MaxValueBasedSorting (originalNumberArray) {
     }
     elementExchange(arrayOfNumbers, maxIndex, i);
   }
-  console.log("Max value based sorting ended with numberOfComparationSteps:" + numberOfComparationSteps + ", numberOfElementExchanges:" + numberOfElementExchanges);
+  var endTime = Date.now();
+  var duration = endTime-startTime;
+  console.log("Max-value-based sorting ended with numberOfComparationSteps:" + numberOfComparationSteps + ", numberOfElementExchanges:" + numberOfElementExchanges + " duration:" + duration + "ms");
+  saveAlgorithmLog("MaxValueBasedSorting", originalNumberArray.length, numberOfComparationSteps, numberOfElementExchanges, endTime-startTime);
+
   return arrayOfNumbers;
 }
 
 //Searching algorithms
 
 export function LinearSearch (originalNumberArray, searchValue) {
+  console.log("linear search, searchValue: " + searchValue);
   let indexOfLinearSearch = -1;
   for (let i=0; i<originalNumberArray.length; i++) {
-    if (originalNumberArray[i] === searchValue) {
+    console.log("......" + i);
+    console.log(originalNumberArray[i]);
+    console.log(searchValue);
+    console.log(originalNumberArray[i] == searchValue);
+    if (originalNumberArray[i] == searchValue) {
+      console.log(",,,,,,,");
+      
       indexOfLinearSearch = i;
       return indexOfLinearSearch;
     }
   }
   return indexOfLinearSearch;
+}
+
+export function BinarySearchIterative (sortedArrayOfNumbers, searchValue) {
+  console.log('Binary search starting')
+
+  let lowestValue = sortedArrayOfNumbers[0];
+  let lowestIndex = sortedArrayOfNumbers.indexOf(lowestValue); // szimplán 0 is lehetne
+  let highestValue = sortedArrayOfNumbers[sortedArrayOfNumbers.length-1];
+  let highestIndex = sortedArrayOfNumbers.indexOf(highestValue); // sortedArrayOfNumbers.length -1 is lehetne
+  console.log('1st LOWEST: ' + lowestValue + ', 1st HIGHEST: ' + highestValue);
+
+  while (lowestIndex <= highestIndex) {
+    let midIndex = Math.floor(lowestIndex + (highestIndex - lowestIndex) / 2);
+    let midValue = sortedArrayOfNumbers[midIndex];
+    console.log('MIDindex: ' + midIndex + ', MIDvalue: ' + midValue)
+
+    if (midValue === searchValue) {
+      return midIndex;
+    }
+    else if (midValue < searchValue) {
+      lowestIndex = midIndex + 1;
+    } else {
+      highestIndex = midIndex - 1;
+    }
+  }
+  return -1;
+}
+
+
+
+export function BinarySearchRecursive (sortedArrayOfNumbers, lowestIndex, highestIndex, searchValue) {
+
+  if (lowestIndex <= highestIndex) {
+    let midIndex = Math.floor(lowestIndex + (highestIndex - lowestIndex) / 2);
+    if (sortedArrayOfNumbers[midIndex] === searchValue) {
+      return sortedArrayOfNumbers.indexOf(sortedArrayOfNumbers[midIndex]) // érdemes lenne a midValue-t külön változóba tenni
+    }
+    else if (sortedArrayOfNumbers[midIndex] > searchValue) {
+      return BinarySearchRecursive (sortedArrayOfNumbers, lowestIndex, midIndex-1, searchValue)
+    } else {
+      return BinarySearchRecursive(sortedArrayOfNumbers, midIndex+1, highestIndex, searchValue)
+    }
+  }
+  return -1;
+}
+
+export function factorialFor (number) {
+  let factorial = 1;
+  console.log(factorial, number);
+  for (let i=number; i>1; i--) {
+    factorial *= number;
+  }
+  return factorial;
+}
+
+export function factorialRecursion (number) {
+  if (number === 0 || number === 1) {
+    return 1;
+  } else {
+    return number * factorialRecursion(number - 1);
+  }
+}
+
+// 1. kör: number = 5; return: 5* függvény(4)
+// 2. kör: number = 4; return : 4* függvény(3)
+// 3. kör: number = 3; return: 3 * függvény(2)
+// 4. kör: number = 2; return 2* függvény(1)
+// 5. kör: number = 1; return 1; -> csak itt tudja behelyettesíteni visszafelé
+
+function isOtherDivider (number) {
+  for (let i=1; i<number; i++) {
+    if (number % i === 0) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+}
+
+function primeNumberSearch () {
+  for (let i=0; i<20; i++) {
+    isOtherDivider(i)
+  }
 }
