@@ -2,7 +2,7 @@ import { generateRandomNumber, initRandomNumberArray, saveAlgorithmLog } from '.
 
 var numberOfComparationSteps = 0;
 let numberOfElementExchanges = 0;
-export let searchValue = 1;
+export let searchValue = -12;
 
 export function elementExchange(array, index1, index2) {
   var tempValue = array[index1];
@@ -283,4 +283,5 @@ function primeNumberSearch () {
   for (let i=0; i<20; i++) {
     isOtherDivider(i)
   }
+}
 }
