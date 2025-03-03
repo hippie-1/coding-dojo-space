@@ -1,10 +1,18 @@
 import { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BubbleSorting, MaxValueBasedSorting } from '../../util/ListAlgorithms';
-import { initSortedNumberArray, initRandomNumberArray } from '../../util/BasicFunctions';
+import { initSortedNumberArray, initNumberArray } from '../../util/BasicFunctions';
 import '../../util/util.css';
 
 var resultString = "";
+
+export function CreateRowToPresentSortingAlg () {
+    return (
+        <div>
+            <p>Vakk</p>
+        </div>
+    )
+}
 
 export function PerformanciaTest(algorithmName) {
 
@@ -46,7 +54,7 @@ export function BubbleSortingPerformanceTest (numberOfElements) {
     resultString = resultString + addArrangementDirectionToLog("BubbleSorting", "DESC");
     localStorage.removeItem("BubbleSorting");
 
-    BubbleSorting(initRandomNumberArray(numberOfElements, -50, 50));
+    BubbleSorting(initNumberArray(numberOfElements, -50, 50, "RANDOM"));
     resultString = resultString + addArrangementDirectionToLog("BubbleSorting", "NONE");
     localStorage.removeItem("BubbleSorting");
 }

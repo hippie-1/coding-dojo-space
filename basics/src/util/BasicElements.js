@@ -1,6 +1,6 @@
 
 import './util.css';
-import { generateRandomNumber, initRandomNumberArray } from './BasicFunctions';
+import { generateRandomNumber, initInputBasedArray, initNumberArray } from './BasicFunctions';
 
 export const Sequence1 = () => {
 
@@ -66,7 +66,7 @@ function oddNumbers (arrayOfNumbers) {
 }
 
 export const RandomNumberArray = () => {
-  var randomNumberArray = initRandomNumberArray (15)
+  var randomNumberArray = initNumberArray (15)
   return (
     <div>
       <div className="display-linebreak">Random generated numbers: {randomNumberArray.join(", ")} </div>
@@ -76,7 +76,7 @@ export const RandomNumberArray = () => {
 }
 
 export const RandomEvenNumberArray = () => {
-  var randomNumberArray = initRandomNumberArray (15);
+  var randomNumberArray = initNumberArray (15);
   var randomEvenNumberArray = evenNumbers(randomNumberArray);
   return (
     <div>

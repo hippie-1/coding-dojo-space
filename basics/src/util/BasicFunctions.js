@@ -1,17 +1,25 @@
+//@ts-check
 
 export function generateRandomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
+    var rand = (Math.random() * (max - min + 1) + min);
+    console.log(rand);
+    return Math.round((Math.random() * (max - min + 1) + min));
 }
 
-export function initRandomNumberArray (numberOfElements, minValueInTheArray, maxValueInTheArray) {
+export function initNumberArray (numberOfElements=100, minValueInTheArray=5, maxValueInTheArray=50, direction="RANDOM") { //RANDOM, ASC or DESC, default is RANDOM
     var arrayOfRandomNumbers = [];
-    for (let i=0; i<numberOfElements; i++) {
-        arrayOfRandomNumbers.push(generateRandomNumber(minValueInTheArray, maxValueInTheArray))
+    if (direction==='RANDOM') {
+        console.log(direction);
+        for (let i=0; i<numberOfElements; i++) {
+            var num = generateRandomNumber(minValueInTheArray, maxValueInTheArray);
+            arrayOfRandomNumbers.push(num);
+        }
+        return arrayOfRandomNumbers;     
     }
-    return arrayOfRandomNumbers;
+    else return initSortedNumberArray (numberOfElements, minValueInTheArray, maxValueInTheArray, direction);
 }
 
-export function initSortedNumberArray (numberOfElements, minValueInTheArray, maxValueInTheArray, direction) { //ASC or DESC, default is ASC
+export function initSortedNumberArray (numberOfElements=100, minValueInTheArray=5, maxValueInTheArray=50, direction="ASC") { //ASC or DESC, default is ASC
     var arrayOfSortedNumbers = [];
     let difference = (maxValueInTheArray - minValueInTheArray) / numberOfElements
     let firstValue = Math.round(minValueInTheArray); //nearest integer
@@ -23,6 +31,7 @@ export function initSortedNumberArray (numberOfElements, minValueInTheArray, max
     for (let i=1; i<numberOfElements; i++) {
         arrayOfSortedNumbers.push(Math.round(firstValue+difference*i));
     }
+    console.log(arrayOfSortedNumbers);
     return arrayOfSortedNumbers;
 }
 
@@ -31,16 +40,16 @@ export function initInputBasedArray (inputArrayString) {
     return arrayOfNumbers;
 }
 
-export function saveAlgorithmLog (algorithmName, numberOfElements, numberOfComparationSteps, numberOfElementExchanges) {
+export function saveAlgorithmLog (algorithmName, numberOfElements, numberOfComparationSteps, numberOfElementExchanges, duration) {
 /*    var logs = [];
     var logsStr = localStorage.getItem(algorithmName);
     if (logsStr!==null) {
         logs = JSON.parse(logsStr);
     }
 */
-    var logObject = {numberOfElementsAttr:numberOfElements, numberOfComparationStepsAttr:numberOfComparationSteps, numberOfElementExchangesAttr:numberOfElementExchanges};
-    var logStr = JSON.stringify(logObject);
+    //var logObject = {"id":algorithmName, numberOfElementsAttr:numberOfElements, numberOfComparationStepsAttr:numberOfComparationSteps, numberOfElementExchangesAttr:numberOfElementExchanges, duration};
+    //var logStr = JSON.stringify(logObject);
 //    logs.push({numberOfElementsAttr:numberOfElements, numberOfComparationStepsAttr:numberOfComparationSteps, numberOfElementExchangesAttr:numberOfElementExchanges});
-    console.log(algorithmName + " ended with " + logStr);
-    localStorage.setItem(algorithmName, JSON.stringify(logStr));
+    //console.log(algorithmName + " ended with " + logStr);
+    //localStorage.setItem(algorithmName, JSON.stringify(logStr));
 }

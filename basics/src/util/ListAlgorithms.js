@@ -1,4 +1,4 @@
-import { generateRandomNumber, initRandomNumberArray, saveAlgorithmLog } from './BasicFunctions';
+import { saveAlgorithmLog } from './BasicFunctions.js';
 
 var numberOfComparationSteps = 0;
 let numberOfElementExchanges = 0;
@@ -70,6 +70,7 @@ export function BubbleSorting (originalNumberArray) {
   console.log("Bubble sorting starting");
   numberOfComparationSteps = 0;
   numberOfElementExchanges = 0;
+  var startTime = Date.now();
 
   var arrayOfNumbers = originalNumberArray.slice();
   for (let i=arrayOfNumbers.length-1; i>0; i--) {
@@ -81,9 +82,11 @@ export function BubbleSorting (originalNumberArray) {
       }
     }
   }
+  var endTime = Date.now();
+  var duration = endTime-startTime;
 
-  console.log("Bubble sorting ended with numberOfComparationSteps:" + numberOfComparationSteps + ", numberOfElementExchanges:" + numberOfElementExchanges);
-  saveAlgorithmLog("BubbleSorting", originalNumberArray.length, numberOfComparationSteps, numberOfElementExchanges);
+  console.log("Bubble sorting ended with numberOfComparationSteps:" + numberOfComparationSteps + ", numberOfElementExchanges:" + numberOfElementExchanges + " duration:" + duration + "ms");
+  saveAlgorithmLog("BubbleSorting", originalNumberArray.length, numberOfComparationSteps, numberOfElementExchanges, endTime-startTime);
 
   return arrayOfNumbers;
 }
@@ -92,6 +95,7 @@ export function SimpleSwapSorting (originalNumberArray) {
   console.log("Simple-swap sorting starting");
   numberOfComparationSteps = 0;
   numberOfElementExchanges = 0;
+  var startTime = Date.now();  
 
   var arrayOfNumbers = originalNumberArray.slice();
   for (let i=0; i<arrayOfNumbers.length; i++) {
@@ -104,8 +108,11 @@ export function SimpleSwapSorting (originalNumberArray) {
     }
   }
 
-  console.log("Simple-swap sorting ended with numberOfComparationSteps:" + numberOfComparationSteps + ", numberOfElementExchanges:" + numberOfElementExchanges);
-  
+  var endTime = Date.now();
+  var duration = endTime-startTime;
+  console.log("Simple-swap sorting ended with numberOfComparationSteps:" + numberOfComparationSteps + ", numberOfElementExchanges:" + numberOfElementExchanges + " duration:" + duration + "ms");
+  saveAlgorithmLog("SimpleSwapSorting", originalNumberArray.length, numberOfComparationSteps, numberOfElementExchanges, endTime-startTime);
+ 
   return arrayOfNumbers;
 }
 
@@ -113,6 +120,7 @@ export function InsertionSorting (originalNumberArray) {
   console.log("Insertion sorting starting");
   numberOfComparationSteps = 0;
   numberOfElementExchanges = 0;
+  var startTime = Date.now();  
 
   var arrayOfNumbers = originalNumberArray.slice();
   for (let i=1; i<arrayOfNumbers.length; i++) {
@@ -124,8 +132,10 @@ export function InsertionSorting (originalNumberArray) {
       j = j-1
     }
   }
-
-  console.log("Insertion sorting ended with numberOfComparationSteps:" + numberOfComparationSteps + ", numberOfElementExchanges:" + numberOfElementExchanges);
+  var endTime = Date.now();
+  var duration = endTime-startTime;
+  console.log("Insertion sorting ended with numberOfComparationSteps:" + numberOfComparationSteps + ", numberOfElementExchanges:" + numberOfElementExchanges + " duration:" + duration + "ms");
+  saveAlgorithmLog("InsertionSorting", originalNumberArray.length, numberOfComparationSteps, numberOfElementExchanges, endTime-startTime);
   
   return arrayOfNumbers;
 }
@@ -150,6 +160,7 @@ export function MaxValueBasedSorting (originalNumberArray) {
   console.log("Max value based sorting staring");
   numberOfComparationSteps = 0;
   numberOfElementExchanges = 0;
+  var startTime = Date.now();
 
   var arrayOfNumbers = originalNumberArray.slice();
   for (let i=arrayOfNumbers.length-1; i>=0; i--) {
@@ -163,7 +174,11 @@ export function MaxValueBasedSorting (originalNumberArray) {
     }
     elementExchange(arrayOfNumbers, maxIndex, i);
   }
-  console.log("Max value based sorting ended with numberOfComparationSteps:" + numberOfComparationSteps + ", numberOfElementExchanges:" + numberOfElementExchanges);
+  var endTime = Date.now();
+  var duration = endTime-startTime;
+  console.log("Max-value-based sorting ended with numberOfComparationSteps:" + numberOfComparationSteps + ", numberOfElementExchanges:" + numberOfElementExchanges + " duration:" + duration + "ms");
+  saveAlgorithmLog("MaxValueBasedSorting", originalNumberArray.length, numberOfComparationSteps, numberOfElementExchanges, endTime-startTime);
+
   return arrayOfNumbers;
 }
 
@@ -172,7 +187,7 @@ export function MaxValueBasedSorting (originalNumberArray) {
 export function LinearSearch (originalNumberArray, searchValue) {
   let indexOfLinearSearch = -1;
   for (let i=0; i<originalNumberArray.length; i++) {
-    if (originalNumberArray[i] === searchValue) {
+    if (originalNumberArray[i] == searchValue) {
       indexOfLinearSearch = i;
       return indexOfLinearSearch;
     }
@@ -194,7 +209,7 @@ export function BinarySearchIterative (sortedArrayOfNumbers, searchValue) {
     let midValue = sortedArrayOfNumbers[midIndex];
     console.log('MIDindex: ' + midIndex + ', MIDvalue: ' + midValue)
 
-    if (midValue === searchValue) {
+    if (midValue == searchValue) {
       return midIndex;
     }
     else if (midValue < searchValue) {
@@ -212,7 +227,7 @@ export function BinarySearchRecursive (sortedArrayOfNumbers, lowestIndex, highes
 
   if (lowestIndex <= highestIndex) {
     let midIndex = Math.floor(lowestIndex + (highestIndex - lowestIndex) / 2);
-    if (sortedArrayOfNumbers[midIndex] === searchValue) {
+    if (sortedArrayOfNumbers[midIndex] == searchValue) {
       return sortedArrayOfNumbers.indexOf(sortedArrayOfNumbers[midIndex]) // érdemes lenne a midValue-t külön változóba tenni
     }
     else if (sortedArrayOfNumbers[midIndex] > searchValue) {
