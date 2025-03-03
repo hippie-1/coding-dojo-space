@@ -1,4 +1,4 @@
-export const htmlElements = [
+export const panelElements = [
     {
       id: "linear-search",
       title: "Linear search",
