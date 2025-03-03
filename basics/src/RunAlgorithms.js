@@ -9,6 +9,7 @@ import { PerformanciaTest } from './testing/performance/sortingAlgorithmsPerform
 import { UnitTestsOfListSortingAlgorithms } from './testing/unit/listAlgorithmsUnitTests';
 import { initNumberArray, initSortedNumberArray, initInputBasedArray, generateRandomNumber } from './util/BasicFunctions';
 import { Counting, Max, MaxIndex, Min, MinIndex, LinearSearch, BinarySearchIterative,BinarySearchRecursive , searchValue,  BubbleSorting, SimpleSwapSorting, InsertionSorting, /* MinSelectionSorting,*/ MaxValueBasedSorting } from './util/ListAlgorithms';
+//import { BinarySearchIterative } from './practicing/excercises';
 
 import './util/util.css';
 const customStyles = {
@@ -43,9 +44,9 @@ var sortingPerformanceTestPlaceHolder = null;
 
 export function GenerateArrayToWorkWith() {
 
-    const [numberOfElementsInGeneratedArray, setNumberOfElementsInGeneratedArray] = useState("20");
-    const [lowestNumberInGeneratedArray, setLowestNumberInGeneratedArray] = useState("-50");
-    const [highestNumberInGeneratedArray, setHighestNumberInGeneratedArray] = useState("50");
+    const [numberOfElementsInGeneratedArray, setNumberOfElementsInGeneratedArray] = useState(20);
+    const [lowestNumberInGeneratedArray, setLowestNumberInGeneratedArray] = useState(-40);
+    const [highestNumberInGeneratedArray, setHighestNumberInGeneratedArray] = useState(40);
     const [sortingDirectionOfGeneratedArray, setSortingDirectionOfGeneratedArray] = useState({ value: 'RANDOM', label: 'random'});
     const [generatedNumberArrayResult, setGeneratedNumberArrayResult] = useState("");
 
@@ -314,4 +315,78 @@ function addArrangementDirectionToLog(logKey, sortingDirection) {
   console.log(sortingDirection);
   log.origArraySortedDirection=sortingDirection;
   return JSON.stringify(log);    
+}
+
+export function RunExcercises() {
+  RunDictionaryExcercise();
+}
+
+export function RunDictionaryExcercise() {
+
+
+  var originalBookArray  = initNumberArray(20, 1, 20, "RANDOM");
+  var searchBook1 = 2;
+  var searchBook2 = 5;
+  var searchBook3 = 9;
+  var searchBook4 = 13;
+  var searchBook5 = 17;
+  console.log("Orig array: " + originalBookArray.join(", "));
+  const placeHolderOfOriginalBookArrayToWorkWith = ReactDOM.createRoot(document.getElementById('original-booklist-to-work-with'));
+  placeHolderOfOriginalBookArrayToWorkWith.render(
+    <div>
+      <div className="display-linebreak">A teherautóról a könyvtárba leszállított könyvek: {originalBookArray.join(", ")} </div>
+    </div>
+
+  );
+
+  const sortedArrayOfBooks = InsertionSorting (originalBookArray);
+
+  const sortedBookArrayToWorkWithPlaceholder = ReactDOM.createRoot(document.getElementById('linear-search-sortedBooks'));
+  sortedBookArrayToWorkWithPlaceholder.render(
+    <div>
+      <div className="display-linebreak">A könyvtárosok által lineárisan rendezett, katalogizált könyvek: {sortedArrayOfBooks.join(", ")} </div>
+    </div>
+
+  );
+
+  const BinarySearchSortedBookPlaceholder1 = ReactDOM.createRoot(document.getElementById('binary-search-iterative-student1'));
+  const bookResultIndex1 = BinarySearchIterative(sortedArrayOfBooks, searchBook1);
+  BinarySearchSortedBookPlaceholder1.render(
+    <div>
+      <div className="display-linebreak">A(z) { searchBook1 } című könyv helye a könyvtárban: { bookResultIndex1 !== -1 ? bookResultIndex1 : "A könyv sajnos nem található meg a könyvtárban." } </div>
+    </div>
+  );
+
+  const BinarySearchSortedBookPlaceholder2 = ReactDOM.createRoot(document.getElementById('binary-search-iterative-student2'));
+  const bookResultIndex2 = BinarySearchIterative(sortedArrayOfBooks, searchBook2);
+  BinarySearchSortedBookPlaceholder2.render(
+    <div>
+      <div className="display-linebreak">A(z) { searchBook2 } című könyv helye a könyvtárban: { bookResultIndex2 !== -1 ? bookResultIndex2 : "A könyv sajnos nem található meg a könyvtárban." } </div>
+    </div>
+  );
+
+  const BinarySearchSortedBookPlaceholder3 = ReactDOM.createRoot(document.getElementById('binary-search-iterative-student3'));
+  const bookResultIndex3 = BinarySearchIterative(sortedArrayOfBooks, searchBook3);
+  BinarySearchSortedBookPlaceholder3.render(
+    <div>
+      <div className="display-linebreak">A(z) { searchBook3 } című könyv helye a könyvtárban: { bookResultIndex3 !== -1 ? bookResultIndex3 : "A könyv sajnos nem található meg a könyvtárban." } </div>
+    </div>
+  );
+
+  const BinarySearchSortedBookPlaceholder4 = ReactDOM.createRoot(document.getElementById('binary-search-iterative-student4'));
+  const bookResultIndex4 = BinarySearchIterative(sortedArrayOfBooks, searchBook4);
+  BinarySearchSortedBookPlaceholder4.render(
+    <div>
+      <div className="display-linebreak">A(z) { searchBook4 } című könyv helye a könyvtárban: { bookResultIndex4 !== -1 ? bookResultIndex4 : "A könyv sajnos nem található meg a könyvtárban." } </div>
+    </div>
+  );
+
+  const BinarySearchSortedBookPlaceholder5 = ReactDOM.createRoot(document.getElementById('binary-search-iterative-student5'));
+  const bookResultIndex5 = BinarySearchIterative(sortedArrayOfBooks, searchBook5);
+  BinarySearchSortedBookPlaceholder5.render(
+    <div>
+      <div className="display-linebreak">A(z) { searchBook5 } című könyv helye a könyvtárban: { bookResultIndex5 !== -1 ? bookResultIndex5 : "A könyv sajnos nem található meg a könyvtárban." } </div>
+    </div>
+  );
+
 }

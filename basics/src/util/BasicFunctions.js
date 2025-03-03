@@ -1,9 +1,9 @@
 //@ts-check
 
 export function generateRandomNumber(min, max) {
-    var parsedMin = parseInt(min);
-    var parsedMax = parseInt(max);
-    return Math.round((Math.random() * (parsedMax - parsedMin + 1) + parsedMin));
+    var rand = (Math.random() * (max - min + 1) + min);
+    console.log(rand);
+    return Math.round((Math.random() * (max - min + 1) + min));
 }
 
 export function initNumberArray (numberOfElements=100, minValueInTheArray=5, maxValueInTheArray=50, direction="RANDOM") { //RANDOM, ASC or DESC, default is RANDOM
@@ -47,9 +47,9 @@ export function saveAlgorithmLog (algorithmName, numberOfElements, numberOfCompa
         logs = JSON.parse(logsStr);
     }
 */
-    var logObject = {"id":algorithmName, numberOfElementsAttr:numberOfElements, numberOfComparationStepsAttr:numberOfComparationSteps, numberOfElementExchangesAttr:numberOfElementExchanges, duration};
-    var logStr = JSON.stringify(logObject);
+    //var logObject = {"id":algorithmName, numberOfElementsAttr:numberOfElements, numberOfComparationStepsAttr:numberOfComparationSteps, numberOfElementExchangesAttr:numberOfElementExchanges, duration};
+    //var logStr = JSON.stringify(logObject);
 //    logs.push({numberOfElementsAttr:numberOfElements, numberOfComparationStepsAttr:numberOfComparationSteps, numberOfElementExchangesAttr:numberOfElementExchanges});
-    console.log(algorithmName + " ended with " + logStr);
-    localStorage.setItem(algorithmName, JSON.stringify(logStr));
+    //console.log(algorithmName + " ended with " + logStr);
+    //localStorage.setItem(algorithmName, JSON.stringify(logStr));
 }

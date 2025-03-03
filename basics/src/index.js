@@ -19,7 +19,7 @@ import { UnitTestsOfListSortingAlgorithms } from './testing/unit/listAlgorithmsU
 import { initRandomNumberArray, initSortedNumberArray, initInputBasedArray } from './util/BasicFunctions';
 import { Counting, Max, MaxIndex, Min, MinIndex, LinearSearch, searchValue,  BubbleSorting, SimpleSwapSorting, InsertionSorting, MaxValueBasedSorting } from './util/ListAlgorithms';
 import { CreateRowToPresentSortingAlg } from './presentation/elements';
-import { GenerateArrayToWorkWith, RunSimpleAlgorithms, RunSortingAlgorithms, RunSearchingAlgorithms, RunSortingPerformanceTest } from './RunAlgorithms';
+import { GenerateArrayToWorkWith, RunSimpleAlgorithms, RunSortingAlgorithms, RunSearchingAlgorithms, RunSortingPerformanceTest, RunExcercises } from './RunAlgorithms';
 
 var rootElement = null;
 
@@ -67,10 +67,20 @@ function App() {
         }
       </Panel>
 
-      <Panel title="Others">
-        <button>Start others</button><br/><br/>
+      <Panel title="Excercises">
+        <button onClick={RunExcercises}>Run excercises</button><br/><br/>
+        <p id="searching-list-algorithms-exercise"><h5>1. Könyvtári keresés</h5>
+        <p id="original-booklist-to-work-with">Original list placeholder</p>
+        <p id="linear-search-sortedBooks">Placeholder for linear search of the sorted books</p>
+        <h5>Binary searches from the sorted books:</h5>
+        <p id="binary-search-iterative-student1">Placeholder for iterative binary search of STUDENT1</p>     
+        <p id="binary-search-iterative-student2">Placeholder for iterative binary search of STUDENT2</p>     
+        <p id="binary-search-iterative-student3">Placeholder for iterative binary search of STUDENT3</p>     
+        <p id="binary-search-iterative-student4">Placeholder for iterative binary search of STUDENT4</p>     
+        <p id="binary-search-iterative-student5">Placeholder for iterative binary search of STUDENT5</p>     
+      </p>
         {htmlElements
-          .filter(htmlElement => htmlElement.panelId === "others")
+          .filter(htmlElement => htmlElement.panelId === "excercises")
           .map(htmlElement => {
           return <div id={htmlElement.id} key={htmlElement.id}>{htmlElement.title}</div>;
         })}
@@ -78,7 +88,6 @@ function App() {
     </Tabs>
   );
 }
-
 
 
 var rootElement = ReactDOM.createRoot(document.getElementById("root"));
@@ -92,5 +101,3 @@ const placeHolderOfGenerateArrayToWorkWith = ReactDOM.createRoot(document.getEle
 placeHolderOfGenerateArrayToWorkWith.render(
   <GenerateArrayToWorkWith/>
 );
-
-

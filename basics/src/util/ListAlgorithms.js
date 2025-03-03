@@ -1,4 +1,4 @@
-import { generateRandomNumber, initRandomNumberArray, saveAlgorithmLog } from './BasicFunctions';
+import { saveAlgorithmLog } from './BasicFunctions.js';
 
 var numberOfComparationSteps = 0;
 let numberOfElementExchanges = 0;
@@ -185,16 +185,9 @@ export function MaxValueBasedSorting (originalNumberArray) {
 //Searching algorithms
 
 export function LinearSearch (originalNumberArray, searchValue) {
-  console.log("linear search, searchValue: " + searchValue);
   let indexOfLinearSearch = -1;
   for (let i=0; i<originalNumberArray.length; i++) {
-    console.log("......" + i);
-    console.log(originalNumberArray[i]);
-    console.log(searchValue);
-    console.log(originalNumberArray[i] == searchValue);
     if (originalNumberArray[i] == searchValue) {
-      console.log(",,,,,,,");
-      
       indexOfLinearSearch = i;
       return indexOfLinearSearch;
     }
@@ -216,7 +209,7 @@ export function BinarySearchIterative (sortedArrayOfNumbers, searchValue) {
     let midValue = sortedArrayOfNumbers[midIndex];
     console.log('MIDindex: ' + midIndex + ', MIDvalue: ' + midValue)
 
-    if (midValue === searchValue) {
+    if (midValue == searchValue) {
       return midIndex;
     }
     else if (midValue < searchValue) {
@@ -234,7 +227,7 @@ export function BinarySearchRecursive (sortedArrayOfNumbers, lowestIndex, highes
 
   if (lowestIndex <= highestIndex) {
     let midIndex = Math.floor(lowestIndex + (highestIndex - lowestIndex) / 2);
-    if (sortedArrayOfNumbers[midIndex] === searchValue) {
+    if (sortedArrayOfNumbers[midIndex] == searchValue) {
       return sortedArrayOfNumbers.indexOf(sortedArrayOfNumbers[midIndex]) // érdemes lenne a midValue-t külön változóba tenni
     }
     else if (sortedArrayOfNumbers[midIndex] > searchValue) {
@@ -283,5 +276,4 @@ function primeNumberSearch () {
   for (let i=0; i<20; i++) {
     isOtherDivider(i)
   }
-}
 }
