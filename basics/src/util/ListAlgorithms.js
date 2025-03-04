@@ -248,17 +248,22 @@ export function factorialRecursion (number) {
 // 5. kör: number = 1; return 1; -> csak itt tudja behelyettesíteni visszafelé
 
 function isOtherDivider (number) {
-  for (let i=1; i<number; i++) {
+  for (let i=2; i<number ^ (1/2); i++) {
     if (number % i === 0) {
       return false;
-    } else {
-      return true;
     }
   }
+  return true;
 }
 
 function primeNumberSearch () {
-  for (let i=0; i<20; i++) {
-    isOtherDivider(i)
+  let primeNumbersList = [];
+  for (let i=2; i<20; i++) {
+    if (isOtherDivider(i)) {
+      primeNumbersList.push(i);
+    }
   }
+  return primeNumbersList;
 }
+
+console.log('PRIME NUMBERS: ' + primeNumberSearch().join(', '));
