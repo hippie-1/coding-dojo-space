@@ -102,7 +102,8 @@ while (actualElem.hasNext()) {
 
 
 function removeElement (head, value) {
-    
+    //1. find the exact element which contains the given value
+    //2. remove the found element
 }
 
 removeElement (head, 7); //töröljük ki a 7 value-val rendelkező elemet
