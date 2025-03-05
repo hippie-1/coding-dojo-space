@@ -13,7 +13,7 @@ function Book (category, writer, title) {
         else return false;
     }
 }
-
+*/
 const arrayOfBooks = [
     new Book('tortenelem', 'Stendhal', 'Europa'),
     new Book('szepirodalom', 'Petofi', 'Nemzeti dal'),
@@ -149,13 +149,13 @@ function LinearSearch (bookArray, book) {
             indexOfLinearSearch = i;
             return indexOfLinearSearch;            
         }
-        */
         
+        /*
         if (isSameBook (bookArray[i], book)) {
             indexOfLinearSearch = i;
             return indexOfLinearSearch;
         }
-        
+        */
     }
     return indexOfLinearSearch;
 }
