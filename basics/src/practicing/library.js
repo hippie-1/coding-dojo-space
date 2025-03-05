@@ -1,5 +1,19 @@
 // import { Book, arrayOfBooks } from 'booksData.js';
 
+function Book (category, writer, title) {
+
+    this.category = category;
+    this.writer = writer;
+    this.title = title;
+
+    this.equals = function (otherBookObject) {
+        if (this.category===otherBookObject.category && this.writer===otherBookObject.writer && this.title===otherBookObject.title) {
+            return true;
+        }
+        else return false;
+    }
+}
+/*
 function Book(category, writer, title) {
     this.category = category;
     this.writer = writer;
@@ -11,7 +25,7 @@ function Book(category, writer, title) {
         else return false;
     }
 }
-
+*/
 const arrayOfBooks = [
     new Book('tortenelem', 'Stendhal', 'Europa'),
     new Book('szepirodalom', 'Petofi', 'Nemzeti dal'),
@@ -138,18 +152,18 @@ function LinearSearch (bookArray, book) {
     console.log('BOOK ARRAY LINEAR SEARCH: ', bookArray)
     let indexOfLinearSearch = -1;
     for (let i=0; i<bookArray.length; i++) {
-        /*
+        
         if (bookArray[i].equals(book)) {
             indexOfLinearSearch = i;
             return indexOfLinearSearch;            
         }
-        */
         
+        /*
         if (isSameBook (bookArray[i], book)) {
             indexOfLinearSearch = i;
             return indexOfLinearSearch;
         }
-        
+        */
     }
     return indexOfLinearSearch;
 }
