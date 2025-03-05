@@ -1,10 +1,12 @@
 // import { Book, arrayOfBooks } from 'booksData.js';
 
-function Book(category, writer, title) {
+function Book (category, writer, title) {
+
     this.category = category;
     this.writer = writer;
     this.title = title;
-    function equals(otherBookObject) {
+
+    this.equals = function (otherBookObject) {
         if (this.category===otherBookObject.category && this.writer===otherBookObject.writer && this.title===otherBookObject.title) {
             return true;
         }
@@ -138,6 +140,10 @@ function LinearSearch (bookArray, book) {
     console.log('BOOK ARRAY LINEAR SEARCH: ', bookArray)
     let indexOfLinearSearch = -1;
     for (let i=0; i<bookArray.length; i++) {
+        if (bookArray[i].equals(book)) {
+            indexOfLinearSearch = i;
+            return indexOfLinearSearch;  
+        }
         /*
         if (bookArray[i].equals(book)) {
             indexOfLinearSearch = i;
