@@ -7,8 +7,9 @@ export function generateRandomNumber(min, max) {
 }
 
 class ListElem {
-    constructor(value, prev, next, above, below) {
+    constructor(value, height, prev, next, above, below) {
         this.value = value;
+        this.height = height
         this.prev = prev;  //balkéz
         this.next = next;  //jobbkéz
         this.above = above;  //jobbkéz
@@ -32,28 +33,33 @@ class ListElem {
 
 function calculateValue (someValueToCalculateWith=0) { //if not specified, default 0
     //let value = someValueToCalculateWith + generateRandomNumber(1, 5);
-    let value = someValueToCalculateWith + 5;
+    let value = someValueToCalculateWith + 1;
     return value;
 }
 
 
-export function generateLinkedListWithTower(numberelmenets, maxTowerHeight, firstTowerValue) {
+export function generateLinkedListWithTower(numberOfElements, maxTowerHeight, firstTowerValue) {
     let head = generateFirstTower(maxTowerHeight, firstTowerValue);
     let firstBottomElem = getBottomElem(head);
-    let nextBottomElem = new ListElem(10, firstBottomElem, null, null, null);
-    firstBottomElem.next = nextBottomElem;
-    generateTower(nextBottomElem, maxTowerHeight);
-
+    for (let i=0; i<numberOfElements-1; i++) {
+        insertElementAfterABottomElem (calculateValue(firstBottomElem.value), maxTowerHeight, firstBottomElem);
+    }
     return head;
 }
 
+export function insertElementAfterABottomElem (value, maxTowerHeight, bottomElem) {
+    let nextBottomElem = new ListElem(value, 1, bottomElem, null, null, null);
+    bottomElem.next = nextBottomElem;
+    generateTower(nextBottomElem, maxTowerHeight);
+    // return nextBottomElem;
+}
+
 export function generateFirstTower(maxTowerHeight, value) { //1-nel nagyobb term.szam
-    let head = new ListElem(value, null, null, null, null);
-    let actual = new ListElem(value, head, null, null, null, null);
+    let head = new ListElem(value, maxTowerHeight, null, null, null, null);
+    let actual = new ListElem(value, maxTowerHeight-1, head, null, null, null, null);
     head.below = actual;
-    for (let i=1; i<maxTowerHeight-1; i++) {
-        //actual.setNext(new ListElem(value, actual, null));
-        actual.below = new ListElem(value, null, null, actual, null);
+    for (let actualHeight=maxTowerHeight-1; actualHeight>0; actualHeight--) {
+        actual.below = new ListElem(value, actualHeight, null, null, actual, null);
         actual = actual.below;
     }
     //return actual; //tail, last element
@@ -63,20 +69,26 @@ export function generateFirstTower(maxTowerHeight, value) { //1-nel nagyobb term
 export function generateHeadOrTail() {
     let random = Math.random();
     console.log("RANDOM: " + random);
-    if (random < 0.5) return true;
+    if (random < 1) return true;
     else return false;
 }
 
 export function generateTower(bottomElem, maxTowerHeight) {
-    let height = 1;
+    let actualHeight = 1;
     let actualElem = bottomElem;
-    while (height < 2) {
+    while (actualHeight < maxTowerHeight) {
         if(generateHeadOrTail()) {
-            let newTowerElem = new ListElem(actualElem.value, null, null, null, actualElem);
-            actualElem.above = newTowerElem;
-            newTowerElem.prev = actualElem.prev.above;
-            actualElem.prev.above.next = newTowerElem;
-            height++;
+            let newTowerElem = new ListElem(actualElem.value, actualHeight, null, null, null, actualElem); //created with bottom link
+            actualElem.above = newTowerElem; //above link set to the new elem
+            let prevOfBottomElem = bottomElem.prev;
+            let relevantElemInPrevTower = null;
+            while (relevantElemInPrevTower==null) { //figyelem! ha valamit rosszul csinálunk, ez könnyen végtelen ciklusba kerülhet
+                relevantElemInPrevTower = getElemAtGivenHeightStartingFromBottom (prevOfBottomElem, actualHeight);
+                bottomElem = bottomElem.prev;
+            } 
+            newTowerElem.prev = relevantElemInPrevTower;
+            relevantElemInPrevTower.next = newTowerElem;
+            actualHeight++;
             console.log(newTowerElem);
         }
         else break;
@@ -86,12 +98,23 @@ export function generateTower(bottomElem, maxTowerHeight) {
 export function getBottomElem (head) {
     let counter = 0;
     let actualElem = head;
-    //console.log("Elem" + counter++ + ": ", actualElem);
     while (actualElem.hasBelow()) { 
         actualElem = actualElem.below;
-        //console.log("Elem" + counter++ + ": ", actualElem);
     }
     return actualElem; //bottom
+}
+
+export function getElemAtGivenHeightStartingFromBottom (bottomElem, givenHeight) {
+    let actualHeight = 0;
+    let actualElem = bottomElem;
+    while (actualHeight<=givenHeight) { 
+        if (actualElem.hasAbove()) {
+            actualElem = actualElem.above;
+            actualHeight++;
+        }
+        else return null;
+    }
+    return actualElem; 
 }
 
 
@@ -99,7 +122,7 @@ export function getBottomElem (head) {
 //let tail = generateDoubleLinkedList();
 //printLinkedListFromTailTowardsStart(tail);
 
-let head = generateLinkedListWithTower(10, 5, 2);
+let head = generateLinkedListWithTower(10, 5, 1);
 //printLinkedListFromTopToDown(head);
 
 
