@@ -2,13 +2,8 @@ import { useState } from 'react';
 import Select from 'react-select'
 import ReactDOM from 'react-dom/client';
 
-import { DataStructures } from './util/DataStructures';
-import { Algorithms } from './util/Algorithms';
-import { Sequence1, Sequence2, Iteration, IntroducingForkOnlyOddOrEvenNumbers, FibonacciNumbers, RandomNumberArray, RandomEvenNumberArray} from './util/BasicElements';
-import { PerformanciaTest } from './testing/performance/sortingAlgorithmsPerformanceTests';
-import { UnitTestsOfListSortingAlgorithms } from './testing/unit/listAlgorithmsUnitTests';
-import { initNumberArray, initSortedNumberArray, initInputBasedArray, generateRandomNumber } from './util/BasicFunctions';
-import { Counting, Max, MaxIndex, Min, MinIndex, LinearSearch, BinarySearchIterative,BinarySearchRecursive , searchValue,  BubbleSorting, SimpleSwapSorting, InsertionSorting, /* MinSelectionSorting,*/ MaxValueBasedSorting } from './util/ListAlgorithms';
+import { initNumberArray } from './util/BasicFunctions';
+import { Counting, Max, MaxIndex, Min, MinIndex, LinearSearch, BinarySearchIterative,BinarySearchRecursive , searchValue,  BubbleSorting, SimpleSwapSorting, InsertionSorting, /* MinSelectionSorting,*/ MaxValueBasedSorting } from './util/Arrays';
 //import { BinarySearchIterative } from './practicing/excercises';
 
 import './util/util.css';
