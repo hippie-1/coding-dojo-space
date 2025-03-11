@@ -1,4 +1,4 @@
-import {InsertionSorting, LinearSearch} from '../util/ListAlgorithms.js';
+import {InsertionSorting, LinearSearch} from '../util/Arrays.js';
 
 //run:
 stockExchangeRates();

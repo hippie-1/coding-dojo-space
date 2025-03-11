@@ -61,3 +61,44 @@ export const Algorithms = () => {
 }
 
 //rekurziv
+
+
+export function factorialFor (number) {
+    let factorial = 1;
+    console.log(factorial, number);
+    for (let i=number; i>1; i--) {
+      factorial *= number;
+    }
+    return factorial;
+  }
+  
+  export function factorialRecursion (number) {
+    if (number === 0 || number === 1) {
+      return 1;
+    } else {
+      return number * factorialRecursion(number - 1);
+    }
+  }
+  
+  // 1. kör: number = 5; return: 5* függvény(4)
+  // 2. kör: number = 4; return : 4* függvény(3)
+  // 3. kör: number = 3; return: 3 * függvény(2)
+  // 4. kör: number = 2; return 2* függvény(1)
+  // 5. kör: number = 1; return 1; -> csak itt tudja behelyettesíteni visszafelé
+  
+  function isOtherDivider (number) {
+    for (let i=1; i<number; i++) {
+      if (number % i === 0) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  }
+  
+  function primeNumberSearch () {
+    for (let i=0; i<20; i++) {
+      isOtherDivider(i)
+    }
+  }
+  
