@@ -13,7 +13,8 @@ function linearSearchByCondition (arrayInput, element) {
     }    
 }
 
-function linearSearch (arrayInput, element) {
+
+export function linearSearch (arrayInput, element) {
     let relevantIndex = -1;
     for (let i=0; i<arrayInput.length; i++) {
         if(arrayInput[i] === element) {
@@ -63,10 +64,20 @@ function copyArraElementsExceptTheElementToBeRemoved (arrayInput, relevantIndex)
     return arr;
 }
 
-function removeElement(arrayInput, element) {
+export function removeElement(arrayInput, element) {
     let relevantIndex = linearSearch(arrayInput, element); //1. find the index of the removing element
     let arr = copyArraElementsExceptTheElementToBeRemoved(arrayInput, relevantIndex); //2. remove the element
     return arr;
+}
+
+
+if (process.argv[1] === import.meta.filename) {
+    let origSortedArray = [1, 3, 5, 7, 11, 13, 21, 172, 891];
+    let modifiedArray = insert_sorted( origSortedArray, 10);
+    console.log("ORIG: ", origSortedArray);
+    //console.log("MOD: ", modifiedArray);
+    modifiedArray = removeElement( origSortedArray, 5); //number 5
+    console.log("MOD: ", modifiedArray);
 }
 
 let origSortedArray = [1, 3, 5, 7, 11, 13, 21, 172, 891];
@@ -75,3 +86,4 @@ console.log("ORIG: ", origSortedArray);
 //console.log("MOD: ", modifiedArray);
 modifiedArray = removeElement( origSortedArray, 5); //number 5
 console.log("MOD: ", modifiedArray);
+
