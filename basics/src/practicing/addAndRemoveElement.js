@@ -45,7 +45,7 @@ function insert_sorted(arrayInput, element) {
     return arr; //4. return modified arra
 }
 
-function shiftArrayElementsLeft(arrayInput, relevantIndex) { //between the relevantIndex and the last index
+export function shiftArrayElementsLeft(arrayInput, relevantIndex) { //between the relevantIndex and the last index
   let arr = arrayInput.slice();
   for (let i = relevantIndex+1; i<arr.length; i++) {    
     arr[i-1] = arr[i];
