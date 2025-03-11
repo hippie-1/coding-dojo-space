@@ -2,11 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import { DataStructures } from './util/DataStructures';
-import { Algorithms } from './util/Algorithms';
-import { Sequence1, Sequence2, Iteration, IntroducingForkOnlyOddOrEvenNumbers, FibonacciNumbers, RandomNumberArray, RandomEvenNumberArray} from './util/BasicElements';
+import { Algorithms } from './practicing/Algorithms';
+import { Sequence1, Sequence2, Iteration, IntroducingForkOnlyOddOrEvenNumbers, FibonacciNumbers, RandomNumberArray, RandomEvenNumberArray} from './practicing/BasicElements';
 import { initRandomNumberArray } from './util/BasicFunctions';
-import { BubbleSorting } from './util/ListAlgorithms';
+import { BubbleSorting } from './util/Arrays';
 
 const fibonacci = ReactDOM.createRoot(document.getElementById('fibonacci'));
 fibonacci.render(
