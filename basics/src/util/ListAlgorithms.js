@@ -277,3 +277,18 @@ function primeNumberSearch () {
     isOtherDivider(i)
   }
 }
+
+export function copyArraElementsExceptTheElementToBeRemoved (arrayInput, relevantIndex) {
+  let arr = [];
+  for (let i=0; i<arrayInput.length; i++) {
+    if(i !== relevantIndex) {
+      arr.push(arrayInput[i]);
+    }
+  }
+  return arr;
+}
+
+export function removeElement(arrayInput, elementIndex) {
+  let arr = copyArraElementsExceptTheElementToBeRemoved(arrayInput, elementIndex); //2. remove the element
+  return arr;
+}
