@@ -4,6 +4,7 @@
 //refactor:
 //- use Node instead of ListElem
 //- use level instead of height
+//- use current instead of actual
 //- when inserting new elem, no need to always go to bottom when linking...
 
 //also see other solution which is not a classic linked list only, but uses other datastructues:
@@ -35,7 +36,6 @@ export function generateHeadOrTail() {
 }
 
 class ListElem { //node, where from you can get to other nodes following its possible directions (prev, next, above below)
-    #items = [];
     constructor(value, height, prev, next, above, below) {
         this.value = value;
         this.height = height
@@ -44,11 +44,6 @@ class ListElem { //node, where from you can get to other nodes following its pos
         this.above = above;  //felnyúló kéz
         this.below = below;  //lenyúló
     }
-    pop () {
-        
-        this.#items[this.#items.length-1]
-    }
-
     hasNext() {
         return (this.next !=null && this.next!=undefined);
     }

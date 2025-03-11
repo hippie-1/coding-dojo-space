@@ -31,4 +31,51 @@ var replaceString = string1.replaceAll('Lorem', 'Hello');
 
 var indexOfString = string1.indexOf('V');
 var lastIndexOfString = string1.lastIndexOf('L');
-console.log(lastIndexOfString)
+//console.log(lastIndexOfString)
+
+
+function stringToHash(string) {
+
+    let hash = 0;
+
+    if (string.length == 0) return hash;
+
+    for (i = 0; i < string.length; i++) {
+        char = string.charCodeAt(i);
+        console.log("CHAR: ", char);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash;
+    }
+
+    return hash;
+}
+
+// String printing in hash
+let gfg = "Viada Réka"
+console.log(stringToHash(gfg));
+
+
+class Letter {
+    constructor(sender, addressee, district) {
+        this.sender = sender;
+        this.addressee = addressee;
+        this.district = district
+    }
+    createHashToLetter() {
+        return this.district + this.addressee.charAt(0).toLowerCase();
+    }
+    createHashToLetter2() {
+        let hash = 7;
+        hash = 13 * hash + stringToHash(this.district) + stringToHash(this.addressee);
+        return hash;
+    }
+    equals(anotherLetter) {
+
+    }
+}
+
+
+let letter =  new Letter('NAV', 'Vida Reka', 2);
+console.log("LETTER HASH:" , letter.createHashToLetter2());
+
+
