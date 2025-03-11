@@ -1,6 +1,6 @@
 
 import './util.css';
-import { generateRandomNumber, initInputBasedArray, initNumberArray } from './BasicFunctions';
+import { generateRandomNumber, initInputBasedArray, initNumberArray } from '../util/BasicFunctions';
 
 export const Sequence1 = () => {
 

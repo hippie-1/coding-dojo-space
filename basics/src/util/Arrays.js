@@ -239,46 +239,42 @@ export function BinarySearchRecursive (sortedArrayOfNumbers, lowestIndex, highes
   return -1;
 }
 
-export function factorialFor (number) {
-  let factorial = 1;
-  console.log(factorial, number);
-  for (let i=number; i>1; i--) {
-    factorial *= number;
-  }
-  return factorial;
-}
 
-export function factorialRecursion (number) {
-  if (number === 0 || number === 1) {
-    return 1;
-  } else {
-    return number * factorialRecursion(number - 1);
-  }
-}
+export function linearSearchBySmallerCondition (arrayInput, element) {
+  let arr = arrayInput.slice();
+  let relevantIndex = 0;
 
-// 1. kör: number = 5; return: 5* függvény(4)
-// 2. kör: number = 4; return : 4* függvény(3)
-// 3. kör: number = 3; return: 3 * függvény(2)
-// 4. kör: number = 2; return 2* függvény(1)
-// 5. kör: number = 1; return 1; -> csak itt tudja behelyettesíteni visszafelé
-
-function isOtherDivider (number) {
-  for (let i=1; i<number; i++) {
-    if (number % i === 0) {
-      return false;
-    } else {
-      return true;
+  //1. where to insert
+  for (let i=0; i<arr.length; i++) {
+    console.log(i);  
+    if (arr[i]>element) { //condition: >
+      relevantIndex = i;
+      return relevantIndex;
     }
-  }
+  }    
 }
 
-function primeNumberSearch () {
-  for (let i=0; i<20; i++) {
-    isOtherDivider(i)
+export function shiftArrayElementsLeft(arrayInput, relevantIndex) { //between the relevantIndex and the last index
+  let arr = arrayInput.slice();
+  for (let i = relevantIndex+1; i<arr.length; i++) {    
+    arr[i-1] = arr[i];
   }
+  arr = arr.slice(0, -1);
+  return arr;
 }
 
-export function copyArraElementsExceptTheElementToBeRemoved (arrayInput, relevantIndex) {
+export function shiftArrayElementsRight(arrayInput, relevantIndex) {
+  let arr = arrayInput.slice();
+  arr[arr.length] = 0;
+  //for (let i = relevantIndex; i<=arr.length-1; i++) {    
+  for (let i = arr.length-1; i>relevantIndex; i--) {    
+     arr[i] = arr[i-1];
+  }
+  return arr;
+}
+
+
+export function copyArrayElementsExceptTheElementToBeRemoved (arrayInput, relevantIndex) {
   let arr = [];
   for (let i=0; i<arrayInput.length; i++) {
     if(i !== relevantIndex) {
@@ -289,6 +285,16 @@ export function copyArraElementsExceptTheElementToBeRemoved (arrayInput, relevan
 }
 
 export function removeElement(arrayInput, elementIndex) {
-  let arr = copyArraElementsExceptTheElementToBeRemoved(arrayInput, elementIndex); //2. remove the element
+  let arr = copyArrayElementsExceptTheElementToBeRemoved(arrayInput, elementIndex); //2. remove the element
   return arr;
+}
+
+export function insertSortedArray(arrayInput, element) {
+
+  let arr = arrayInput.slice(); 
+
+  let relevantIndex = linearSearchBySmallerCondition(arr, element); //1. find the relevant index where the new element should be inserted
+  arr = shiftArrayElementsRight(arr, relevantIndex); //2. shift those elements right where the index is higher then the relevantIndex
+  arr[relevantIndex] = element; //3. the value of the relevant index = element
+  return arr; //4. return modified arra
 }
