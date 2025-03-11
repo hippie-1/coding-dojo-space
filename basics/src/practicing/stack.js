@@ -1,8 +1,10 @@
-class Stack {
-    #stackArray
-    #maxSize
+import { removeElement } from '../util/ListAlgorithms.js'
 
-    constructor(maxSize){
+class Stack {
+    #stackArray = [];
+    #maxSize = 0;
+
+    constructor(maxSize=10){
         if (maxSize < 0) {
             throw new Error("Stack size cannot be nagative!")
         }
@@ -12,7 +14,7 @@ class Stack {
 
     push(elem) {
         if (this.#stackArray.length == this.#maxSize) {
-            throw new Error("Stack is full!");
+            throw new Error("Stack size overflow");
         }
         else {
             this.#stackArray.push(elem);
@@ -21,7 +23,11 @@ class Stack {
 
     pop() {
         if (this.#stackArray.length > 0) {
-            return this.#stackArray.pop();
+            console.log(this.#stackArray.join(', '));
+            const lastElem = this.#stackArray[this.#stackArray.length-1];
+            this.#stackArray = removeElement(this.#stackArray, this.#stackArray.length-1);
+            console.log(this.#stackArray.join(', '));
+            return lastElem;
         }
         else {
             throw new Error("Stack is empty!");
@@ -30,7 +36,8 @@ class Stack {
 
     peak() {
         if (this.#stackArray.length > 0) {
-            return this.#stackArray.at(-1);
+            this.peekElem = this.#stackArray.at(-1);
+            return this.peekElem;
         }
         else {
             throw new Error("Stack is empty!");
@@ -38,29 +45,23 @@ class Stack {
     }
 }
 
-const stack = new Stack(16);
-const text = "Gørøg";
+const hardwareStack = new Stack();
+const tools = ["hammer", "wrench", "pliers", "drill", "screwdriver", "saw", "tape measure", "level", "scissors", "gereblye", "ásó"];
 try {
-    for (let i=0; i < text.length; i++) {
-        stack.push(text[i]);
+    tools.forEach((tool) => hardwareStack.push(tool));
     }
-    while (stack.peak()) {
-        console.log(stack.pop());
-    }
-}
 catch (e) {
     console.log(e.message);
 }
+do {
+    try {
+        var currentHardware = hardwareStack.pop();
+    }
+    catch (e) {
+        console.log(e.message);
+        break;
+    }
+    console.log(`Found ${currentHardware}, but looking for zokni...`)
+}
+while (currentHardware != "zokni")
 
-const crate = new Stack(8);
-const tools = ["hammer", "wrench", "pliers", "drill", "screwdriver", "saw", "tape measure", "level"];
-try {
-    tools.forEach((tool) => crate.push(tool));
-    while (crate.peak() !== "screwdriver") {
-        console.log(`Found ${crate.pop()}, but looking for screwdriver...`)
-    }
-    console.log(`Finally found the ${crate.pop()}!`)
-}
-catch (e) {
-    console.log(e.message);
-}
