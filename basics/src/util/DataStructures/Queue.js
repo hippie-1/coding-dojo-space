@@ -14,7 +14,7 @@ export class Queue {
 
     push (newElem) {
         if(this.#privateArray.length > this.#maxSize-1) {
-            throw new Error ('Size of the set will overflow during insertion.')
+            throw new Error (`Size of the queue will overflow during insertion at elem ${newElem}.`)
         }
         this.#privateArray.push(newElem);
     }
