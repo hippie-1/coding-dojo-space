@@ -1,6 +1,6 @@
 import { removeElement } from '../Arrays.js';
 
-export class myQueue {
+export class Queue {
     #privateArray;
     #maxSize;
 

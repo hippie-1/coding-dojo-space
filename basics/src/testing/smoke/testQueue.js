@@ -1,7 +1,7 @@
-import { myQueue } from '../../util/DataStructures/Queue.js'
+import { Queue } from '../../util/DataStructures/Queue.js'
 
 
-const airportQueue = new myQueue(10);
+const airportQueue = new Queue(10);
 
 try {const persons = ['Kati', 'Zoli', 'Laci', 'Évi', 'Piroska', 'Kati', 'Zoli', 'Laci', 'Évi', 'Piroska'];
     persons.forEach((person) => airportQueue.push(person));
