@@ -53,3 +53,17 @@ export function saveAlgorithmLog (algorithmName, numberOfElements, numberOfCompa
     //console.log(algorithmName + " ended with " + logStr);
     //localStorage.setItem(algorithmName, JSON.stringify(logStr));
 }
+
+export function sleepAsync(milliseconds) {
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
+  }
+
+export function sleepSync(milliseconds){
+    var now = new Date().getTime();
+    while(new Date().getTime() < now + milliseconds){ 
+        //console.log("Working hard")
+        /* Do nothing */ 
+    }
+}
+
+
