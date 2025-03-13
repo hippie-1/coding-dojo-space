@@ -1,3 +1,5 @@
+//https://no.wikipedia.org/wiki/K%C3%B8_(datastruktur)
+
 import { removeElement } from '../Arrays.js';
 
 export class Queue {

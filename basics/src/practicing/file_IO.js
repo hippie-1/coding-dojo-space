@@ -1,3 +1,5 @@
+// https://nodejs.org/api/fs.html#file-system
+
 import * as fs from 'node:fs';
 const content = 'Hello, world!';
 
