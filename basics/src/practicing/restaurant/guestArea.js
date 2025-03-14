@@ -1,11 +1,12 @@
-import { Queue } from '../../util/DataStructures/Queue.js';
 import { sleepAsync } from '../../util/BasicFunctions.js';
 
 export class GuestArea {
-    guestAreaQueue;
+    guestAreaQueue1;
+    guestAreaQueue2;
 
-    constructor (restaurantQueue) {
-        this.guestAreaQueue = restaurantQueue;
+    constructor (restaurantQueue1, restaurantQueue2) {
+        this.guestAreaQueue1 = restaurantQueue1;
+        this.guestAreaQueue2 = restaurantQueue2;
     }
 
     async work () {
@@ -14,17 +15,31 @@ export class GuestArea {
         let orderNumber = 0;
         while (orderNumber <= maxOrderNumber) {
             orderNumber++;
-            try {
-                let foodName = 'food ' + orderNumber;
-                console.log(`Feeding: ${foodName}`);
-                this.guestAreaQueue.push(foodName);
-            } catch (e) {
-                console.log(e.message);
-            }
-            await sleepAsync(2000);
-            // setTimeout(() => {}, 5000);
+            let foodName = 'food ' + orderNumber;
+            this.messageBroker(foodName);
+            await sleepAsync(1000);
         }
         console.log('GuestArea\'s food ordering stops for today.');
+    }
+
+    messageBroker (foodName) {
+        const random = Math.random();
+        // console.log(random);
+        if (random < 0.5) {
+            try {
+                this.guestAreaQueue1.push(foodName);
+                console.log(`Feeding to Queue1: ${foodName}`);
+            } catch (e) {
+                console.log(`Queue1 ${e.message}`)
+            }
+        } else {
+            try{
+                this.guestAreaQueue2.push(foodName);
+                console.log(`Feeding to Queue2: ${foodName}`);
+            } catch (e) {
+                console.log(`Queue2 ${e.message}`);
+            }
+        }
     }
 }
 
