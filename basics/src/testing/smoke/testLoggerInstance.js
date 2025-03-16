@@ -1,4 +1,4 @@
-import {Logger} from "../../util/loggerI.js";
+import {Logger} from "../../util/Logger.js";
 import { testLogger1 } from "./testLoggerInstance1.js";
 import { testLogger2 } from "./testLoggerInstance2.js";
 

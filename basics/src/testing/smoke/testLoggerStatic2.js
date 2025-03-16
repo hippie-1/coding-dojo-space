@@ -1,4 +1,4 @@
-import {Logger} from "../../util/loggerS.js";
+import {Logger} from "../../util/LoggerAlternative.js";
 
 import { runTests } from "./testLoggerStatic.js";
 
