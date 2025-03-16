@@ -39,7 +39,7 @@ export class KitchenArea {
     }
     
     finished(dishName, chef) {
-        this.consoleLog(chef + " has finished " + dishName + " preparation and ready for the next task");
+        this.consoleLog("Chef " + chef + " has finished " + dishName + " preparation and ready for the next task");
     }
       
     messageListener () {
@@ -49,27 +49,22 @@ export class KitchenArea {
                 dishName = this.dishOrderQueue1.poll();
                 this.consoleLog(`Receiving from Queue1: ${dishName}`);
             } catch (e) {
-                this.consoleLog(`Kitchen's message from Queue1: ${e.message}`);
+                this.consoleLog(`Queue1: ${e.message}`);
             }
         } else {
             try {
                 dishName = this.dishOrderQueue2.poll();
                 this.consoleLog(`Receiving from Queue2: ${dishName}`);
             } catch (e) {
-                this.consoleLog(`Kitchen's message from Queue2: ${e.message}`);
+                this.consoleLog(`Queue2: ${e.message}`);
             }
         }
         return dishName;
     }
 
     consoleLog(message) {
-        let decoratedMessage = this.decoreateLogMessage(message);
+        let decoratedMessage = "\x1b[36mKitchen: \x1b[0m \x1b[34m" + message + "\x1b[0m" ;
         console.log(decoratedMessage);
-    }
-    decoreateLogMessage(message) {
-        let decoratedMessage = "\x1b[36mKitchen: \x1b[0m";
-        decoratedMessage = decoratedMessage + message;
-        return decoratedMessage;
     }
 
 }
