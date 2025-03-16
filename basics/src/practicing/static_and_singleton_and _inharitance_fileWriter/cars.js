@@ -14,9 +14,15 @@ class Model extends Car {
       this.model = mod;
     }
   
+
+    hello() {
+      this.show();
+    }
+
     show() {
       return this.present() + ', it is a ' + this.model;
     }
+
 }
   
 let myCar = new Model("Ford", "Mustang");

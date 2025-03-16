@@ -15,7 +15,7 @@ export class GuestArea {
         let orderNumber = 0;
         while (orderNumber <= maxOrderNumber) {
             orderNumber++;
-            let foodName = 'food ' + orderNumber;
+            let foodName = 'food-' + orderNumber;
             this.messageBroker(foodName);
             await sleepAsync(1000);
         }

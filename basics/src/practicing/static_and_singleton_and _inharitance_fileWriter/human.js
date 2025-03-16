@@ -1,3 +1,19 @@
+export class SmallHuman extends Human {
+
+    schoolName;
+
+    constructor(name) {
+        super(name);
+        this.schoolName = "Priamry Shool at the corner";
+    }
+
+    toString () {
+        return super.toString() + ", shcoolName: " + this.schoolName;
+        //return this.birthDate;
+    }
+
+ }
+
 export class Human {
 
     birthDate;
@@ -29,22 +45,6 @@ export class Human {
     }
 
   }
-
- export class SmallHuman extends Human {
-
-    schoolName;
-
-    constructor(name) {
-        super(name);
-        this.schoolName = "Priamry Shool at the corner";
-    }
-
-    toString () {
-        return super.toString() + ", shcoolName: " + this.schoolName;
-        //return this.birthDate;
-    }
-
- }
 
 
 

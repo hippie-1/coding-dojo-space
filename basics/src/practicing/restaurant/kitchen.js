@@ -17,17 +17,31 @@ export class KitchenArea {
                 let dishName = this.messageListener();
                 if (dishName) {
                     emptyCounter = 0;
-                    await sleepAsync(3000);
+                    await this.dishOrderDistribution(dishName);                   
                 } else {
                     emptyCounter++;
                 }
-            // setTimeout(() => {
-            //     console.log(`This is the ${emptyCounter} message`);
-            // }, 5000);
         }
         console.log('Kitchen stops for today.');
     }
 
+    async dishOrderDistribution(dishName) {
+        let availableChef = "Akos";
+        await this.foodPreparation (dishName, availableChef);
+        return true;
+    }
+
+    async foodPreparation (dishName, chef) {
+        let workingHard = sleepAsync(3000);
+        await workingHard;
+        workingHard.then((value) => {this.finished(dishName, chef)});
+        return true;
+    }
+    
+    finished(dishName, chef) {
+        console.log(chef + " has finished " + dishName + " preparation and ready for the next task");
+    }
+      
     messageListener () {
         let dishName = null;
         if (Math.random() < 0.5) {
