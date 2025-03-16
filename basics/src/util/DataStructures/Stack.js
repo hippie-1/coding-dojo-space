@@ -1,3 +1,5 @@
+// https://no.wikipedia.org/wiki/Stakk_(datastruktur)
+
 import { removeElement } from '../Arrays.js'
 
 export class Stack {
