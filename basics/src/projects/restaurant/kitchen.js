@@ -11,7 +11,7 @@ export class KitchenArea {
     }
 
     async work () {
-        console.log('Kitchen starts working');
+        this.consoleLog('Kitchen starts working');
         let emptyCounter = 0;
         while (emptyCounter < 5) {
                 let dishName = this.messageListener();
@@ -22,7 +22,7 @@ export class KitchenArea {
                     emptyCounter++;
                 }
         }
-        console.log('Kitchen stops for today.');
+        this.consoleLog('Kitchen stops for today.');
     }
 
     async dishOrderDistribution(dishName) {
@@ -39,7 +39,7 @@ export class KitchenArea {
     }
     
     finished(dishName, chef) {
-        console.log(chef + " has finished " + dishName + " preparation and ready for the next task");
+        this.consoleLog(chef + " has finished " + dishName + " preparation and ready for the next task");
     }
       
     messageListener () {
@@ -47,19 +47,29 @@ export class KitchenArea {
         if (Math.random() < 0.5) {
             try {
                 dishName = this.dishOrderQueue1.poll();
-                console.log(`Receiving from Queue1: ${dishName}`);
+                this.consoleLog(`Receiving from Queue1: ${dishName}`);
             } catch (e) {
-                console.log(`Kitchen's message from Queue1: ${e.message}`);
+                this.consoleLog(`Kitchen's message from Queue1: ${e.message}`);
             }
         } else {
             try {
                 dishName = this.dishOrderQueue2.poll();
-                console.log(`Receiving from Queue2: ${dishName}`);
+                this.consoleLog(`Receiving from Queue2: ${dishName}`);
             } catch (e) {
-                console.log(`Kitchen's message from Queue2: ${e.message}`);
+                this.consoleLog(`Kitchen's message from Queue2: ${e.message}`);
             }
         }
         return dishName;
+    }
+
+    consoleLog(message) {
+        let decoratedMessage = this.decoreateLogMessage(message);
+        console.log(decoratedMessage);
+    }
+    decoreateLogMessage(message) {
+        let decoratedMessage = "\x1b[36mKitchen: \x1b[0m";
+        decoratedMessage = decoratedMessage + message;
+        return decoratedMessage;
     }
 
 }
