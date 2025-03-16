@@ -1,4 +1,4 @@
-import {Logger} from "../../util/loggerI.js";
+import {Logger} from "../../util/Logger.js";
 
 export function testLogger2() {
     let logger = Logger.getInstance();
