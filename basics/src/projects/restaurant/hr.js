@@ -1,33 +1,6 @@
 import * as fs from 'node:fs';
+import { Employee, NormalChef, PastryChef } from './employee.js';
 
-class Employee {
-    id;
-    name;
-    type;;
-
-    constructor (id, name) {
-        this.id = id;
-        this.name = name;
-    }
-}
-
-class NormalChef extends Employee {
-
-    constructor (id, name) {
-        super(id, name);
-        this.type = 'normal';
-    }
-
-}
-
-class PastryChef extends Employee {
-
-    constructor (id, name) {
-        super(id, name);
-        this.type = 'pastry';
-    }
-
-}
 
 class HR {
     employees = [];
