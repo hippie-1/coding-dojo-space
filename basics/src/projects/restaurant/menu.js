@@ -27,7 +27,7 @@ class NormalFood extends MenuItem {
     }
 }
 
-class Menu {
+export class Menu {
     menuList;
     
     constructor() {
@@ -52,5 +52,5 @@ class Menu {
     }
 }
 
-let menu = new Menu();
-console.log(menu.menuList);
+// export let menu = new Menu();
+// console.log(menu.menuList);

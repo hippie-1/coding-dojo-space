@@ -1,12 +1,22 @@
-import { sleepAsync } from '../../util/BasicFunctions.js';
+import { sleepAsync, generateRandomNumber } from '../../util/BasicFunctions.js';
+import {  Menu } from './menu.js';
 
 export class GuestArea {
     guestAreaQueue1;
     guestAreaQueue2;
+    menu;
 
     constructor (restaurantQueue1, restaurantQueue2) {
         this.guestAreaQueue1 = restaurantQueue1;
         this.guestAreaQueue2 = restaurantQueue2;
+        this.menu = new Menu();
+    }
+
+    randomMenuItemName () {
+        let randomMenuItemIndex = generateRandomNumber(0, this.menu.menuList.length-1);
+        console.log(randomMenuItemIndex);
+        let randomMenuItemName = this.menu.menuList[randomMenuItemIndex].name;
+        return randomMenuItemName;
     }
 
     async work () {
@@ -15,7 +25,7 @@ export class GuestArea {
         let orderNumber = 0;
         while (orderNumber <= maxOrderNumber) {
             orderNumber++;
-            let foodName = 'food-' + orderNumber;
+            let foodName = 'food-' + orderNumber + ": " + this.randomMenuItemName();
             this.messageBroker(foodName);
             await sleepAsync(1000);
         }
