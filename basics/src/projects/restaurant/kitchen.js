@@ -4,45 +4,63 @@ import { sleepAsync } from '../../util/BasicFunctions.js';
 export class KitchenArea {
     dishOrderQueue1;
     dishOrderQueue2;
+    availableChefsQueue;
 
     constructor (restaurantQueue1, restaurantQueue2) {
         this.dishOrderQueue1 = restaurantQueue1;
         this.dishOrderQueue2 = restaurantQueue2;
+        this.initAvailableWorkers();
+    }
+
+    initAvailableWorkers() {
+        this.availableChefsQueue = new Queue();
+        this.availableChefsQueue.push("Ákos");
+        this.availableChefsQueue.push("Zsanett");
+        this.availableChefsQueue.push("Krisztián");
     }
 
     async work () {
-        this.consoleLog('Kitchen starts working');
+        await sleepAsync(3000);
+        this.consoleLog('Kitchen starts working with a short delay to wait for the first couple of dishOrders');
         let emptyCounter = 0;
-        while (emptyCounter < 5) {
-                let dishName = this.messageListener();
-                if (dishName) {
-                    emptyCounter = 0;
-                    await this.dishOrderDistribution(dishName);                   
-                } else {
-                    emptyCounter++;
-                }
+        while (emptyCounter < 10) {
+            let dishName = this.messageListener();
+            if (dishName) {
+                emptyCounter = 0;
+                await this.dishOrderDistribution(dishName);                   
+            } else {
+                await sleepAsync(1000);
+                emptyCounter++;
+            }
         }
         this.consoleLog('Kitchen stops for today.');
     }
 
     async dishOrderDistribution(dishName) {
-        let availableChef = "Akos";
-        await this.foodPreparation (dishName, availableChef);
-        return true;
+        let availableChefPromise = this.getAvailableChef();
+        await availableChefPromise;
+        availableChefPromise.then((value) => {
+            let availableChef = value;
+            this.consoleLog("Chef " + availableChef + " has started on " + dishName);
+            this.foodPreparation (dishName, availableChef);
+            return true;            
+        })
     }
 
     async foodPreparation (dishName, chef) {
         let workingHard = sleepAsync(3000);
         await workingHard;
-        workingHard.then((value) => {this.finished(dishName, chef)});
-        return true;
+        workingHard.then((value) => {
+            this.finished(dishName, chef);
+        });
     }
     
     finished(dishName, chef) {
-        this.consoleLog("Chef " + chef + " has finished " + dishName + " preparation and ready for the next task");
+        this.availableChefsQueue.push(chef);
+        this.consoleLog("Chef " + chef + " has finished " + dishName + " preparation and goes to the end of the queue and waits for the next task");
     }
       
-    messageListener () {
+    messageListener () { //consume food order
         let dishName = null;
         if (Math.random() < 0.5) {
             try {
@@ -61,6 +79,21 @@ export class KitchenArea {
         }
         return dishName;
     }
+
+    async getAvailableChef() { //message listener, consume queue
+        let availableChef = null;
+        while (!availableChef) {
+            try {
+                availableChef = this.availableChefsQueue.poll();
+            }
+            catch (e) {
+                this.consoleLog(`AvailableChefsQueue: ${e.message}`);
+                await sleepAsync(1000);
+            }
+        }
+        return availableChef;
+    }
+
 
     consoleLog(message) {
         let decoratedMessage = "\x1b[36mKitchen: \x1b[0m \x1b[34m" + message + "\x1b[0m" ;
