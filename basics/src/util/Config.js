@@ -1,5 +1,4 @@
 export class Config {
-    #instance;
     static #loggingDir = "../../../logs/";
     static #dataStoreDir = "../../../dataStore/";
 
