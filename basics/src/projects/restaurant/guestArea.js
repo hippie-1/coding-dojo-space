@@ -13,14 +13,13 @@ export class GuestArea {
     }
 
     randomMenuItemName () {
-        let randomMenuItemIndex = generateRandomNumber(0, this.menu.menuList.length-1);
-        console.log(randomMenuItemIndex);
+        let randomMenuItemIndex = generateRandomNumber(0, this.menu.menuList.length-2);
         let randomMenuItemName = this.menu.menuList[randomMenuItemIndex].name;
         return randomMenuItemName;
     }
 
     async work () {
-        console.log('GuestArea starts working');
+        this.consoleLog('GuestArea starts working');
         let maxOrderNumber = 20;
         let orderNumber = 0;
         while (orderNumber <= maxOrderNumber) {
@@ -29,7 +28,7 @@ export class GuestArea {
             this.messageBroker(foodName);
             await sleepAsync(1000);
         }
-        console.log('GuestArea\'s food ordering stops for today.');
+        this.consoleLog('GuestArea\'s food ordering stops for today.');
     }
 
     messageBroker (foodName) {
@@ -38,18 +37,23 @@ export class GuestArea {
         if (random < 0.5) {
             try {
                 this.guestAreaQueue1.push(foodName);
-                console.log(`Feeding to Queue1: ${foodName}`);
+                this.consoleLog(`Feeding to Queue1: ${foodName}`);
             } catch (e) {
-                console.log(`Queue1 ${e.message}`)
+                this.consoleLog(`Queue1 ${e.message}`)
             }
         } else {
             try{
                 this.guestAreaQueue2.push(foodName);
-                console.log(`Feeding to Queue2: ${foodName}`);
+                this.consoleLog(`Feeding to Queue2: ${foodName}`);
             } catch (e) {
-                console.log(`Queue2 ${e.message}`);
+                this.consoleLog(`Queue2 ${e.message}`);
             }
         }
+    }
+
+    consoleLog(message) {
+        let decoratedMessage = "\x1b[31mGuest Area: \x1b[35m" + message + "\x1b[0m" ;
+        console.log(decoratedMessage);
     }
 }
 
