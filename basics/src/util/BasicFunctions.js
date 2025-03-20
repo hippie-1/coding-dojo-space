@@ -2,7 +2,6 @@
 
 export function generateRandomNumber(min, max) {
     var rand = (Math.random() * (max - min + 1) + min);
-    console.log(rand);
     return Math.round((Math.random() * (max - min + 1) + min));
 }
 
