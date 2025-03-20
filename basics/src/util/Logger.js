@@ -1,15 +1,17 @@
 //import fs from "fs";
 import * as fs from 'node:fs';
+import { Config } from './Config.js';
 
 export class Logger {
 
     static #instance;
     creationDate;
-    loggingDir = "../../logs/";
+    loggingDir = Config.getLogDirPath();
     loggingFile;
-
+    
     static {
         console.log("static block at the beginning");
+        // console.dir(new Config());
     }
     
     static getInstance() {
@@ -29,11 +31,11 @@ export class Logger {
 
     formatDate(date) {
         let month = '' + (date.getMonth() + 1);
-        let day = '' + date.getDate();
+        let day = '' + date.getDate() + '_';
         let year = date.getFullYear();
-        let hour = date.getHours();
-        let min = date.getMinutes();
-        let sec = date.getSeconds();
+        let hour = date.getHours() + "h";
+        let min = date.getMinutes() + "m";
+        let sec = date.getSeconds() + "s";
     
         if (month.length < 2) 
             month = '0' + month;
@@ -81,7 +83,7 @@ export class Logger {
 
 
     toString() {
-        return ("Logger, created at:  " + this.creationDate + ", logfile: " + this.loggingFile);
+        return ("\x1b[35m" + "Logger" + "\x1b[0m" + ", created at:  " + "\x1b[33m" + this.creationDate + ", logfile: " + "\x1b[32m" + this.loggingFile + "\x1b[0m");
     }
 
     static {
