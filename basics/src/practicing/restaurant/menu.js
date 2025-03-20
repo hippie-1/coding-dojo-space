@@ -28,14 +28,9 @@ class NormalFood extends MenuItem {
 }
 
 class Menu {
-    menuList;
-    
+        
     constructor() {
-        this.menuList = this.createMenu();
-    }
-
-    createMenu () {
-        let menu = [
+        this.menuList = [
             new Sweetness(0, 'chocolate', 3000),
             new Sweetness(1, 'Coffee', 1000),
             new Sweetness(2, 'Coconut Milk', 1000),
@@ -48,9 +43,8 @@ class Menu {
             new NormalFood(9, 'Salad', 2000),
             new NormalFood(10, 'Pasta', 5000)
         ]
-        return menu;
     }
 }
 
-let menu = new Menu();
-console.log(menu.menuList);
+let currentMenu = new Menu();
+console.log(currentMenu.menuList);
