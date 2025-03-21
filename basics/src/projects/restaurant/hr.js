@@ -98,5 +98,6 @@ hr.createAndSaveEmployee("Bálint", "normal");
 console.log(hr.getEmployee(5));
 console.log(hr.updateEmployee(6, 'Zoltan'));
 console.log(hr.deleteEmployee(4));
+// console.log(hr.createAndSaveEmployee("Norbert", "pastry"));
 
 console.log(hr.employees);
