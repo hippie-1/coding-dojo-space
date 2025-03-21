@@ -14,6 +14,8 @@ export class GuestArea {
 
     randomMenuItemName () {
         let randomMenuItemIndex = generateRandomNumber(0, this.menu.menuList.length-2);
+        console.log(this.menu.menuList);
+        console.log(randomMenuItemIndex);
         let randomMenuItemName = this.menu.menuList[randomMenuItemIndex].name;
         return randomMenuItemName;
     }
@@ -26,7 +28,7 @@ export class GuestArea {
             orderNumber++;
             let foodName = 'food-' + orderNumber + ": " + this.randomMenuItemName();
             this.messageBroker(foodName);
-            await sleepAsync(1000);
+            await sleepAsync(2000);
         }
         this.consoleLog('GuestArea\'s food ordering stops for today.');
     }
