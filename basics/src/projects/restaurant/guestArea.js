@@ -1,6 +1,6 @@
 import { sleepAsync, generateRandomNumber } from '../../util/BasicFunctions.js';
 import {  Menu } from './menu.js';
-
+import { Config } from '../../util/Config.js';
 export class GuestArea {
     guestAreaQueue1;
     guestAreaQueue2;
@@ -52,7 +52,8 @@ export class GuestArea {
     }
 
     consoleLog(message) {
-        let decoratedMessage = "\x1b[31mGuest Area: \x1b[35m" + message + "\x1b[0m" ;
+        // let decoratedMessage = "\x1b[31mGuest Area: \x1b[35m" + message + "\x1b[0m" ;
+        let decoratedMessage = Config.getTemplatingColours().FgRed + "Guest Area: " + Config.getTemplatingColours().FgMagenta + message + Config.getTemplatingColours().Reset ;
         console.log(decoratedMessage);
     }
 }
