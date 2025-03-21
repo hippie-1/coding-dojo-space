@@ -1,5 +1,5 @@
 import * as fs from 'node:fs';
-import { Employee, NormalChef, PastryChef } from './employee.js';
+import { NormalChef, PastryChef } from './employee.js';
 
 
 class HR {
@@ -26,7 +26,7 @@ class HR {
         }
     }
 
-    #persistNewEmployees(employees) { //private method, since it does not make sence to call it directly from outside
+    #persistAllEmployees(employees) { //private method, since it does not make sence to call it directly from outside
         let employeesPlainText = JSON.stringify(employees);
         try {
             fs.writeFileSync(this.emloyeesDataStorageFile, employeesPlainText);
@@ -40,7 +40,7 @@ class HR {
         let id = this.employees.length;
         let newlyHiredEmployee = this.#createEmployee(id, name, type); //no need to catch the exception, because we can not do anything with it, we have throw it the invoker
         this.employees[this.employees.length] = newlyHiredEmployee;
-        this.#persistNewEmployees(this.employees);
+        this.#persistAllEmployees(this.employees);
     }
 
     #createEmployee(id, name, type) { //factory method
@@ -72,13 +72,13 @@ class HR {
     updateEmployee(id, newName) {
         let employee = this.getEmployee(id);
         employee.name = newName;
-        this.#persistNewEmployees(this.employees);
+        this.#persistAllEmployees(this.employees);
         return employee;
     }
 
     deleteEmployee(id) {
         this.employees = this.employees.filter(employee => employee.id !== id);
-        this.#persistNewEmployees(this.employees);
+        this.#persistAllEmployees(this.employees);
         return true;
     }
 
