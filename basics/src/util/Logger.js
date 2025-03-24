@@ -77,7 +77,6 @@ export class Logger {
 
     formatLog(message, data, fileName, methodName) {
         let content = new Date().toISOString();
-        content = content + ", " + message;
         if (fileName) {
             content = content + ", " + fileName;
         }
