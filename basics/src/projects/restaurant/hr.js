@@ -26,6 +26,15 @@ export class HR {
         }
     }
 
+    refreshEmployees() {
+        this.employees = this.#loadEmployees();       
+    }   
+
+    getEmployees() {
+        this.refreshMenuList()
+        return this.employees;
+    }
+
     #persistAllEmployees(employees) { //private method, since it does not make sence to call it directly from outside
         let employeesPlainText = JSON.stringify(employees);
         try {
@@ -83,6 +92,8 @@ export class HR {
     }
 
 }
+
+//test:
 
 /* export let hr = new HR();
  console.log(hr.employees);
