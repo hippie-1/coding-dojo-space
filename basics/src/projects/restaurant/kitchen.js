@@ -15,8 +15,8 @@ export class KitchenArea {
         this.dishOrderQueue1 = restaurantQueue1;
         this.dishOrderQueue2 = restaurantQueue2;
         this.logger = Logger.getInstance("kitchen");
-        this.initAvailableWorkers();
         this.hr = new HR();
+        this.initAvailableWorkers();
 
     }
 

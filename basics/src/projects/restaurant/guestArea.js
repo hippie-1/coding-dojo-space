@@ -19,8 +19,8 @@ export class GuestArea {
     randomMenuItemName () { 
         this.menu.refreshMenuList();
         let randomMenuItemIndex = generateRandomNumber(0, this.menu.menuList.length-2);
-        console.log(this.menu.menuList);
-        console.log(randomMenuItemIndex);
+        //console.log(this.menu.menuList);
+        //console.log(randomMenuItemIndex);
         let randomMenuItemName = this.menu.menuList[randomMenuItemIndex].name;
         return randomMenuItemName;
     }

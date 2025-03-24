@@ -175,7 +175,7 @@ export class Menu {
 
 
 //test:
-//let menu = new Menu();
+// let menu = new Menu();
 // menu.createAndSaveMenuItem('chocolate', 'sweet', 3000);
 // menu.createAndSaveMenuItem('Coffee', 'sweet', 1000);
 // menu.createAndSaveMenuItem('Coconut Milk', 'sweet', 1000);

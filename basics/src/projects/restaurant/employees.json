@@ -28,5 +28,30 @@
     "id": 6,
     "name": "Zoltan",
     "type": "normal"
+  },
+  {
+    "id": 6,
+    "name": "Ákos",
+    "type": "normal"
+  },
+  {
+    "id": 7,
+    "name": "Zsanett",
+    "type": "normal"
+  },
+  {
+    "id": 8,
+    "name": "Krisztián",
+    "type": "normal"
+  },
+  {
+    "id": 9,
+    "name": "Klaudia",
+    "type": "pastry"
+  },
+  {
+    "id": 10,
+    "name": "Norbert",
+    "type": "pastry"
   }
 ]

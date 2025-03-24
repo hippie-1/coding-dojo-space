@@ -2,9 +2,9 @@ import * as fs from 'node:fs';
 import { NormalChef, PastryChef } from './employee.js';
 
 
-class HR {
+export class HR {
     employees = [];
-    emloyeesDataStorageFile = 'employees.txt';
+    emloyeesDataStorageFile = 'employees.json';
     
     constructor() {
         this.employees = this.#loadEmployees();
@@ -14,7 +14,7 @@ class HR {
         let employeesPlainText = null;
         try {
            employeesPlainText = fs.readFileSync(this.emloyeesDataStorageFile, 'utf8');
-           console.log('File contents:', employeesPlainText);
+           //console.log('File contents:', employeesPlainText);
            if (employeesPlainText) {
                 let employees = JSON.parse(employeesPlainText);
                 return employees;
@@ -84,14 +84,15 @@ class HR {
 
 }
 
-// export let hr = new HR();
-// console.log(hr.employees);
+/* export let hr = new HR();
+ console.log(hr.employees);
 
-// hr.createAndSaveEmployee("Ákos", "normal");
-// hr.createAndSaveEmployee("Zsanett", "normal");
-// hr.createAndSaveEmployee("Krisztián", "normal");
-// hr.createAndSaveEmployee("Klaudia", "pastry");
-// hr.createAndSaveEmployee("Norbert", "pastry");
+hr.createAndSaveEmployee("Ákos", "normal");
+hr.createAndSaveEmployee("Zsanett", "normal");
+hr.createAndSaveEmployee("Krisztián", "normal");
+hr.createAndSaveEmployee("Klaudia", "pastry");
+hr.createAndSaveEmployee("Norbert", "pastry");
+*/
 // hr.createAndSaveEmployee("Géza", "pastry");
 // hr.createAndSaveEmployee("Bálint", "normal");
 
@@ -100,4 +101,4 @@ class HR {
 // console.log(hr.deleteEmployee(4));
 // console.log(hr.createAndSaveEmployee("Norbert", "pastry"));
 
-// console.log(hr.employees);
+//console.log(hr.employees);
