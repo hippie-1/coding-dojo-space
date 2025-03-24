@@ -14,19 +14,32 @@ export class Logger {
         // console.dir(new Config());
     }
     
-    static getInstance() {
+    static getInstance(applicationName="") {
         console.log("getInstance");
         if (!this.#instance) {
-            this.#instance = new Logger();
+            this.#instance = new Logger(applicationName);
         }
         return this.#instance;
     }
 
-    constructor() {
+    constructor(applicationName) {
         this.creationDate = new Date();
-        this.loggingFile = this.loggingDir + this.formatDate(this.creationDate) + "_log.txt"
+        let applicationDir = "";
+        if (applicationName) {
+            applicationDir = applicationName + "/";
+        }
+        this.loggingFile = this.loggingDir + applicationDir + this.formatDate(this.creationDate) + "_log.txt"
         //this.loggingFile = "helloworld.txt"
-        console.log("constructor");
+        console.log("constructor", this.loggingFile);
+    }
+
+    createLogDirIfDoesntExists() {
+        fs.mkdir('path/to/directory', { recursive: true }, (err) => {
+          if (err) {
+            return console.error('Error creating directory:', err);
+          }
+          console.log('Directory created successfully!');
+        });       
     }
 
     formatDate(date) {

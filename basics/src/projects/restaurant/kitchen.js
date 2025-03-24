@@ -1,15 +1,19 @@
 import { Queue } from '../../util/DataStructures/Queue.js';
 import { sleepAsync } from '../../util/BasicFunctions.js';
+import { Config } from '../../util/Config.js';
+import { Logger } from '../../util/Logger.js';
 
 export class KitchenArea {
     dishOrderQueue1;
     dishOrderQueue2;
     availableChefsQueue;
+    logger;
 
     constructor (restaurantQueue1, restaurantQueue2) {
         this.dishOrderQueue1 = restaurantQueue1;
         this.dishOrderQueue2 = restaurantQueue2;
-        this.initAvailableWorkers();
+        this.logger = Logger.getInstance("kitchen");
+
     }
 
     initAvailableWorkers() {
@@ -96,8 +100,9 @@ export class KitchenArea {
 
 
     consoleLog(message) {
-        let decoratedMessage = "\x1b[36mKitchen: \x1b[0m \x1b[34m" + message + "\x1b[0m" ;
+        let decoratedMessage = Config.getTemplatingColours('FgCyan') + "Kitchen: " + Config.getTemplatingColours('FgBlue')+ message + Config.getTemplatingColours('Reset') ;
         console.log(decoratedMessage);
+        this.logger.log(message);
     }
 
 }

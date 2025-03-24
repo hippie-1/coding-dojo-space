@@ -1,20 +1,24 @@
 import { sleepAsync, generateRandomNumber } from '../../util/BasicFunctions.js';
 import {  Menu } from './menu.js';
 import { Config } from '../../util/Config.js';
+import { Logger } from '../../util/Logger.js';
+
 export class GuestArea {
     guestAreaQueue1;
     guestAreaQueue2;
     menu;
+    logger;
 
     constructor (restaurantQueue1, restaurantQueue2) {
         this.guestAreaQueue1 = restaurantQueue1;
         this.guestAreaQueue2 = restaurantQueue2;
         this.menu = new Menu();
+        this.logger = Logger.getInstance("guestArea");
     }
 
     randomMenuItemName () {
         let randomMenuItemIndex = generateRandomNumber(0, this.menu.menuList.length-2);
-        console.log(this.menu.menuList);
+        //console.log(this.menu.menuList);
         console.log(randomMenuItemIndex);
         let randomMenuItemName = this.menu.menuList[randomMenuItemIndex].name;
         return randomMenuItemName;
@@ -55,8 +59,9 @@ export class GuestArea {
 
     consoleLog(message) {
         // let decoratedMessage = "\x1b[31mGuest Area: \x1b[35m" + message + "\x1b[0m" ;
-        let decoratedMessage = Config.getTemplatingColours().FgRed + "Guest Area: " + Config.getTemplatingColours().FgMagenta + message + Config.getTemplatingColours().Reset ;
+        let decoratedMessage = Config.getTemplatingColours('FgRed') + "Guest Area: " + Config.getTemplatingColours('FgMagenta')+ message + Config.getTemplatingColours('Reset') ;
         console.log(decoratedMessage);
+        this.logger.log(message);
     }
 }
 

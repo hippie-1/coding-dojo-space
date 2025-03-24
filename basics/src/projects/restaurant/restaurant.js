@@ -1,24 +1,35 @@
 import { Queue } from '../../util/DataStructures/Queue.js';
-import { KitchenArea } from './kitchen.js';
 import { GuestArea } from './guestArea.js';
+import { KitchenArea } from './kitchen.js';
+import { Config } from '../../util/Config.js';
+import { Logger } from '../../util/Logger.js';
 
 class Restaurant {
     restaurantQueue1;
     restaurantQueue2;
     newKitchen;
     newGuestAre;
+    logger;
 
     constructor () {
         this.restaurantQueue1 = new Queue();
         this.restaurantQueue2 = new Queue();
         this.newKitchen= new KitchenArea(this.restaurantQueue1, this.restaurantQueue2);
         this.newGuestArea = new GuestArea(this.restaurantQueue1, this.restaurantQueue2);
+        this.logger = Logger.getInstance("restaurant");
     }
 
     async work () {
-        console.log('Restaurant is opening...');
+        this.consoleLog('Restaurant is opening...');
         await Promise.all([this.newGuestArea.work(), this.newKitchen.work()]);
-        console.log('Restaurant has closed.');
+        this.consoleLog('Restaurant has closed.');
+    }
+
+    consoleLog(message) {
+        // let decoratedMessage = "\x1b[31mGuest Area: \x1b[35m" + message + "\x1b[0m" ;
+        let decoratedMessage = Config.getTemplatingColours('FgWhite') + "Restaurant: " + Config.getTemplatingColours('FgGray')+ message + Config.getTemplatingColours('Reset') ;
+        console.log(decoratedMessage);
+        this.logger.log(message);
     }
 }
 

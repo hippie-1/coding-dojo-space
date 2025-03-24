@@ -1,5 +1,5 @@
 export class Config {
-    static #loggingDir = "../../../logs/";
+    static #loggingDir = "C:/work/nh-fintech-labs/coding-dojo-space/basics/logs/";
     static #dataStoreDir = "../../../dataStore/";
 
     static #templatingColours = {
@@ -15,7 +15,11 @@ export class Config {
         FgGray: "\x1b[90m"
     }
 
-    static getTemplatingColours() {
+    static getTemplatingColours(colourName) {
+        return this.#templatingColours[colourName];
+    }
+
+    static getAllTemplatingColours() {
         return this.#templatingColours;
     }
 
