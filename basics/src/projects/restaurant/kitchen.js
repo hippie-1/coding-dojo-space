@@ -2,25 +2,31 @@ import { Queue } from '../../util/DataStructures/Queue.js';
 import { sleepAsync } from '../../util/BasicFunctions.js';
 import { Config } from '../../util/Config.js';
 import { Logger } from '../../util/Logger.js';
+import { HR } from './hr.js';
 
 export class KitchenArea {
     dishOrderQueue1;
     dishOrderQueue2;
     availableChefsQueue;
     logger;
+    hr;
 
     constructor (restaurantQueue1, restaurantQueue2) {
         this.dishOrderQueue1 = restaurantQueue1;
         this.dishOrderQueue2 = restaurantQueue2;
         this.logger = Logger.getInstance("kitchen");
-
+        this.initAvailableWorkers();
+        this.hr = new HR();
     }
 
     initAvailableWorkers() {
-        this.availableChefsQueue = new Queue();
-        this.availableChefsQueue.push("Ákos");
-        this.availableChefsQueue.push("Zsanett");
-        this.availableChefsQueue.push("Krisztián");
+        this.availableChefsQueue = new Queue(this.hr.employees.length);
+        for (let i=0; i<this.hr.employees.length; i++) {
+            this.availableChefsQueue.push(this.hr.employees[i].name);
+        }
+        // this.availableChefsQueue.push("Ákos"); // hr listából kivenni
+        // this.availableChefsQueue.push("Zsanett");
+        // this.availableChefsQueue.push("Krisztián");
     }
 
     async work () {
@@ -44,7 +50,7 @@ export class KitchenArea {
         let availableChefPromise = this.getAvailableChef();
         await availableChefPromise;
         availableChefPromise.then((value) => {
-            let availableChef = value;
+            let availableChef = value; //átírható?
             this.consoleLog("Chef " + availableChef + " has started on " + dishName);
             this.foodPreparation (dishName, availableChef);
             return true;            
@@ -87,7 +93,7 @@ export class KitchenArea {
     async getAvailableChef() { //message listener, consume queue
         let availableChef = null;
         while (!availableChef) {
-            try {
+            try { //átírható?
                 availableChef = this.availableChefsQueue.poll();
             }
             catch (e) {

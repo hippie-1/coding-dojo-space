@@ -175,5 +175,5 @@ export let menu = new Menu();
 // console.log(menu.deleteMenuItem(0));
 // // console.log(menu.menuList);
 // console.log(menu.createAndSaveMenuItem('Lamb', 'normal', 7000));
-console.log(menu.createAndSaveMenuItem('Chicken', 'normal', 5000));
+// console.log(menu.createAndSaveMenuItem('Chicken', 'normal', 5000));
 // // console.log(menu.menuList);

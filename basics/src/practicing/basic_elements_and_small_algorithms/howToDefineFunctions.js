@@ -10,7 +10,7 @@ const square2 = function (number) {
 };
 
 //Calling Functions
-let result = square2(5);
+let result = square1(3);
 console.log(result); // 25
 
 
@@ -44,8 +44,10 @@ function outerFunction(x=1) {
 }
     
 const addInner = outerFunction(2);
-const addInnerInner = addInner();
-console.log(addInnerInner());
+console.log(addInner);
+const addInnerInner = addInner(5);
+console.log(addInnerInner);
+console.log(addInnerInner(18));
 //console.log(addFive(3)); // 8
 
 
@@ -56,7 +58,7 @@ function square3(n) {
 }
 
 
-//console.log(square4(5)); // ReferenceError: Cannot access 'square4' before initialization
+console.log(square4(5)); // ReferenceError: Cannot access 'square4' before initialization
 const square4 = function (n) {
     return n * n;
 };

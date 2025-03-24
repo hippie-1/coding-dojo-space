@@ -1,5 +1,5 @@
 export class Config {
-    static #loggingDir = "C:/work/nh-fintech-labs/coding-dojo-space/basics/logs/";
+    static #loggingDir = "D:/UserFiles/Ingen/Documents/Projects/nh_fintech_lab/coding-dojo-space/basics/logs/";
     static #dataStoreDir = "../../../dataStore/";
 
     static #templatingColours = {
