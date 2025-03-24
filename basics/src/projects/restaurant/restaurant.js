@@ -14,7 +14,7 @@ class Restaurant {
     constructor () {
         this.restaurantQueue1 = new Queue();
         this.restaurantQueue2 = new Queue();
-        this.logger = Logger.getInstance("restaurant2");
+        this.logger = Logger.getInstance("restaurant");
         this.newKitchen= new KitchenArea(this.restaurantQueue1, this.restaurantQueue2);
         this.newGuestArea = new GuestArea(this.restaurantQueue1, this.restaurantQueue2);
     }
