@@ -26,9 +26,7 @@ class Restaurant {
     }
 
     consoleLog(message) {
-        // let decoratedMessage = "\x1b[31mGuest Area: \x1b[35m" + message + "\x1b[0m" ;
         let decoratedMessage = Config.getTemplatingColours('FgWhite') + "Restaurant: " + Config.getTemplatingColours('FgGray')+ message + Config.getTemplatingColours('Reset') ;
-        console.log(decoratedMessage);
         this.logger.log(decoratedMessage);
     }
 }

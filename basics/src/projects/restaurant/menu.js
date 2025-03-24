@@ -32,7 +32,7 @@ class NormalFood extends MenuItem {
 
 export class Menu {
     menuList;
-    menuStorageFile = 'menuItems.txt';
+    menuStorageFile = 'menuItems.json';
     
     constructor() {
         this.menuList = this.#loadMenuItems();
@@ -65,7 +65,7 @@ export class Menu {
     #loadMenuItems () {
         try {
                 let menuItemPlainText = fs.readFileSync(this.menuStorageFile, 'utf8');
-                console.log('File contents:', menuItemPlainText);
+                //console.log('File contents:', menuItemPlainText);
                 if (menuItemPlainText) {
                     let menuItems = JSON.parse(menuItemPlainText);
                     return menuItems;
@@ -75,6 +75,15 @@ export class Menu {
                 console.error('Error reading file:', err);
                 throw err; //shuld not catch the error at all since we can not do anything with it here, only forward it to the invoker
             }
+    }
+
+    refreshMenuList() {
+        this.menuList = this.#loadMenuItems();       
+    }   
+
+    getMenuList() {
+        this.refreshMenuList()
+        return this.menuList;
     }
     
     #createMenuItem (id, name, type, estPrepTime) {
@@ -158,7 +167,9 @@ export class Menu {
     // }
 }
 
-export let menu = new Menu();
+
+//test:
+//let menu = new Menu();
 // menu.createAndSaveMenuItem('chocolate', 'sweet', 3000);
 // menu.createAndSaveMenuItem('Coffee', 'sweet', 1000);
 // menu.createAndSaveMenuItem('Coconut Milk', 'sweet', 1000);
@@ -173,7 +184,7 @@ export let menu = new Menu();
 // console.log(menu.getMenuItemBest(0));
 // console.log(menu.updateMenuItem(0, 'estPrepTime', 5000));
 // console.log(menu.deleteMenuItem(0));
-// // console.log(menu.menuList);
-// console.log(menu.createAndSaveMenuItem('Lamb', 'normal', 7000));
-console.log(menu.createAndSaveMenuItem('Chicken', 'normal', 5000));
-// // console.log(menu.menuList);
+// console.log(menu.menuList);
+// menu.createAndSaveMenuItem('Lamb', 'normal', 7000);
+// menu.createAndSaveMenuItem('Chicken', 'normal', 5000);
+// console.log(menu.menuList);

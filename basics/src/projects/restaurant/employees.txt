@@ -1,1 +1,0 @@
-[{"id":0,"name":"Ákos","type":"normal"},{"id":1,"name":"Zsanett","type":"normal"},{"id":2,"name":"Krisztián","type":"normal"},{"id":3,"name":"Klaudia","type":"pastry"},{"id":5,"name":"Géza","type":"pastry"},{"id":6,"name":"Zoltan","type":"normal"}]
