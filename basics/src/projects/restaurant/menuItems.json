@@ -1,1 +1,93 @@
-[{"id":"ecdaed9b-0ccf-45dd-98f4-3fd041d2c3df","name":"chocolate","type":"sweet","priceInHuf":2000,"estPrepTime":3000},{"id":"a8beb9bd-45ba-4e7c-9389-718043478540","name":"Coffee","type":"sweet","priceInHuf":2000,"estPrepTime":1000},{"id":"f973343f-b904-49d5-83be-8755fb25818f","name":"Coconut Milk","type":"sweet","priceInHuf":2000,"estPrepTime":1000},{"id":"3568a6ce-0d3f-4375-a56b-ffc3a8f2925a","name":"cake","type":"sweet","priceInHuf":2000,"estPrepTime":5000},{"id":"09155a82-8e33-4952-bca3-47f7b59d0324","name":"muffin","type":"sweet","priceInHuf":2000,"estPrepTime":4000},{"id":"4bed98ea-399a-4082-a545-0b8958dfefc8","name":"Chicken","type":"normal","priceInHuf":2000,"estPrepTime":5000},{"id":"eebe633d-d124-4f8c-a45f-0976a20b33a4","name":"Lamb","type":"normal","priceInHuf":2000,"estPrepTime":7000},{"id":"56bc5365-91b9-4634-bd61-c755caecdcd1","name":"Beef","type":"normal","priceInHuf":2000,"estPrepTime":8000},{"id":"97992b01-12d5-4c0b-bf69-e08cff11eeec","name":"Soup","type":"normal","priceInHuf":2000,"estPrepTime":4000},{"id":"4ae6dad4-ab73-466f-a0a0-7c90d1b513bc","name":"Salad","type":"normal","priceInHuf":2000,"estPrepTime":2000},{"id":"05add331-3a4e-4b9b-8654-a76b886a4897","name":"Pasta","type":"normal","priceInHuf":2000,"estPrepTime":5000},{"id":"71291efa-29da-4cb9-8258-1164f2b54220","name":"Duck","type":"normal","priceInHuf":2000,"estPrepTime":7000},{"id":"5672e1b5-aa66-499f-976e-67aa7c8e80e7","name":"CezarSalad","type":"normal","priceInHuf":2000,"estPrepTime":5000}]
+[
+  {
+    "id": "ecdaed9b-0ccf-45dd-98f4-3fd041d2c3df",
+    "name": "chocolate",
+    "type": "sweet",
+    "priceInHuf": 2000,
+    "estPrepTime": 3000
+  },
+  {
+    "id": "a8beb9bd-45ba-4e7c-9389-718043478540",
+    "name": "Coffee",
+    "type": "sweet",
+    "priceInHuf": 2000,
+    "estPrepTime": 1000
+  },
+  {
+    "id": "f973343f-b904-49d5-83be-8755fb25818f",
+    "name": "Coconut Milk",
+    "type": "sweet",
+    "priceInHuf": 2000,
+    "estPrepTime": 1000
+  },
+  {
+    "id": "3568a6ce-0d3f-4375-a56b-ffc3a8f2925a",
+    "name": "cake",
+    "type": "sweet",
+    "priceInHuf": 2000,
+    "estPrepTime": 5000
+  },
+  {
+    "id": "09155a82-8e33-4952-bca3-47f7b59d0324",
+    "name": "muffin",
+    "type": "sweet",
+    "priceInHuf": 2000,
+    "estPrepTime": 4000
+  },
+  {
+    "id": "4bed98ea-399a-4082-a545-0b8958dfefc8",
+    "name": "Chicken",
+    "type": "normal",
+    "priceInHuf": 2000,
+    "estPrepTime": 5000
+  },
+  {
+    "id": "eebe633d-d124-4f8c-a45f-0976a20b33a4",
+    "name": "Lamb",
+    "type": "normal",
+    "priceInHuf": 2000,
+    "estPrepTime": 7000
+  },
+  {
+    "id": "56bc5365-91b9-4634-bd61-c755caecdcd1",
+    "name": "Beef",
+    "type": "normal",
+    "priceInHuf": 2000,
+    "estPrepTime": 8000
+  },
+  {
+    "id": "97992b01-12d5-4c0b-bf69-e08cff11eeec",
+    "name": "Soup",
+    "type": "normal",
+    "priceInHuf": 2000,
+    "estPrepTime": 4000
+  },
+  {
+    "id": "4ae6dad4-ab73-466f-a0a0-7c90d1b513bc",
+    "name": "Salad",
+    "type": "normal",
+    "priceInHuf": 2000,
+    "estPrepTime": 2000
+  },
+  {
+    "id": "05add331-3a4e-4b9b-8654-a76b886a4897",
+    "name": "Pasta",
+    "type": "normal",
+    "priceInHuf": 2000,
+    "estPrepTime": 5000
+  },
+  {
+    "id": "71291efa-29da-4cb9-8258-1164f2b54220",
+    "name": "Duck",
+    "type": "normal",
+    "priceInHuf": 2000,
+    "estPrepTime": 7000
+  },
+  {
+    "id": "5672e1b5-aa66-499f-976e-67aa7c8e80e7",
+    "name": "CezarSalad",
+    "type": "normal",
+    "priceInHuf": 2000,
+    "estPrepTime": 5000
+  }
+]
