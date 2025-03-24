@@ -24,7 +24,7 @@ export class Logger {
             applicationDir = applicationName + "/";
         }
         this.createLogDirIfDoesntExists(this.loggingDir + applicationName);
-        this.loggingFile = this.loggingDir + applicationDir + this.formatDate(this.creationDate) + ".log.ans"
+        this.loggingFile = this.loggingDir + applicationDir + this.formatDate(this.creationDate) + ".log.ansi"
         //this.loggingFile = "helloworld.txt"
         console.log("Logger constructor, loggingFile:", this.loggingFile);
     }
