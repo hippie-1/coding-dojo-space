@@ -14,9 +14,9 @@ class Restaurant {
     constructor () {
         this.restaurantQueue1 = new Queue();
         this.restaurantQueue2 = new Queue();
+        this.logger = Logger.getInstance("restaurant");
         this.newKitchen= new KitchenArea(this.restaurantQueue1, this.restaurantQueue2);
         this.newGuestArea = new GuestArea(this.restaurantQueue1, this.restaurantQueue2);
-        this.logger = Logger.getInstance("restaurant");
     }
 
     async work () {
@@ -26,10 +26,8 @@ class Restaurant {
     }
 
     consoleLog(message) {
-        // let decoratedMessage = "\x1b[31mGuest Area: \x1b[35m" + message + "\x1b[0m" ;
         let decoratedMessage = Config.getTemplatingColours('FgWhite') + "Restaurant: " + Config.getTemplatingColours('FgGray')+ message + Config.getTemplatingColours('Reset') ;
-        console.log(decoratedMessage);
-        this.logger.log(message);
+        this.logger.log(decoratedMessage);
     }
 }
 

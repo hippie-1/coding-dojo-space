@@ -1,5 +1,8 @@
 export class Config {
-    static #loggingDir = "D:/UserFiles/Ingen/Documents/Projects/nh_fintech_lab/coding-dojo-space/basics/logs/";
+    // static #loggingDir = "D:/UserFiles/Ingen/Documents/Projects/nh_fintech_lab/coding-dojo-space/basics/logs/";
+    // static #projectRootDir = "C:/work/nh-fintech-labs/coding-dojo-space/basics/";
+    static #projectRootDir = "D:/UserFiles/Ingen/Documents/Projects/nh_fintech_lab/coding-dojo-space/basics/";
+    static #loggingDir = "logs/";
     static #dataStoreDir = "../../../dataStore/";
 
     static #templatingColours = {
@@ -24,10 +27,10 @@ export class Config {
     }
 
     static getLogDirPath() {
-        return this.#loggingDir;
+        return this.#projectRootDir + this.#loggingDir;;
     }
     
     static getDataStoreDirPath() {
-        return this.#dataStoreDir;
+        return this.#projectRootDir + this.#dataStoreDir; 
     }
 }

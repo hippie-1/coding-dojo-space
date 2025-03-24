@@ -17,6 +17,7 @@ export class KitchenArea {
         this.logger = Logger.getInstance("kitchen");
         this.initAvailableWorkers();
         this.hr = new HR();
+
     }
 
     initAvailableWorkers() {
@@ -107,11 +108,11 @@ export class KitchenArea {
 
     consoleLog(message) {
         let decoratedMessage = Config.getTemplatingColours('FgCyan') + "Kitchen: " + Config.getTemplatingColours('FgBlue')+ message + Config.getTemplatingColours('Reset') ;
-        console.log(decoratedMessage);
-        this.logger.log(message);
+        this.logger.log(decoratedMessage);
     }
 
 }
 
+//test:
 // let KitchenArea1 = new KitchenArea();
 // KitchenArea1.work();
