@@ -6,13 +6,15 @@ class MenuItem {
     id;
     name;
     type;
-    estPrepTime;
+    estPrepTimeInSec;
+    priceInHuf;
     
     
-    constructor (id, name, estPrepTime) {
+    constructor (id, name, estPrepTime, priceInHuf=2000) {
         this.id = id;
         this.name = name;
         this.estPrepTime = estPrepTime;
+        this.priceInHuf = priceInHuf;
     }
 }
 
@@ -88,12 +90,12 @@ export class Menu {
         return this.menuList;
     }
     
-    #createMenuItem (id, name, type, estPrepTime) {
+    #createMenuItem (id, name, type, estPrepTimeInSec, priceInHuf) {
         switch(type) {
             case 'sweet':
-                return new Sweetness(id, name, estPrepTime);
+                return new Sweetness(id, name, estPrepTimeInSec, priceInHuf);
             case 'normal': 
-                return new NormalFood(id, name, estPrepTime);
+                return new NormalFood(id, name, estPrepTimeInSec, priceInHuf);
             default:
                 throw new Error(
                     `Invalid class type "${type}". Choose one of: "normal", "sweet"`
@@ -101,11 +103,11 @@ export class Menu {
         }
     }
 
-    createAndSaveMenuItem(name, type, estPrepTime) {
+    createAndSaveMenuItem(name, type, estPrepTimeInSec=2000, priceInHuf=2000) {
         //let id = this.menuList.length;
         const uuid = uuidv4();
         console.log(uuid);
-        let newMenuItem = this.#createMenuItem(uuid, name, type, estPrepTime);
+        let newMenuItem = this.#createMenuItem(uuid, name, type, estPrepTimeInSec, priceInHuf);
         this.menuList.push(newMenuItem);
         this.#persistAllMenuItems(this.menuList);
     }
