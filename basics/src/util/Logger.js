@@ -9,13 +9,8 @@ export class Logger {
     loggingDir = Config.getLogDirPath();
     loggingFile;
     
-    static {
-        console.log("static block at the beginning");
-        // console.dir(new Config());
-    }
-    
     static getInstance(applicationName="") {
-        console.log("getInstance");
+        console.log("Logger getInstance");
         if (!this.#instance) {
             this.#instance = new Logger(applicationName);
         }
@@ -28,18 +23,26 @@ export class Logger {
         if (applicationName) {
             applicationDir = applicationName + "/";
         }
-        this.loggingFile = this.loggingDir + applicationDir + this.formatDate(this.creationDate) + "_log.txt"
+        this.createLogDirIfDoesntExists(this.loggingDir + applicationName);
+        this.loggingFile = this.loggingDir + applicationDir + this.formatDate(this.creationDate) + ".log.ans"
         //this.loggingFile = "helloworld.txt"
-        console.log("constructor", this.loggingFile);
+        console.log("Logger constructor, loggingFile:", this.loggingFile);
     }
 
-    createLogDirIfDoesntExists() {
-        fs.mkdir('path/to/directory', { recursive: true }, (err) => {
+    createLogDirIfDoesntExists(dirPath) {
+        if (fs.existsSync(dirPath)) {
+            console.log('Logger, Directory exists.');
+            return true;
+          } else {
+            console.log('Logger, Directory does not exist.');
+        }
+        fs.mkdir(dirPath, { recursive: true }, (err) => {
           if (err) {
-            return console.error('Error creating directory:', err);
+            return console.error('Logger, Error creating directory:', err);
           }
-          console.log('Directory created successfully!');
-        });       
+          console.log('Logger, Directory created successfully!', dirPath);
+        });
+        return true;    
     }
 
     formatDate(date) {
@@ -75,6 +78,12 @@ export class Logger {
     formatLog(message, data, fileName, methodName) {
         let content = new Date().toISOString();
         content = content + ", " + message;
+        if (fileName) {
+            content = content + ", " + fileName;
+        }
+        if (methodName) {
+            content = content + ", " + methodName;
+        } 
         if (message) {
             content = content + ", " + message;
         }
@@ -83,13 +92,7 @@ export class Logger {
                 content = content + JSON.stringify(data);
             }
             else content = content + ", " + data;
-        }
-        if (fileName) {
-            content = content + ", " + fileName;
-        }
-        if (methodName) {
-            content = content + ", " + methodName;
-        }        
+        }       
         content = content + "\n"
         return content;
     }
@@ -99,13 +102,7 @@ export class Logger {
         return ("\x1b[35m" + "Logger" + "\x1b[0m" + ", created at:  " + "\x1b[33m" + this.creationDate + ", logfile: " + "\x1b[32m" + this.loggingFile + "\x1b[0m");
     }
 
-    static {
-        console.log("static block at the end");
-    }
-
 }
 
-
-//console.log(import.meta.url);
-
-//example();
+//test:
+//Logger.getInstance('brumm5');

@@ -13,6 +13,7 @@ export class KitchenArea {
         this.dishOrderQueue1 = restaurantQueue1;
         this.dishOrderQueue2 = restaurantQueue2;
         this.logger = Logger.getInstance("kitchen");
+        this.initAvailableWorkers();
 
     }
 
@@ -102,7 +103,7 @@ export class KitchenArea {
     consoleLog(message) {
         let decoratedMessage = Config.getTemplatingColours('FgCyan') + "Kitchen: " + Config.getTemplatingColours('FgBlue')+ message + Config.getTemplatingColours('Reset') ;
         console.log(decoratedMessage);
-        this.logger.log(message);
+        this.logger.log(decoratedMessage);
     }
 
 }

@@ -61,7 +61,7 @@ export class GuestArea {
         // let decoratedMessage = "\x1b[31mGuest Area: \x1b[35m" + message + "\x1b[0m" ;
         let decoratedMessage = Config.getTemplatingColours('FgRed') + "Guest Area: " + Config.getTemplatingColours('FgMagenta')+ message + Config.getTemplatingColours('Reset') ;
         console.log(decoratedMessage);
-        this.logger.log(message);
+        this.logger.log(decoratedMessage);
     }
 }
 
