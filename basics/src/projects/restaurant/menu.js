@@ -1,4 +1,6 @@
 import * as fs from 'node:fs';
+//import * as uuidv4 from 'node:uuid';
+import { uuidv4 } from '../../util/BasicFunctions.js';
 
 class MenuItem {
     id;
@@ -100,8 +102,10 @@ export class Menu {
     }
 
     createAndSaveMenuItem(name, type, estPrepTime) {
-        let id = this.menuList.length;
-        let newMenuItem = this.#createMenuItem(id, name, type, estPrepTime);
+        //let id = this.menuList.length;
+        const uuid = uuidv4();
+        console.log(uuid);
+        let newMenuItem = this.#createMenuItem(uuid, name, type, estPrepTime);
         this.menuList.push(newMenuItem);
         this.#persistAllMenuItems(this.menuList);
     }
