@@ -65,7 +65,7 @@ export class KitchenArea {
         await availableChefPromise;
         availableChefPromise.then((value) => {
             let availableChef = value; //átírható?
-            this.consoleLog("Chef " + availableChef.name + " has started on " + order.menuItem.name);
+            this.consoleLog("Chef " + availableChef.name + " has started on id: " + order.id + ' ' + order.menuItem.name);
             this.foodPreparation (order, availableChef);
             return true;            
         })
@@ -87,7 +87,7 @@ export class KitchenArea {
         order.status = 'prepared';
         order.meal = order.menuItem.name;
         this.preparedMealQueue.push(order);
-        this.consoleLog("Chef " + chef.name + " has finished " + order.menuItem.name + " preparation and goes to the end of the queue and waits for the next task");
+        this.consoleLog("Chef " + chef.name + " has finished id: " + order.id + ' ' + order.menuItem.name + " preparation and goes to the end of the queue and waits for the next task");
     }
       
     messageListener () { //consume food order
@@ -95,7 +95,7 @@ export class KitchenArea {
         if (Math.random() < 0.5) {
             try {
                 order = this.dishOrderQueue1.poll();
-                this.consoleLog(`Receiving from Queue1: ${order.menuItem.name}`);
+                this.consoleLog(`Receiving from Queue1: id: ${order.id} ${order.menuItem.name}`);
                 order.status = 'received';
                 return order;
             } catch (e) {
@@ -104,7 +104,7 @@ export class KitchenArea {
         } else {
             try {
                 order = this.dishOrderQueue2.poll();
-                this.consoleLog(`Receiving from Queue2: ${order.menuItem.name}`);
+                this.consoleLog(`Receiving from Queue2: id: ${order.id} ${order.menuItem.name}`);
                 order.status = 'received';
                 return order;
             } catch (e) {

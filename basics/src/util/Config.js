@@ -1,8 +1,9 @@
 export class Config {
-    //  static #projectRootDir = "C:/work/nh-fintech-labs/coding-dojo-space/basics/";
+    // static #projectRootDir = "C:/work/nh-fintech-labs/coding-dojo-space/basics/";
     static #projectRootDir = "D:/UserFiles/Ingen/Documents/Projects/nh_fintech_lab/coding-dojo-space/basics/";
     static #loggingDir = "logs/";
     static #dataStoreDir = "dataStore/";
+    static #paidOrders = "dataStore/paidOrders.json";
 
     static #templatingColours = {
         Reset: "\x1b[0m",
@@ -31,5 +32,9 @@ export class Config {
     
     static getDataStoreDirPath() {
         return this.#projectRootDir + this.#dataStoreDir; 
+    }
+
+    static getPaidOrdersPath() {
+        return this.#projectRootDir + this.#paidOrders; 
     }
 }
