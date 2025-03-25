@@ -106,7 +106,7 @@ export class HR {
 }
 
 //test:
-
+/*
 export let hr = new HR();
  console.log(hr.employees);
 
@@ -115,7 +115,7 @@ hr.createAndSaveEmployee("Zsanett", "normal");
 hr.createAndSaveEmployee("Krisztián", "normal");
 hr.createAndSaveEmployee("Klaudia", "pastry");
 hr.createAndSaveEmployee("Norbert", "pastry");
-
+*/
 // hr.createAndSaveEmployee("Géza", "pastry");
 // hr.createAndSaveEmployee("Bálint", "normal");
 
@@ -124,4 +124,4 @@ hr.createAndSaveEmployee("Norbert", "pastry");
 // console.log(hr.deleteEmployee(4));
 // console.log(hr.createAndSaveEmployee("Norbert", "pastry"));
 
-console.log(hr.employees);
+//console.log(hr.employees);

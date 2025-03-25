@@ -34,7 +34,7 @@ export class GuestArea {
             let food = this.randomMenuItem();
             let foodName = 'food-' + orderNumber + ": " + food.name;
             this.messageBroker(food);
-            await sleepAsync(2000);
+            await sleepAsync(1500);
         }
         this.consoleLog('GuestArea\'s food ordering stops for today after ' + orderNumber + ' orders.');
     }

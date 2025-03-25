@@ -16,6 +16,8 @@ export class KitchenArea {
     constructor (restaurantQueue1, restaurantQueue2) {
         this.dishOrderQueue1 = restaurantQueue1;
         this.dishOrderQueue2 = restaurantQueue2;
+        this.numberOfReseivedOrders = 0;
+        this.numberOfPreparedOrders = 0;
         this.logger = Logger.getInstance("kitchen");
         this.hr = new HR();
         this.initAvailableWorkers();
@@ -70,16 +72,8 @@ export class KitchenArea {
     }
 
     async foodPreparation (dish, chef) {
-        console.log(chef);
-        let workingHard = new Promise((resolved, reject) => {
-            chef.prepareingDish(dish.name);
-        });
-        
-        //let workingHard = sleepAsync(dish.estPrepTimeInMiliSec);
-        await workingHard;
-        workingHard.then((value) => {
-            this.finished(dish.name, chef);
-        });
+        await chef.prepareingDish(dish.name);
+        this.finished(dish.name, chef);
     }
     
     finished(dishName, chef) {
@@ -89,7 +83,7 @@ export class KitchenArea {
         if (chef.type == 'normal') {
             this.availableNormalChefsQueue.push(chef);          
         }       
-        this.consoleLog("Chef " + chef.name + " has finished " + dishName + " preparation and goes to the end of the queue and waits for the next task");
+        this.consoleLog("Chef " + chef.name + " has FINISHED " + dishName + " preparation and goes to the end of the queue and waits for the next task");
     }
       
     messageListener () { //consume food order
@@ -98,6 +92,7 @@ export class KitchenArea {
             try {
                 dish = this.dishOrderQueue1.poll();
                 this.consoleLog(`Receiving from Queue1: ${dish.name}`);
+                return dish;
             } catch (e) {
                 this.consoleLog(`Queue1: ${e.message}`);
             }
@@ -105,6 +100,7 @@ export class KitchenArea {
             try {
                 let dish = this.dishOrderQueue2.poll();
                 this.consoleLog(`Receiving from Queue2: ${dish.name}`);
+                return dish;
             } catch (e) {
                 this.consoleLog(`Queue2: ${e.message}`);
             }
@@ -134,6 +130,7 @@ export class KitchenArea {
                 }
             }
         }
+        this.consoleLog("Available chef found");
         return availableChef;
     }
 
