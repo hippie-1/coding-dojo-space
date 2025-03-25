@@ -1,13 +1,16 @@
 import * as fs from 'node:fs';
 import { NormalChef, PastryChef } from './employee.js';
 import { v4 as uuidv4 } from 'uuid';
+import { Config } from '../../util/Config.js'
 
 
 export class HR {
     employees = [];
-    emloyeesDataStorageFile = 'employees.json';
+    emloyeesDataStorageFile;
     
     constructor() {
+        this.emloyeesDataStorageFile = Config.getDataStoreDirPath() + 'employees.json';
+        console.log(this.emloyeesDataStorageFile);
         this.employees = this.#loadEmployees();
     }
 
@@ -99,11 +102,11 @@ export class HR {
 export let hr = new HR();
  console.log(hr.employees);
 
-// hr.createAndSaveEmployee("Ákos", "normal");
-// hr.createAndSaveEmployee("Zsanett", "normal");
-// hr.createAndSaveEmployee("Krisztián", "normal");
-// hr.createAndSaveEmployee("Klaudia", "pastry");
-// hr.createAndSaveEmployee("Norbert", "pastry");
+hr.createAndSaveEmployee("Ákos", "normal");
+hr.createAndSaveEmployee("Zsanett", "normal");
+hr.createAndSaveEmployee("Krisztián", "normal");
+hr.createAndSaveEmployee("Klaudia", "pastry");
+hr.createAndSaveEmployee("Norbert", "pastry");
 
 // hr.createAndSaveEmployee("Géza", "pastry");
 // hr.createAndSaveEmployee("Bálint", "normal");

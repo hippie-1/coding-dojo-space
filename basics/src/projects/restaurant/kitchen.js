@@ -63,16 +63,16 @@ export class KitchenArea {
         availableChefPromise.then((value) => {
             let availableChef = value; //átírható?
             this.consoleLog("Chef " + availableChef.name + " has started on " + dish.name);
-            this.foodPreparation (dish.name, availableChef);
+            this.foodPreparation (dish, availableChef);
             return true;            
         })
     }
 
-    async foodPreparation (dishName, chef) {
-        let workingHard = sleepAsync(3000);
+    async foodPreparation (dish, chef) {
+        let workingHard = sleepAsync(dish.estPrepTimeInMiliSec);
         await workingHard;
         workingHard.then((value) => {
-            this.finished(dishName, chef);
+            this.finished(dish.name, chef);
         });
     }
     
