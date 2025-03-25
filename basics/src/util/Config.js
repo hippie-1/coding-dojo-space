@@ -1,6 +1,6 @@
 export class Config {
-    //  static #projectRootDir = "C:/work/nh-fintech-labs/coding-dojo-space/basics/";
-    static #projectRootDir = "D:/UserFiles/Ingen/Documents/Projects/nh_fintech_lab/coding-dojo-space/basics/";
+    static #projectRootDir = "C:/work/nh-fintech-labs/coding-dojo-space/basics/";
+    //static #projectRootDir = "D:/UserFiles/Ingen/Documents/Projects/nh_fintech_lab/coding-dojo-space/basics/";
     static #loggingDir = "logs/";
     static #dataStoreDir = "dataStore/";
     static #paidOrders = "dataStore/paidOrders.json";
