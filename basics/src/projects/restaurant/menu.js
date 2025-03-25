@@ -1,40 +1,45 @@
 import * as fs from 'node:fs';
+import { v4 as uuidv4 } from 'uuid';
+//import { uuidv4 } from '../../util/BasicFunctions.js';
+import { Config } from '../../util/Config.js';
 
 class MenuItem {
     id;
     name;
     type;
-    estPrepTime;
+    estPrepTimeInMiliSec;
+    priceInHuf;  
     
-    
-    constructor (id, name, estPrepTime) {
+    constructor (id, name, estPrepTimeInMiliSec, priceInHuf=2000) {
         this.id = id;
         this.name = name;
-        this.estPrepTime = estPrepTime;
+        this.estPrepTimeInMiliSec = estPrepTimeInMiliSec;
+        this.priceInHuf = priceInHuf;
     }
 }
 
 class Sweetness extends MenuItem {
 
-    constructor (id, name, estPrepTime) {
-        super(id, name, estPrepTime);
+    constructor (id, name, estPrepTimeInMiliSec) {
+        super(id, name, estPrepTimeInMiliSec);
         this.type = 'sweet';
     }
 
 }
 class NormalFood extends MenuItem {
 
-    constructor (id, name, estPrepTime) {
-        super(id, name, estPrepTime);
+    constructor (id, name, estPrepTimeInMiliSec) {
+        super(id, name, estPrepTimeInMiliSec);
         this.type = 'normal';
     }
 }
 
 export class Menu {
     menuList;
-    menuStorageFile = 'menuItems.txt';
+    menuStorageFile;
     
     constructor() {
+        this.menuStorageFile = Config.getDataStoreDirPath() + 'menuItems.json';
         this.menuList = this.#loadMenuItems();
         // console.log(this.menuList);
         // console.log('Menu items converted back to array:', this.menuList);
@@ -65,7 +70,7 @@ export class Menu {
     #loadMenuItems () {
         try {
                 let menuItemPlainText = fs.readFileSync(this.menuStorageFile, 'utf8');
-                console.log('File contents:', menuItemPlainText);
+                //console.log('File contents:', menuItemPlainText);
                 if (menuItemPlainText) {
                     let menuItems = JSON.parse(menuItemPlainText);
                     return menuItems;
@@ -76,13 +81,22 @@ export class Menu {
                 throw err; //shuld not catch the error at all since we can not do anything with it here, only forward it to the invoker
             }
     }
+
+    refreshMenuList() {
+        this.menuList = this.#loadMenuItems();       
+    }   
+
+    getMenuList() {
+        this.refreshMenuList()
+        return this.menuList;
+    }
     
-    #createMenuItem (id, name, type, estPrepTime) {
+    #createMenuItem (id, name, type, estPrepTimeInMiliSec, priceInHuf) {
         switch(type) {
             case 'sweet':
-                return new Sweetness(id, name, estPrepTime);
+                return new Sweetness(id, name, estPrepTimeInMiliSec, priceInHuf);
             case 'normal': 
-                return new NormalFood(id, name, estPrepTime);
+                return new NormalFood(id, name, estPrepTimeInMiliSec, priceInHuf);
             default:
                 throw new Error(
                     `Invalid class type "${type}". Choose one of: "normal", "sweet"`
@@ -90,9 +104,11 @@ export class Menu {
         }
     }
 
-    createAndSaveMenuItem(name, type, estPrepTime) {
-        let id = this.menuList.length;
-        let newMenuItem = this.#createMenuItem(id, name, type, estPrepTime);
+    createAndSaveMenuItem(name, type, estPrepTimeInMiliSec=2000, priceInHuf=2000) {
+        //let id = this.menuList.length;
+        const uuid = uuidv4();
+        console.log(uuid);
+        let newMenuItem = this.#createMenuItem(uuid, name, type, estPrepTimeInMiliSec, priceInHuf);
         this.menuList.push(newMenuItem);
         this.#persistAllMenuItems(this.menuList);
     }
@@ -158,7 +174,9 @@ export class Menu {
     // }
 }
 
-export let menu = new Menu();
+
+//test:
+// let menu = new Menu();
 // menu.createAndSaveMenuItem('chocolate', 'sweet', 3000);
 // menu.createAndSaveMenuItem('Coffee', 'sweet', 1000);
 // menu.createAndSaveMenuItem('Coconut Milk', 'sweet', 1000);
@@ -173,7 +191,7 @@ export let menu = new Menu();
 // console.log(menu.getMenuItemBest(0));
 // console.log(menu.updateMenuItem(0, 'estPrepTime', 5000));
 // console.log(menu.deleteMenuItem(0));
-// // console.log(menu.menuList);
-// console.log(menu.createAndSaveMenuItem('Lamb', 'normal', 7000));
-console.log(menu.createAndSaveMenuItem('Chicken', 'normal', 5000));
-// // console.log(menu.menuList);
+// console.log(menu.menuList);
+// menu.createAndSaveMenuItem('Lamb', 'normal', 7000);
+// menu.createAndSaveMenuItem('Chicken', 'normal', 5000);
+// console.log(menu.menuList);

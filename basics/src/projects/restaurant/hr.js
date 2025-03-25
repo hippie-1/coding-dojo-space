@@ -1,12 +1,16 @@
 import * as fs from 'node:fs';
 import { NormalChef, PastryChef } from './employee.js';
+import { v4 as uuidv4 } from 'uuid';
+import { Config } from '../../util/Config.js'
 
 
-class HR {
+export class HR {
     employees = [];
-    emloyeesDataStorageFile = 'employees.txt';
+    emloyeesDataStorageFile;
     
     constructor() {
+        this.emloyeesDataStorageFile = Config.getDataStoreDirPath() + 'employees.json';
+        console.log(this.emloyeesDataStorageFile);
         this.employees = this.#loadEmployees();
     }
 
@@ -14,16 +18,33 @@ class HR {
         let employeesPlainText = null;
         try {
            employeesPlainText = fs.readFileSync(this.emloyeesDataStorageFile, 'utf8');
-           console.log('File contents:', employeesPlainText);
+           //console.log('File contents:', employeesPlainText);
            if (employeesPlainText) {
-                let employees = JSON.parse(employeesPlainText);
-                return employees;
+                let employeesLodaded = JSON.parse(employeesPlainText);
+                for (let i=0; i<employeesLodaded.length; i++) { // conversion of simple object to kitchen worker object
+                   if (employeesLodaded[i].type == 'pastry') {
+                      this.employees.push(new PastryChef(employeesLodaded[i].id, employeesLodaded[i].name, employeesLodaded[i].type));
+                   }
+                   if (employeesLodaded[i].type == 'normal') {
+                    this.employees.push(new NormalChef(employeesLodaded[i].id, employeesLodaded[i].name, employeesLodaded[i].type));
+                 }
+                }
+                return this.employees;
            }
            else return [];
         } catch (err) {
             console.error('Error reading file:', err);
             throw err; //shuld not catch the error at all since we can not do anything with it here, only forward it to the invoker
         }
+    }
+
+    refreshEmployees() {
+        this.employees = this.#loadEmployees();       
+    }   
+
+    getEmployees() {
+        this.refreshMenuList()
+        return this.employees;
     }
 
     #persistAllEmployees(employees) { //private method, since it does not make sence to call it directly from outside
@@ -37,7 +58,7 @@ class HR {
     }
 
     createAndSaveEmployee(name, type) {
-        let id = this.employees.length;
+        let id = uuidv4();
         let newlyHiredEmployee = this.#createEmployee(id, name, type); //no need to catch the exception, because we can not do anything with it, we have throw it the invoker
         this.employees[this.employees.length] = newlyHiredEmployee;
         this.#persistAllEmployees(this.employees);
@@ -84,20 +105,23 @@ class HR {
 
 }
 
-let hr = new HR();
-console.log(hr.employees);
+//test:
+
+export let hr = new HR();
+ console.log(hr.employees);
 
 hr.createAndSaveEmployee("Ákos", "normal");
 hr.createAndSaveEmployee("Zsanett", "normal");
 hr.createAndSaveEmployee("Krisztián", "normal");
 hr.createAndSaveEmployee("Klaudia", "pastry");
 hr.createAndSaveEmployee("Norbert", "pastry");
-hr.createAndSaveEmployee("Géza", "pastry");
-hr.createAndSaveEmployee("Bálint", "normal");
 
-console.log(hr.getEmployee(5));
-console.log(hr.updateEmployee(6, 'Zoltan'));
-console.log(hr.deleteEmployee(4));
+// hr.createAndSaveEmployee("Géza", "pastry");
+// hr.createAndSaveEmployee("Bálint", "normal");
+
+// console.log(hr.getEmployee(5));
+// console.log(hr.updateEmployee(6, 'Zoltan'));
+// console.log(hr.deleteEmployee(4));
 // console.log(hr.createAndSaveEmployee("Norbert", "pastry"));
 
 console.log(hr.employees);

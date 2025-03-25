@@ -1,0 +1,79 @@
+[
+  {
+    "id": "59f5dcd1-d7fc-42a5-8505-c50f7169263a",
+    "name": "chocolate",
+    "type": "sweet",
+    "estPrepTimeInMiliSec": 3000,
+    "priceInHuf": 2000
+  },
+  {
+    "id": "554d4399-46f0-48c1-8c27-d8b126ea09a8",
+    "name": "Coffee",
+    "type": "sweet",
+    "estPrepTimeInMiliSec": 1000,
+    "priceInHuf": 2000
+  },
+  {
+    "id": "430451d4-fd7e-4023-9094-a0fa8af16df9",
+    "name": "Coconut Milk",
+    "type": "sweet",
+    "estPrepTimeInMiliSec": 1000,
+    "priceInHuf": 2000
+  },
+  {
+    "id": "30a997a5-ea0f-4401-b691-4ee30423323f",
+    "name": "cake",
+    "type": "sweet",
+    "estPrepTimeInMiliSec": 5000,
+    "priceInHuf": 2000
+  },
+  {
+    "id": "f9ebd94c-5b3b-4bda-afec-f7beb4599fad",
+    "name": "muffin",
+    "type": "sweet",
+    "estPrepTimeInMiliSec": 4000,
+    "priceInHuf": 2000
+  },
+  {
+    "id": "25705abb-0644-4868-ab8f-8c90a305f3b4",
+    "name": "Chicken",
+    "type": "normal",
+    "estPrepTimeInMiliSec": 5000,
+    "priceInHuf": 2000
+  },
+  {
+    "id": "cc0371a3-f8ae-4412-8563-81d1a1007667",
+    "name": "Lamb",
+    "type": "normal",
+    "estPrepTimeInMiliSec": 7000,
+    "priceInHuf": 2000
+  },
+  {
+    "id": "b8a7bf5c-3863-4106-880b-2bbc03c02411",
+    "name": "Beef",
+    "type": "normal",
+    "estPrepTimeInMiliSec": 8000,
+    "priceInHuf": 2000
+  },
+  {
+    "id": "b1eb72f6-601d-4fed-af1a-2c17a348c8d6",
+    "name": "Soup",
+    "type": "normal",
+    "estPrepTimeInMiliSec": 4000,
+    "priceInHuf": 2000
+  },
+  {
+    "id": "7edfffb1-b155-4a11-a58a-c0ad09484bda",
+    "name": "Salad",
+    "type": "normal",
+    "estPrepTimeInMiliSec": 2000,
+    "priceInHuf": 2000
+  },
+  {
+    "id": "cfa45632-0248-43a0-b9bb-ee7c38536437",
+    "name": "Pasta",
+    "type": "normal",
+    "estPrepTimeInMiliSec": 5000,
+    "priceInHuf": 2000
+  }
+]
