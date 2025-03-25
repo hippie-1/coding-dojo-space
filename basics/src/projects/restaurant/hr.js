@@ -1,5 +1,6 @@
 import * as fs from 'node:fs';
 import { NormalChef, PastryChef } from './employee.js';
+import { v4 as uuidv4 } from 'uuid';
 
 
 export class HR {
@@ -46,7 +47,7 @@ export class HR {
     }
 
     createAndSaveEmployee(name, type) {
-        let id = this.employees.length;
+        let id = uuidv4();
         let newlyHiredEmployee = this.#createEmployee(id, name, type); //no need to catch the exception, because we can not do anything with it, we have throw it the invoker
         this.employees[this.employees.length] = newlyHiredEmployee;
         this.#persistAllEmployees(this.employees);
@@ -95,15 +96,15 @@ export class HR {
 
 //test:
 
-/* export let hr = new HR();
+export let hr = new HR();
  console.log(hr.employees);
 
-hr.createAndSaveEmployee("Ákos", "normal");
-hr.createAndSaveEmployee("Zsanett", "normal");
-hr.createAndSaveEmployee("Krisztián", "normal");
-hr.createAndSaveEmployee("Klaudia", "pastry");
-hr.createAndSaveEmployee("Norbert", "pastry");
-*/
+// hr.createAndSaveEmployee("Ákos", "normal");
+// hr.createAndSaveEmployee("Zsanett", "normal");
+// hr.createAndSaveEmployee("Krisztián", "normal");
+// hr.createAndSaveEmployee("Klaudia", "pastry");
+// hr.createAndSaveEmployee("Norbert", "pastry");
+
 // hr.createAndSaveEmployee("Géza", "pastry");
 // hr.createAndSaveEmployee("Bálint", "normal");
 
@@ -112,4 +113,4 @@ hr.createAndSaveEmployee("Norbert", "pastry");
 // console.log(hr.deleteEmployee(4));
 // console.log(hr.createAndSaveEmployee("Norbert", "pastry"));
 
-//console.log(hr.employees);
+console.log(hr.employees);
