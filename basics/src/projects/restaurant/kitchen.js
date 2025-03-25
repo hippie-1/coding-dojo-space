@@ -3,6 +3,7 @@ import { sleepAsync } from '../../util/BasicFunctions.js';
 import { Config } from '../../util/Config.js';
 import { Logger } from '../../util/Logger.js';
 import { HR } from './hr.js';
+import { KitchenEmployee } from './employee.js';
 
 export class KitchenArea {
     dishOrderQueue1;
@@ -69,6 +70,8 @@ export class KitchenArea {
     }
 
     async foodPreparation (dishName, chef) {
+        console.log(chef instanceof KitchenEmployee);
+        chef.prepareingDish(dishName);
         let workingHard = sleepAsync(3000);
         await workingHard;
         workingHard.then((value) => {
@@ -134,7 +137,7 @@ export class KitchenArea {
 
     consoleLog(message) {
         let decoratedMessage = Config.getTemplatingColours('FgCyan') + "Kitchen: " + Config.getTemplatingColours('FgBlue')+ message + Config.getTemplatingColours('Reset') ;
-        //console.log(decoratedMessage);
+        console.log(decoratedMessage);
         this.logger.log(decoratedMessage);
     }
 
