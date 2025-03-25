@@ -3,6 +3,8 @@ import { Menu } from './menu.js';
 import { Config } from '../../util/Config.js';
 import { Logger } from '../../util/Logger.js';
 import { Order } from './order.js';
+// import * as fs from 'node:fs';
+import appendFile from 'node:fs';
 
 export class GuestArea {
     guestAreaQueue1;
@@ -68,8 +70,26 @@ export class GuestArea {
             let order = this.preparedMealQueue.poll();
             this.consoleLog(`Receiving from preparedMealQueue: ${order.menuList.name}`);
             order.status = 'served';
+            this.guestIsEating();
         } catch (e) {
             this.consoleLog(`preparedMealQueue: ${e.message}`);
+        }
+    }
+
+    guestIsEating(order) {
+        sleepAsync(3000);
+        order.status = 'eatenAndPaid';
+    }
+    
+    savePaidOrder(order) {
+        if (order.status == 'eatenAndPaid') {
+            appendFile(Config.getPaidOrdersPath(), JSON.Stringify(order), (err) => {
+                if (err) {
+                  console.error('Error appending to file:', err);
+                  return;
+                }
+                console.log('Content appended successfully!');
+              })
         }
     }
 
