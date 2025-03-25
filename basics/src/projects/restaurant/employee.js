@@ -17,7 +17,6 @@ export class KitchenEmployee {
         this._blendingIngredients(foodId); //protected (_ char shows it) because it cannot be invoked publicly only this class or the subclassess can call it       
         this._heatTreatment(foodId); //protected (_ char shows it) because it cannot be invoked publicly only this class or the subclassess can call it       
         this.#servingFoodOnAPlate(foodId); 
-        this.#servingFoodToGuest(foodId);
     }
     async #gatheringIngredients(foodId) { //private method since the food can be prepared by colling the public preparingDish only
         await sleepAsync(1000);
@@ -43,10 +42,6 @@ export class KitchenEmployee {
     async #servingFoodOnAPlate(foodId) {
         await sleepAsync(1000);
         console.log(this.name +" doing : " + foodId + ", Serving food on a plate");
-    }
-    async #servingFoodToGuest(foodId) { //decoratior pattern, some other things added beside the food
-        await sleepAsync(1000);
-        console.log(this.name +" doing : " + foodId +  "), is ready to serve to guest with cutlery and napkins");
     }
 
 }

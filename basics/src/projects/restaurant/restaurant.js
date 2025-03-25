@@ -10,13 +10,15 @@ class Restaurant {
     newKitchen;
     newGuestAre;
     logger;
+    preparedMealQueue;
 
     constructor () {
         this.restaurantQueue1 = new Queue();
         this.restaurantQueue2 = new Queue();
+        this.preparedMealQueue = new Queue();
         this.logger = Logger.getInstance("restaurant");
-        this.newKitchen= new KitchenArea(this.restaurantQueue1, this.restaurantQueue2);
-        this.newGuestArea = new GuestArea(this.restaurantQueue1, this.restaurantQueue2);
+        this.newKitchen= new KitchenArea(this.restaurantQueue1, this.restaurantQueue2, this.preparedMealQueue);
+        this.newGuestArea = new GuestArea(this.restaurantQueue1, this.restaurantQueue2, this.preparedMealQueue);
     }
 
     async work () {
