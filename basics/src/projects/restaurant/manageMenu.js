@@ -16,9 +16,11 @@ function initMenuItems() {
     menu.createAndSaveMenuItem('Pasta', 'normal', 5000, 1700);    
 }
 
-//initMenuItems();
+initMenuItems();
 
 console.log(menu.menuList);
-menu.createAndSaveMenuItem('Duck', 'normal', 7000, 3400);
-menu.createAndSaveMenuItem('CezarSalad', 'normal', 5000, 2200);
-console.log(menu.menuList);
+//menu.createAndSaveMenuItem('Duck', 'normal', 7000, 3400);
+//menu.createAndSaveMenuItem('CezarSalad', 'normal', 5000, 2200);
+//menu.createAndSaveMenuItem('Garnela', 'normal', 1000, 3400);
+//menu.createAndSaveMenuItem('Salmon', 'normal', 1000, 4200);
+//console.log(menu.menuList);

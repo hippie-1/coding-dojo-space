@@ -1,35 +1,35 @@
 import * as fs from 'node:fs';
-//import * as uuidv4 from 'node:uuid';
-import { uuidv4 } from '../../util/BasicFunctions.js';
+import { v4 as uuidv4 } from 'uuid';
+//import { uuidv4 } from '../../util/BasicFunctions.js';
 
 class MenuItem {
     id;
     name;
     type;
-    estPrepTimeInSec;
+    estPrepTimeInMiliSec;
     priceInHuf;
     
     
-    constructor (id, name, estPrepTime, priceInHuf=2000) {
+    constructor (id, name, estPrepTimeInMiliSec, priceInHuf=2000) {
         this.id = id;
         this.name = name;
-        this.estPrepTime = estPrepTime;
+        this.estPrepTimeInMiliSec = estPrepTimeInMiliSec;
         this.priceInHuf = priceInHuf;
     }
 }
 
 class Sweetness extends MenuItem {
 
-    constructor (id, name, estPrepTime) {
-        super(id, name, estPrepTime);
+    constructor (id, name, estPrepTimeInMiliSec) {
+        super(id, name, estPrepTimeInMiliSec);
         this.type = 'sweet';
     }
 
 }
 class NormalFood extends MenuItem {
 
-    constructor (id, name, estPrepTime) {
-        super(id, name, estPrepTime);
+    constructor (id, name, estPrepTimeInMiliSec) {
+        super(id, name, estPrepTimeInMiliSec);
         this.type = 'normal';
     }
 }
@@ -90,12 +90,12 @@ export class Menu {
         return this.menuList;
     }
     
-    #createMenuItem (id, name, type, estPrepTimeInSec, priceInHuf) {
+    #createMenuItem (id, name, type, estPrepTimeInMiliSec, priceInHuf) {
         switch(type) {
             case 'sweet':
-                return new Sweetness(id, name, estPrepTimeInSec, priceInHuf);
+                return new Sweetness(id, name, estPrepTimeInMiliSec, priceInHuf);
             case 'normal': 
-                return new NormalFood(id, name, estPrepTimeInSec, priceInHuf);
+                return new NormalFood(id, name, estPrepTimeInMiliSec, priceInHuf);
             default:
                 throw new Error(
                     `Invalid class type "${type}". Choose one of: "normal", "sweet"`
@@ -103,11 +103,11 @@ export class Menu {
         }
     }
 
-    createAndSaveMenuItem(name, type, estPrepTimeInSec=2000, priceInHuf=2000) {
+    createAndSaveMenuItem(name, type, estPrepTimeInMiliSec=2000, priceInHuf=2000) {
         //let id = this.menuList.length;
         const uuid = uuidv4();
         console.log(uuid);
-        let newMenuItem = this.#createMenuItem(uuid, name, type, estPrepTimeInSec, priceInHuf);
+        let newMenuItem = this.#createMenuItem(uuid, name, type, estPrepTimeInMiliSec, priceInHuf);
         this.menuList.push(newMenuItem);
         this.#persistAllMenuItems(this.menuList);
     }

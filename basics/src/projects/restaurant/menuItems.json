@@ -1,93 +1,79 @@
 [
   {
-    "id": "ecdaed9b-0ccf-45dd-98f4-3fd041d2c3df",
+    "id": "59f5dcd1-d7fc-42a5-8505-c50f7169263a",
     "name": "chocolate",
     "type": "sweet",
-    "priceInHuf": 2000,
-    "estPrepTime": 3000
+    "estPrepTimeInMiliSec": 3000,
+    "priceInHuf": 2000
   },
   {
-    "id": "a8beb9bd-45ba-4e7c-9389-718043478540",
+    "id": "554d4399-46f0-48c1-8c27-d8b126ea09a8",
     "name": "Coffee",
     "type": "sweet",
-    "priceInHuf": 2000,
-    "estPrepTime": 1000
+    "estPrepTimeInMiliSec": 1000,
+    "priceInHuf": 2000
   },
   {
-    "id": "f973343f-b904-49d5-83be-8755fb25818f",
+    "id": "430451d4-fd7e-4023-9094-a0fa8af16df9",
     "name": "Coconut Milk",
     "type": "sweet",
-    "priceInHuf": 2000,
-    "estPrepTime": 1000
+    "estPrepTimeInMiliSec": 1000,
+    "priceInHuf": 2000
   },
   {
-    "id": "3568a6ce-0d3f-4375-a56b-ffc3a8f2925a",
+    "id": "30a997a5-ea0f-4401-b691-4ee30423323f",
     "name": "cake",
     "type": "sweet",
-    "priceInHuf": 2000,
-    "estPrepTime": 5000
+    "estPrepTimeInMiliSec": 5000,
+    "priceInHuf": 2000
   },
   {
-    "id": "09155a82-8e33-4952-bca3-47f7b59d0324",
+    "id": "f9ebd94c-5b3b-4bda-afec-f7beb4599fad",
     "name": "muffin",
     "type": "sweet",
-    "priceInHuf": 2000,
-    "estPrepTime": 4000
+    "estPrepTimeInMiliSec": 4000,
+    "priceInHuf": 2000
   },
   {
-    "id": "4bed98ea-399a-4082-a545-0b8958dfefc8",
+    "id": "25705abb-0644-4868-ab8f-8c90a305f3b4",
     "name": "Chicken",
     "type": "normal",
-    "priceInHuf": 2000,
-    "estPrepTime": 5000
+    "estPrepTimeInMiliSec": 5000,
+    "priceInHuf": 2000
   },
   {
-    "id": "eebe633d-d124-4f8c-a45f-0976a20b33a4",
+    "id": "cc0371a3-f8ae-4412-8563-81d1a1007667",
     "name": "Lamb",
     "type": "normal",
-    "priceInHuf": 2000,
-    "estPrepTime": 7000
+    "estPrepTimeInMiliSec": 7000,
+    "priceInHuf": 2000
   },
   {
-    "id": "56bc5365-91b9-4634-bd61-c755caecdcd1",
+    "id": "b8a7bf5c-3863-4106-880b-2bbc03c02411",
     "name": "Beef",
     "type": "normal",
-    "priceInHuf": 2000,
-    "estPrepTime": 8000
+    "estPrepTimeInMiliSec": 8000,
+    "priceInHuf": 2000
   },
   {
-    "id": "97992b01-12d5-4c0b-bf69-e08cff11eeec",
+    "id": "b1eb72f6-601d-4fed-af1a-2c17a348c8d6",
     "name": "Soup",
     "type": "normal",
-    "priceInHuf": 2000,
-    "estPrepTime": 4000
+    "estPrepTimeInMiliSec": 4000,
+    "priceInHuf": 2000
   },
   {
-    "id": "4ae6dad4-ab73-466f-a0a0-7c90d1b513bc",
+    "id": "7edfffb1-b155-4a11-a58a-c0ad09484bda",
     "name": "Salad",
     "type": "normal",
-    "priceInHuf": 2000,
-    "estPrepTime": 2000
+    "estPrepTimeInMiliSec": 2000,
+    "priceInHuf": 2000
   },
   {
-    "id": "05add331-3a4e-4b9b-8654-a76b886a4897",
+    "id": "cfa45632-0248-43a0-b9bb-ee7c38536437",
     "name": "Pasta",
     "type": "normal",
-    "priceInHuf": 2000,
-    "estPrepTime": 5000
-  },
-  {
-    "id": "71291efa-29da-4cb9-8258-1164f2b54220",
-    "name": "Duck",
-    "type": "normal",
-    "priceInHuf": 2000,
-    "estPrepTime": 7000
-  },
-  {
-    "id": "5672e1b5-aa66-499f-976e-67aa7c8e80e7",
-    "name": "CezarSalad",
-    "type": "normal",
-    "priceInHuf": 2000,
-    "estPrepTime": 5000
+    "estPrepTimeInMiliSec": 5000,
+    "priceInHuf": 2000
   }
 ]
