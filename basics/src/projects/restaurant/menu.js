@@ -68,18 +68,21 @@ export class Menu {
     // }
 
     #loadMenuItems () {
+        if (!fs.existsSync(this.menuStorageFile)) {
+            return [];
+        }
         try {
-                let menuItemPlainText = fs.readFileSync(this.menuStorageFile, 'utf8');
-                //console.log('File contents:', menuItemPlainText);
-                if (menuItemPlainText) {
-                    let menuItems = JSON.parse(menuItemPlainText);
-                    return menuItems;
-                }
-                else return [];
-            } catch (err) {
-                console.error('Error reading file:', err);
-                throw err; //shuld not catch the error at all since we can not do anything with it here, only forward it to the invoker
+            let menuItemPlainText = fs.readFileSync(this.menuStorageFile, 'utf8');
+            //console.log('File contents:', menuItemPlainText);
+            if (menuItemPlainText) {
+                let menuItems = JSON.parse(menuItemPlainText);
+                return menuItems;
             }
+            else return [];
+        } catch (err) {
+            console.error('Error reading file:', err);
+            throw err; //shuld not catch the error at all since we can not do anything with it here, only forward it to the invoker
+        }
     }
 
     refreshMenuList() {

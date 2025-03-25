@@ -15,6 +15,9 @@ export class HR {
     }
 
     #loadEmployees () { 
+        if (!fs.existsSync(this.emloyeesDataStorageFile)) {
+            return [];
+        }
         let employeesPlainText = null;
         try {
            employeesPlainText = fs.readFileSync(this.emloyeesDataStorageFile, 'utf8');

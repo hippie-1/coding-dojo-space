@@ -12,7 +12,7 @@ export class KitchenEmployee {
     constructor (id, name) {
         this.id = id;
         this.name = name;
-        this.logger = Logger.getInstance("employee");
+        this.#logger = Logger.getInstance("employee");
     }
 
     async prepareingDish(foodId) { //template method design patter - all subclasses follows this template, the abstract methods must be implemented in subclasses
