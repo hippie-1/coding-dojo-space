@@ -3,8 +3,7 @@ import { Menu } from './menu.js';
 import { Config } from '../../util/Config.js';
 import { Logger } from '../../util/Logger.js';
 import { Order } from './order.js';
-// import * as fs from 'node:fs';
-import appendFile from 'node:fs';
+import * as fs from 'node:fs';
 
 export class GuestArea {
     guestAreaQueue1;
@@ -32,15 +31,17 @@ export class GuestArea {
 
     async work () {
         this.consoleLog('GuestArea starts working');
-        let maxOrderNumber = 30;
+        let maxOrderNumber = 5;
         let orderNumber = 0;
         while (orderNumber < maxOrderNumber) {
             orderNumber++;
             // let food = this.randomMenuItem();
-            let order = new Order(this.randomMenuItem());
+            let order = new Order(orderNumber, this.randomMenuItem());
             this.messageBroker(order);
-            await sleepAsync(2000);
+            await sleepAsync(5000);
         }
+
+        this.messageListener();
         this.consoleLog('GuestArea\'s food ordering stops for today after ' + orderNumber + ' orders.');
     }
 
@@ -49,7 +50,7 @@ export class GuestArea {
         if (random < 0.5) {
             try {
                 this.guestAreaQueue1.push(order);
-                this.consoleLog(`Feeding to Queue1: ${order.menuItem.name}`);
+                this.consoleLog(`Feeding to Queue1: id: ${order.id}, ${order.menuItem.name}`);
                 order.status = 'accepted';
             } catch (e) {
                 this.consoleLog(`Queue1 ${e.message}`)
@@ -57,7 +58,7 @@ export class GuestArea {
         } else {
             try{
                 this.guestAreaQueue2.push(order);
-                this.consoleLog(`Feeding to Queue2: ${order.menuItem.name}`);
+                this.consoleLog(`Feeding to Queue2: id: ${order.id}, ${order.menuItem.name}`);
                 order.status = 'accepted'; 
             } catch (e) {
                 this.consoleLog(`Queue2 ${e.message}`);
@@ -68,9 +69,9 @@ export class GuestArea {
     messageListener () {
         try {
             let order = this.preparedMealQueue.poll();
-            this.consoleLog(`Receiving from preparedMealQueue: ${order.menuList.name}`);
+            this.consoleLog(`Receiving from preparedMealQueue: id: ${order.id}, ${order.menuItem.name}`);
             order.status = 'served';
-            this.guestIsEating();
+            this.guestIsEating(order);
         } catch (e) {
             this.consoleLog(`preparedMealQueue: ${e.message}`);
         }
@@ -79,11 +80,14 @@ export class GuestArea {
     guestIsEating(order) {
         sleepAsync(3000);
         order.status = 'eatenAndPaid';
+        this.consoleLog(`Guest is eating id: ${order.id}, ${order.menuItem.name}`);
+        this.savePaidOrder(order);
     }
     
     savePaidOrder(order) {
         if (order.status == 'eatenAndPaid') {
-            appendFile(Config.getPaidOrdersPath(), JSON.Stringify(order), (err) => {
+            let content = JSON.stringify(order) + '\n';
+            fs.appendFile(Config.getPaidOrdersPath(), content, (err) => {
                 if (err) {
                   console.error('Error appending to file:', err);
                   return;
