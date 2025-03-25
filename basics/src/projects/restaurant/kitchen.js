@@ -69,6 +69,8 @@ export class KitchenArea {
     }
 
     async foodPreparation (dish, chef) {
+        console.log(chef);
+        chef.prepareingDish(dish.id);
         let workingHard = sleepAsync(dish.estPrepTimeInMiliSec);
         await workingHard;
         workingHard.then((value) => {
@@ -134,7 +136,7 @@ export class KitchenArea {
 
     consoleLog(message) {
         let decoratedMessage = Config.getTemplatingColours('FgCyan') + "Kitchen: " + Config.getTemplatingColours('FgBlue')+ message + Config.getTemplatingColours('Reset') ;
-        //console.log(decoratedMessage);
+        console.log(decoratedMessage);
         this.logger.log(decoratedMessage);
     }
 

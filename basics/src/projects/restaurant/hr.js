@@ -20,8 +20,16 @@ export class HR {
            employeesPlainText = fs.readFileSync(this.emloyeesDataStorageFile, 'utf8');
            //console.log('File contents:', employeesPlainText);
            if (employeesPlainText) {
-                let employees = JSON.parse(employeesPlainText);
-                return employees;
+                let employeesLodaded = JSON.parse(employeesPlainText);
+                for (let i=0; i<employeesLodaded.length; i++) { // conversion of simple object to kitchen worker object
+                   if (employeesLodaded[i].type == 'pastry') {
+                      this.employees.push(new PastryChef(employeesLodaded[i].id, employeesLodaded[i].name, employeesLodaded[i].type));
+                   }
+                   if (employeesLodaded[i].type == 'normal') {
+                    this.employees.push(new NormalChef(employeesLodaded[i].id, employeesLodaded[i].name, employeesLodaded[i].type));
+                 }
+                }
+                return this.employees;
            }
            else return [];
         } catch (err) {
