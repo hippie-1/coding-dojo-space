@@ -1,14 +1,14 @@
 import * as fs from 'node:fs';
 import { v4 as uuidv4 } from 'uuid';
 //import { uuidv4 } from '../../util/BasicFunctions.js';
+import { Config } from '../../util/Config.js';
 
 class MenuItem {
     id;
     name;
     type;
     estPrepTimeInMiliSec;
-    priceInHuf;
-    
+    priceInHuf;  
     
     constructor (id, name, estPrepTimeInMiliSec, priceInHuf=2000) {
         this.id = id;
@@ -36,9 +36,10 @@ class NormalFood extends MenuItem {
 
 export class Menu {
     menuList;
-    menuStorageFile = 'menuItems.json';
+    menuStorageFile;
     
     constructor() {
+        this.menuStorageFile = Config.getDataStoreDirPath() + 'menuItems.json';
         this.menuList = this.#loadMenuItems();
         // console.log(this.menuList);
         // console.log('Menu items converted back to array:', this.menuList);

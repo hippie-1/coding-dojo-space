@@ -7,7 +7,7 @@ function initMenuItems() {
     menu.createAndSaveMenuItem('Coffee', 'sweet', 1000, 1200);
     menu.createAndSaveMenuItem('Coconut Milk', 'sweet', 1000, 1200);
     menu.createAndSaveMenuItem('cake', 'sweet', 5000, 1400);
-    menu.createAndSaveMenuItem('muffin', 'sweet', 4000), 1600;
+    menu.createAndSaveMenuItem('muffin', 'sweet', 4000, 1600);
     menu.createAndSaveMenuItem('Chicken', 'normal', 5000, 2000);
     menu.createAndSaveMenuItem('Lamb', 'normal', 7000, 4000);
     menu.createAndSaveMenuItem('Beef', 'normal', 8000, 3000);

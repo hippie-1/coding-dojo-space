@@ -1,12 +1,16 @@
 import * as fs from 'node:fs';
 import { NormalChef, PastryChef } from './employee.js';
+import { v4 as uuidv4 } from 'uuid';
+import { Config } from '../../util/Config.js'
 
 
 export class HR {
     employees = [];
-    emloyeesDataStorageFile = 'employees.json';
+    emloyeesDataStorageFile;
     
     constructor() {
+        this.emloyeesDataStorageFile = Config.getDataStoreDirPath() + 'employees.json';
+        console.log(this.emloyeesDataStorageFile);
         this.employees = this.#loadEmployees();
     }
 
@@ -16,8 +20,16 @@ export class HR {
            employeesPlainText = fs.readFileSync(this.emloyeesDataStorageFile, 'utf8');
            //console.log('File contents:', employeesPlainText);
            if (employeesPlainText) {
-                let employees = JSON.parse(employeesPlainText);
-                return employees;
+                let employeesLodaded = JSON.parse(employeesPlainText);
+                for (let i=0; i<employeesLodaded.length; i++) { // conversion of simple object to kitchen worker object
+                   if (employeesLodaded[i].type == 'pastry') {
+                      this.employees.push(new PastryChef(employeesLodaded[i].id, employeesLodaded[i].name, employeesLodaded[i].type));
+                   }
+                   if (employeesLodaded[i].type == 'normal') {
+                    this.employees.push(new NormalChef(employeesLodaded[i].id, employeesLodaded[i].name, employeesLodaded[i].type));
+                 }
+                }
+                return this.employees;
            }
            else return [];
         } catch (err) {
@@ -46,7 +58,7 @@ export class HR {
     }
 
     createAndSaveEmployee(name, type) {
-        let id = this.employees.length;
+        let id = uuidv4();
         let newlyHiredEmployee = this.#createEmployee(id, name, type); //no need to catch the exception, because we can not do anything with it, we have throw it the invoker
         this.employees[this.employees.length] = newlyHiredEmployee;
         this.#persistAllEmployees(this.employees);
@@ -95,7 +107,7 @@ export class HR {
 
 //test:
 
-/* export let hr = new HR();
+export let hr = new HR();
  console.log(hr.employees);
 
 hr.createAndSaveEmployee("Ákos", "normal");
@@ -103,7 +115,7 @@ hr.createAndSaveEmployee("Zsanett", "normal");
 hr.createAndSaveEmployee("Krisztián", "normal");
 hr.createAndSaveEmployee("Klaudia", "pastry");
 hr.createAndSaveEmployee("Norbert", "pastry");
-*/
+
 // hr.createAndSaveEmployee("Géza", "pastry");
 // hr.createAndSaveEmployee("Bálint", "normal");
 
@@ -112,4 +124,4 @@ hr.createAndSaveEmployee("Norbert", "pastry");
 // console.log(hr.deleteEmployee(4));
 // console.log(hr.createAndSaveEmployee("Norbert", "pastry"));
 
-//console.log(hr.employees);
+console.log(hr.employees);

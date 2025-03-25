@@ -23,8 +23,8 @@ export class KitchenArea {
     }
 
     initAvailableWorkers() {
-        this.availablePastryChefsQueue = new Queue(20);
-        this.availableNormalChefsQueue = new Queue(20);
+        this.availablePastryChefsQueue = new Queue(2000);
+        this.availableNormalChefsQueue = new Queue(2000);
         for (let i=0; i<this.hr.employees.length; i++) {
             if (this.hr.employees[i].type == 'pastry') {
                 this.availablePastryChefsQueue.push(this.hr.employees[i]);
@@ -64,18 +64,21 @@ export class KitchenArea {
         availableChefPromise.then((value) => {
             let availableChef = value; //átírható?
             this.consoleLog("Chef " + availableChef.name + " has started on " + dish.name);
-            this.foodPreparation (dish.name, availableChef);
+            this.foodPreparation (dish, availableChef);
             return true;            
         })
     }
 
-    async foodPreparation (dishName, chef) {
-        console.log(chef instanceof KitchenEmployee);
-        chef.prepareingDish(dishName);
-        let workingHard = sleepAsync(3000);
+    async foodPreparation (dish, chef) {
+        console.log(chef);
+        let workingHard = new Promise((resolved, reject) => {
+            chef.prepareingDish(dish.name);
+        });
+        
+        //let workingHard = sleepAsync(dish.estPrepTimeInMiliSec);
         await workingHard;
         workingHard.then((value) => {
-            this.finished(dishName, chef);
+            this.finished(dish.name, chef);
         });
     }
     
