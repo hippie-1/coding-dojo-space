@@ -7,7 +7,7 @@ export class KitchenEmployee {
     id;
     name;
     type;
-    logger;
+    #logger;
 
     constructor (id, name) {
         this.id = id;
@@ -22,7 +22,6 @@ export class KitchenEmployee {
         await this._blendingIngredients(foodId); //protected (_ char shows it) because it cannot be invoked publicly only this class or the subclassess can call it       
         await this._heatTreatment(foodId); //protected (_ char shows it) because it cannot be invoked publicly only this class or the subclassess can call it       
         await this.#servingFoodOnAPlate(foodId); 
-        await this.#servingFoodToGuest(foodId);
     }
     async #gatheringIngredients(foodId) { //private method since the food can be prepared by colling the public preparingDish only
         await sleepAsync(1000);
@@ -49,17 +48,11 @@ export class KitchenEmployee {
         await sleepAsync(1000);
         this.consoleLog(this.name +" doing : " + foodId + ", Serving food on a plate");
     }
-    async #servingFoodToGuest(foodId) { //decoratior pattern, some other things added beside the food
-        await sleepAsync(1000);
-        this.consoleLog(this.name +" doing : " + foodId +  ", is ready to serve to guest with cutlery and napkins");
-    }
-
     consoleLog(message) {
         let decoratedMessage = Config.getTemplatingColours('FgGreen') + "Employee: " + Config.getTemplatingColours('FgYellow')+ message + Config.getTemplatingColours('Reset') ;
         console.log(decoratedMessage);
-        this.logger.log(decoratedMessage);
+        this.#logger.log(decoratedMessage);
     }
-
 }
 
 export class NormalChef extends KitchenEmployee {

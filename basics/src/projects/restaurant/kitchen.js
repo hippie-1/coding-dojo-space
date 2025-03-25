@@ -6,18 +6,18 @@ import { HR } from './hr.js';
 import { KitchenEmployee } from './employee.js';
 
 export class KitchenArea {
-    dishOrderQueue1;
-    dishOrderQueue2;
+    dishOrderQueue1; // = guestAreaQueue1
+    dishOrderQueue2; // = guestAreaQueue2
     availablePastryChefsQueue;
     availableNormalChefsQueue;
     logger;
     hr;
+    preparedMealQueue;
 
-    constructor (restaurantQueue1, restaurantQueue2) {
+    constructor (restaurantQueue1, restaurantQueue2, preparedMealQueue) {
         this.dishOrderQueue1 = restaurantQueue1;
         this.dishOrderQueue2 = restaurantQueue2;
-        this.numberOfReseivedOrders = 0;
-        this.numberOfPreparedOrders = 0;
+        this.preparedMealQueue = preparedMealQueue;
         this.logger = Logger.getInstance("kitchen");
         this.hr = new HR();
         this.initAvailableWorkers();
@@ -42,10 +42,10 @@ export class KitchenArea {
         this.consoleLog('Kitchen starts working with a short delay to wait for the first couple of dishOrders');
         let emptyCounter = 0;
         while (emptyCounter < 20) {
-            let dish = this.messageListener();
-            if (dish) {
+            let order = this.messageListener();
+            if (order) {
                 emptyCounter = 0;
-                await this.dishOrderDistribution(dish);                   
+                await this.dishOrderDistribution(order);                   
             } else {
                 await sleepAsync(1000);
                 emptyCounter++;
@@ -54,58 +54,64 @@ export class KitchenArea {
         this.consoleLog('Kitchen stops for today.');
     }
 
-    async dishOrderDistribution(dish) {
+    async dishOrderDistribution(order) {
         let availableChefPromise = null;
-        if (dish.type == 'sweet') {
+        if (order.menuItem.type == 'sweet') {
             availableChefPromise = this.getAvailableChef('pastry');
         }
-        if (dish.type == 'normal') {
+        if (order.menuItem.type == 'normal') {
             availableChefPromise = this.getAvailableChef('normal');              
         }
         await availableChefPromise;
         availableChefPromise.then((value) => {
             let availableChef = value; //átírható?
-            this.consoleLog("Chef " + availableChef.name + " has started on " + dish.name);
-            this.foodPreparation (dish, availableChef);
+            this.consoleLog("Chef " + availableChef.name + " has started on " + order.menuItem.name);
+            this.foodPreparation (order, availableChef);
             return true;            
         })
     }
 
-    async foodPreparation (dish, chef) {
-        await chef.prepareingDish(dish.name);
-        this.finished(dish.name, chef);
+    async foodPreparation (order, chef) {
+        order.status = 'preparation started';
+        await chef.prepareingDish(order.menuItem.name);
+        this.finished(order, chef);
     }
     
-    finished(dishName, chef) {
+    finished(order, chef) {
         if (chef.type == 'pastry') {
             this.availablePastryChefsQueue.push(chef);
         }
         if (chef.type == 'normal') {
             this.availableNormalChefsQueue.push(chef);          
-        }       
-        this.consoleLog("Chef " + chef.name + " has FINISHED " + dishName + " preparation and goes to the end of the queue and waits for the next task");
+        }
+        order.status = 'prepared';
+        order.meal = order.menuItem.name;
+        this.preparedMealQueue.push(order);
+        this.consoleLog("Chef " + chef.name + " has finished " + order.menuItem.name + " preparation and goes to the end of the queue and waits for the next task");
     }
       
     messageListener () { //consume food order
-        let dish = null;
+        let order = null;
         if (Math.random() < 0.5) {
             try {
-                dish = this.dishOrderQueue1.poll();
-                this.consoleLog(`Receiving from Queue1: ${dish.name}`);
-                return dish;
+                order = this.dishOrderQueue1.poll();
+                this.consoleLog(`Receiving from Queue1: ${order.menuItem.name}`);
+                order.status = 'received';
+                return order;
             } catch (e) {
                 this.consoleLog(`Queue1: ${e.message}`);
             }
         } else {
             try {
-                let dish = this.dishOrderQueue2.poll();
-                this.consoleLog(`Receiving from Queue2: ${dish.name}`);
-                return dish;
+                order = this.dishOrderQueue2.poll();
+                this.consoleLog(`Receiving from Queue2: ${order.menuItem.name}`);
+                order.status = 'received';
+                return order;
             } catch (e) {
                 this.consoleLog(`Queue2: ${e.message}`);
             }
         }
-        return dish;
+        return order;
     }
 
     async getAvailableChef(type) { //message listener, consume queue
