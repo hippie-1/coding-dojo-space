@@ -1,34 +1,39 @@
 import { sleepAsync } from '../../util/BasicFunctions.js';
+import { Config } from '../../util/Config.js';
+import { Logger } from '../../util/Logger.js';
+
 
 export class KitchenEmployee {
     id;
     name;
-    type;;
+    type;
+    #logger;
 
     constructor (id, name) {
         this.id = id;
         this.name = name;
+        this.logger = Logger.getInstance("employee");
     }
 
     async prepareingDish(foodId) { //template method design patter - all subclasses follows this template, the abstract methods must be implemented in subclasses
-        this.#gatheringIngredients(foodId);
-        this.#cleaningIngredients(foodId);
-        this.#slicingIngredients(foodId);
-        this._blendingIngredients(foodId); //protected (_ char shows it) because it cannot be invoked publicly only this class or the subclassess can call it       
-        this._heatTreatment(foodId); //protected (_ char shows it) because it cannot be invoked publicly only this class or the subclassess can call it       
-        this.#servingFoodOnAPlate(foodId); 
+        await this.#gatheringIngredients(foodId);
+        await this.#cleaningIngredients(foodId);
+        await this.#slicingIngredients(foodId);
+        await this._blendingIngredients(foodId); //protected (_ char shows it) because it cannot be invoked publicly only this class or the subclassess can call it       
+        await this._heatTreatment(foodId); //protected (_ char shows it) because it cannot be invoked publicly only this class or the subclassess can call it       
+        await this.#servingFoodOnAPlate(foodId); 
     }
     async #gatheringIngredients(foodId) { //private method since the food can be prepared by colling the public preparingDish only
         await sleepAsync(1000);
-        console.log(this.name +" doing : " + foodId + ", Gathering Ingredients from Pantry");
+        this.consoleLog(this.name +" doing : " + foodId + ", Gathering Ingredients from Pantry");
     }
     async #cleaningIngredients(foodId) {
         await sleepAsync(2000);
-        console.log(this.name +" doing : " + foodId + ", Cleaning ingredients");
+        this.consoleLog(this.name +" doing : " + foodId + ", Cleaning ingredients");
     }
     async #slicingIngredients(foodId) {
         await sleepAsync(2000);
-        console.log(this.name +" doing : " + foodId + ", Slicing ingredients");
+        this.consoleLog(this.name +" doing : " + foodId + ", Slicing ingredients");
     }
 
     async _blendingIngredients(foodId) {
@@ -41,9 +46,13 @@ export class KitchenEmployee {
 
     async #servingFoodOnAPlate(foodId) {
         await sleepAsync(1000);
-        console.log(this.name +" doing : " + foodId + ", Serving food on a plate");
+        this.consoleLog(this.name +" doing : " + foodId + ", Serving food on a plate");
     }
-
+    consoleLog(message) {
+        let decoratedMessage = Config.getTemplatingColours('FgGreen') + "Employee: " + Config.getTemplatingColours('FgYellow')+ message + Config.getTemplatingColours('Reset') ;
+        console.log(decoratedMessage);
+        this.#logger.log(decoratedMessage);
+    }
 }
 
 export class NormalChef extends KitchenEmployee {
@@ -55,11 +64,11 @@ export class NormalChef extends KitchenEmployee {
     
     async _blendingIngredients(foodId) {
         await sleepAsync(3000);
-        console.log(this.name +" doing : " + foodId +  ", Marinating meat and seasoning garnishes ");
+        this.consoleLog(this.name +" doing : " + foodId +  ", Marinating meat and seasoning garnishes ");
     } 
     async _heatTreatment(foodId) {
         await sleepAsync(4000);
-        console.log(this.name +" doing : " + foodId + ", Grilling meat and cooking side dishes ");
+        this.consoleLog(this.name +" doing : " + foodId + ", Grilling meat and cooking side dishes ");
     }
 
 }
@@ -73,11 +82,11 @@ export class PastryChef extends KitchenEmployee {
 
     async _blendingIngredients(foodId) {
         await sleepAsync(3000);
-        console.log(this.name +" doing : " + foodId + ", Beating eggs, sugaring, kneading yeast dough ");
+        this.consoleLog(this.name +" doing : " + foodId + ", Beating eggs, sugaring, kneading yeast dough ");
     } 
     async _heatTreatment(foodId) {
         await sleepAsync(4000);
-        console.log(this.name +" doing : " + foodId + ", Baking ");
+        this.consoleLog(this.name +" doing : " + foodId + ", Baking ");
     }
 }
 /*

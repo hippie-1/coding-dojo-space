@@ -73,15 +73,8 @@ export class KitchenArea {
 
     async foodPreparation (order, chef) {
         order.status = 'preparation started';
-        let workingHard = new Promise((resolved, reject) => {
-            chef.prepareingDish(order.menuItem.name);
-        });
-        
-        //let workingHard = sleepAsync(dish.estPrepTimeInMiliSec);
-        await workingHard;
-        workingHard.then((value) => {
-            this.finished(order, chef);
-        });
+        await chef.prepareingDish(order.menuItem.name);
+        this.finished(order, chef);
     }
     
     finished(order, chef) {
@@ -104,6 +97,7 @@ export class KitchenArea {
                 order = this.dishOrderQueue1.poll();
                 this.consoleLog(`Receiving from Queue1: ${order.menuItem.name}`);
                 order.status = 'received';
+                return order;
             } catch (e) {
                 this.consoleLog(`Queue1: ${e.message}`);
             }
@@ -112,6 +106,7 @@ export class KitchenArea {
                 order = this.dishOrderQueue2.poll();
                 this.consoleLog(`Receiving from Queue2: ${order.menuItem.name}`);
                 order.status = 'received';
+                return order;
             } catch (e) {
                 this.consoleLog(`Queue2: ${e.message}`);
             }
@@ -141,6 +136,7 @@ export class KitchenArea {
                 }
             }
         }
+        this.consoleLog("Available chef found");
         return availableChef;
     }
 
