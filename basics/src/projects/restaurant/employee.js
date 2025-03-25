@@ -7,12 +7,12 @@ export class KitchenEmployee {
     id;
     name;
     type;
-    logger;
+    #logger;
 
     constructor (id, name) {
         this.id = id;
         this.name = name;
-        this.logger = Logger.getInstance("employee");
+        this.#logger = Logger.getInstance("employee");
     }
 
     async prepareingDish(foodId) { //template method design patter - all subclasses follows this template, the abstract methods must be implemented in subclasses
@@ -57,7 +57,7 @@ export class KitchenEmployee {
     consoleLog(message) {
         let decoratedMessage = Config.getTemplatingColours('FgGreen') + "Employee: " + Config.getTemplatingColours('FgYellow')+ message + Config.getTemplatingColours('Reset') ;
         console.log(decoratedMessage);
-        this.logger.log(decoratedMessage);
+        this.#logger.log(decoratedMessage);
     }
 
 }
