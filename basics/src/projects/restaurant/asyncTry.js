@@ -20,16 +20,51 @@
     console.log('Task 2 finished');
   }
   
+  async function task3() {
+    console.log('Task 3 started');
+    let i=0;
+    //while (i<5) {
+        console.log(`Task 3 is working hard ${i}`);
+        taskRaktar(i);
+        taskBufe(i);
+        //await sleep(1000); // Sleep for 3 seconds
+        i++;
+    //}
+    console.log('Task 3 finished');
+  }
+
+  async function taskRaktar(i) {
+    console.log('Task Raktar ' + i + ' started');
+    let j=0;
+    while (j<10) {
+        console.log(`Task Raktar ${i} is working hard in step ${j}`);
+        await sleep(1000); // Sleep for 3 seconds
+        j++;
+    }
+    console.log(`Task Raktar ${i} finished`);
+  }
+
+  async function taskBufe(i) {
+    console.log('Task Bufe ' + i + ' started');
+    let j=0;
+    while (j<10) {
+        console.log(`Task Bufe ${i} is eating food ${j}`);
+        await sleep(1000); // Sleep for 3 seconds
+        j++;
+    }
+    console.log(`Task Bufe ${i} finished`);
+  }
+
   async function startTasks() {
     console.log('Starting tasks in parallel...');
-    await Promise.all([task1(), task2()]);
-    console.log('Both tasks completed');
+    await Promise.all([task1(), task2(), task3()]);
+    console.log('All tasks completed');
   }
   
- // startTasks();
+  startTasks();
 
 
-
+/*
 
  async function someWork () {
     let promise = new Promise(
@@ -58,7 +93,8 @@ function rejected() {
 }
 
 await Promise.all([someWork()]);
-
+*/
+/*
 async function foodPreparation (foodId) {
   let foodPreparationPromise = new Promise(function(myResolve, myReject) {
     // "Producing Code" (May take some time)
@@ -71,11 +107,9 @@ async function foodPreparation (foodId) {
     foodPreparationPromise.then(
       function(value) { 
         console.log(value);
-        /* code if successful */ 
       },
       function(error) {
         console.log(error);
-         /* code if some error */ 
       }
     );
 }
@@ -83,8 +117,7 @@ async function foodPreparation (foodId) {
 function valami() {
   console.log("Valami");
 }
-
 //await Promise.all([foodPreparation(10)]);
-
+*/
 
 

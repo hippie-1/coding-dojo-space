@@ -3,7 +3,7 @@ import { Menu } from './menu.js';
 import { Config } from '../../util/Config.js';
 import { Logger } from '../../util/Logger.js';
 import { Order } from './order.js';
-import * as fs from 'node:fs';
+import { Accounting } from './accounting.js';
 
 export class GuestArea {
     guestAreaQueue1;
@@ -32,19 +32,34 @@ export class GuestArea {
     }
 
     async work () {
-        this.consoleLog('GuestArea starts working');
-        let maxOrderNumber = 5;
+        let maxOrderNumber = 20;
+        this.consoleLog('GuestArea starts working');   
+        await Promise.all([this.takeOrders(maxOrderNumber), this.getOrders(maxOrderNumber)]);
+        this.consoleLog('GuestArea\'s food ordering stops for today.');
+    }
+
+    async takeOrders (maxOrderNumber) {
         let orderNumber = 0;
         while (orderNumber < maxOrderNumber) {
             orderNumber++;
             // let food = this.randomMenuItem();
             let order = new Order(this.today + "-" + orderNumber, this.randomMenuItem());
             this.messageBroker(order);
-            await sleepAsync(5000);
+            await sleepAsync(3000);
         }
-
-        this.messageListener();
         this.consoleLog('GuestArea\'s food ordering stops for today after ' + orderNumber + ' orders.');
+    }
+
+    async getOrders (maxOrderNumber) {
+        let receivedOrders = 0;
+        while (receivedOrders < maxOrderNumber) {
+            let foodReceived = this.messageListener();
+            if (foodReceived) {
+                receivedOrders++;
+            }
+            await sleepAsync(2000);
+        }
+        this.consoleLog('GuestArea\'s all guests finished eating after ' + receivedOrders + ' orders.');
     }
 
     messageBroker (order) {
@@ -74,8 +89,10 @@ export class GuestArea {
             this.consoleLog(`Receiving from preparedMealQueue: id: ${order.id}, ${order.menuItem.name}`);
             order.status = 'served';
             this.guestIsEating(order);
+            return true;
         } catch (e) {
             this.consoleLog(`preparedMealQueue: ${e.message}`);
+            return false;
         }
     }
 
@@ -83,22 +100,13 @@ export class GuestArea {
         sleepAsync(3000);
         order.status = 'eatenAndPaid';
         this.consoleLog(`Guest is eating id: ${order.id}, ${order.menuItem.name}`);
-        this.savePaidOrder(order);
-    }
-    
-    savePaidOrder(order) {
-        if (order.status == 'eatenAndPaid') {
-            let content = JSON.stringify(order) + '\n';
-            fs.appendFile(Config.getPaidOrdersPath(), content, (err) => {
-                if (err) {
-                  console.error('Error appending to file:', err);
-                  return;
-                }
-                console.log('Content appended successfully!');
-              })
-        }
+        this.sendReceiptToAccounting(order);
     }
 
+    sendReceiptToAccounting(order) {
+        Accounting.savePaidOrder(order);
+    }
+    
     consoleLog(message) {
         let decoratedMessage = Config.getTemplatingColours('FgRed') + "Guest Area: " + Config.getTemplatingColours('FgMagenta')+ message + Config.getTemplatingColours('Reset') ;
         console.log(decoratedMessage);
