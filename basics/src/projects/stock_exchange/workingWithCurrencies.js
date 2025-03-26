@@ -2,6 +2,7 @@ import * as fs from 'node:fs';
 import { Config } from '../../util/Config.js';
 import { Currency } from './currency.js';
 
+
 function loadExchangeRates () {
         try {
             let currenciesPlainText = fs.readFileSync(Config.getExhangeRatesPath(), 'utf8');
@@ -23,6 +24,23 @@ function loadExchangeRates () {
 const currencies = loadExchangeRates();
 
 const chfArray = currencies.filter(element => element.currencyName == 'CHF')
-const yesterday = currencies.filter(element => element.date == '2025. 03. 25.')
+const yesterdayCurrencyRates = currencies.filter(element => element.date == '2025. 03. 25.')
 const above400 = currencies.filter(element => element.exchangeRate > 400)
-console.log(above400);
+console.log(yesterdayCurrencyRates);
+
+console.log();
+const numberArray = [5, 8, 2, 18, 128, 96, 357, 41 ,42, 51];
+const strArray = ['alfa', 'beta', 'theta', 'gamma', 'omega', 'delta'];
+const maxValue = Max(yesterdayCurrencyRates);
+console.log("Max value: ", maxValue);
+
+
+export function Max (originalObjectArray) {
+    let maxValue = originalObjectArray[0];
+    for (let i=0; i<originalObjectArray.length-1; i++) {
+      if (originalObjectArray[i].compareTo(maxValue) > 0) {
+              maxValue = originalObjectArray[i];
+      }
+    }
+    return maxValue;
+  }

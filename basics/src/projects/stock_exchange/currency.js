@@ -15,6 +15,13 @@ export class Currency {
         this.exchangeRate = exchangeRate;
     }
     
+    compareTo(obj) {
+        if (obj instanceof Currency) {
+            if (this.exchangeRate > obj.exchangeRate) return 1;
+            if (this.exchangeRate == obj.exchangeRate) return 0;
+            if (this.exchangeRate < obj.exchangeRate) return -1;
+        }
+    }
 }
 
 function loadExchangeRates () {
@@ -32,12 +39,13 @@ function loadExchangeRates () {
         }
 }
 
-const exchangeRatesArrayByDay = loadExchangeRates();
+//const exchangeRatesArrayByDay = loadExchangeRates();
 // console.log(exchangeRatesArrayByDay);
 
 
 
 const arrayOfCurrencies = [];
+/*
 for (let i=0; i<exchangeRatesArrayByDay.length; i++) {
     const keys = Object.keys(exchangeRatesArrayByDay[i]);
     const date = exchangeRatesArrayByDay[i]['Date'];
@@ -47,6 +55,7 @@ for (let i=0; i<exchangeRatesArrayByDay.length; i++) {
         arrayOfCurrencies.push(currency);
     }
 }
+*/
 // console.log(arrayOfCurrencies);
 
 function persistAllCurrencies(arrayOfCurrencies) {
@@ -59,4 +68,4 @@ function persistAllCurrencies(arrayOfCurrencies) {
          }
 }
 
-persistAllCurrencies(arrayOfCurrencies);
+//persistAllCurrencies(arrayOfCurrencies);
