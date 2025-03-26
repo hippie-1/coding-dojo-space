@@ -43,7 +43,7 @@ for (let i=0; i<exchangeRatesArrayByDay.length; i++) {
     const date = exchangeRatesArrayByDay[i]['Date'];
     for (let j=1; j<keys.length; j++) {
         const value = exchangeRatesArrayByDay[i][keys[j]];
-        const currency = new Currency(date, keys[j], value);
+        const currency = new Currency(date, keys[j], parseFloat(value));
         arrayOfCurrencies.push(currency);
     }
 }
