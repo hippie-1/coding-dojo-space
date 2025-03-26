@@ -1,6 +1,7 @@
 //import fs from "fs";
 import * as fs from 'node:fs';
 import { Config } from './Config.js';
+import { formatDateTime } from './BasicFunctions.js';
 
 export class Logger {
 
@@ -24,7 +25,7 @@ export class Logger {
             applicationDir = applicationName + "/";
         }
         this.createLogDirIfDoesntExists(this.loggingDir + applicationName);
-        this.loggingFile = this.loggingDir + applicationDir + this.formatDate(this.creationDate) + ".log.ansi"
+        this.loggingFile = this.loggingDir + applicationDir + formatDateTime(this.creationDate) + ".log.ansi"
         //this.loggingFile = "helloworld.txt"
         console.log("Logger constructor, loggingFile:", this.loggingFile);
     }
@@ -43,27 +44,6 @@ export class Logger {
           console.log('Logger, Directory created successfully!', dirPath);
         });
         return true;    
-    }
-
-    formatDate(date) {
-        let month = '' + (date.getMonth() + 1);
-        let day = '' + date.getDate() + '_';
-        let year = date.getFullYear();
-        let hour = date.getHours() + "h";
-        let min = date.getMinutes() + "m";
-        let sec = date.getSeconds() + "s";
-    
-        if (month.length < 2) 
-            month = '0' + month;
-        if (day.length < 2) 
-            day = '0' + day;
-        if (hour.length < 2) 
-            hour = '0' + hour;
-        if (min.length < 2) 
-            min = '0' + min;        
-        if (sec.length < 2) 
-            sec = '0' + sec;         
-        return [year, month, day, hour, min, sec].join('');
     }
 
     log(message, data, fileName, methodName) {

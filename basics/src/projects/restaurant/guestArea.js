@@ -1,4 +1,4 @@
-import { sleepAsync, generateRandomNumber } from '../../util/BasicFunctions.js';
+import { sleepAsync, generateRandomNumber, formatDate } from '../../util/BasicFunctions.js';
 import { Menu } from './menu.js';
 import { Config } from '../../util/Config.js';
 import { Logger } from '../../util/Logger.js';
@@ -11,11 +11,13 @@ export class GuestArea {
     menu;
     logger;
     preparedMealQueue;
+    today;
 
     constructor (restaurantQueue1, restaurantQueue2, preparedMealQueue) {
         this.guestAreaQueue1 = restaurantQueue1;
         this.guestAreaQueue2 = restaurantQueue2;
         this.preparedMealQueue = preparedMealQueue;
+        this.today = formatDate(new Date());
         this.menu = new Menu();
         this.logger = Logger.getInstance("guestArea");
     }
@@ -36,7 +38,7 @@ export class GuestArea {
         while (orderNumber < maxOrderNumber) {
             orderNumber++;
             // let food = this.randomMenuItem();
-            let order = new Order(orderNumber, this.randomMenuItem());
+            let order = new Order(this.today + "-" + orderNumber, this.randomMenuItem());
             this.messageBroker(order);
             await sleepAsync(5000);
         }
@@ -100,7 +102,7 @@ export class GuestArea {
     consoleLog(message) {
         let decoratedMessage = Config.getTemplatingColours('FgRed') + "Guest Area: " + Config.getTemplatingColours('FgMagenta')+ message + Config.getTemplatingColours('Reset') ;
         console.log(decoratedMessage);
-        this.logger.log(decoratedMessage);
+        this.logger.log(message);
     }
 }
 

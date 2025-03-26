@@ -15,43 +15,43 @@ export class KitchenEmployee {
         this.#logger = Logger.getInstance("employee");
     }
 
-    async prepareingDish(foodId) { //template method design patter - all subclasses follows this template, the abstract methods must be implemented in subclasses
-        await this.#gatheringIngredients(foodId);
-        await this.#cleaningIngredients(foodId);
-        await this.#slicingIngredients(foodId);
-        await this._blendingIngredients(foodId); //protected (_ char shows it) because it cannot be invoked publicly only this class or the subclassess can call it       
-        await this._heatTreatment(foodId); //protected (_ char shows it) because it cannot be invoked publicly only this class or the subclassess can call it       
-        await this.#servingFoodOnAPlate(foodId); 
+    async prepareingDish(order) { //template method design patter - all subclasses follows this template, the abstract methods must be implemented in subclasses
+        await this.#gatheringIngredients(order);
+        await this.#cleaningIngredients(order);
+        await this.#slicingIngredients(order);
+        await this._blendingIngredients(order); //protected (_ char shows it) because it cannot be invoked publicly only this class or the subclassess can call it       
+        await this._heatTreatment(order); //protected (_ char shows it) because it cannot be invoked publicly only this class or the subclassess can call it       
+        await this.#servingFoodOnAPlate(order); 
     }
-    async #gatheringIngredients(foodId) { //private method since the food can be prepared by colling the public preparingDish only
+    async #gatheringIngredients(order) { //private method since the food can be prepared by colling the public preparingDish only
         await sleepAsync(1000);
-        this.consoleLog(this.name +" doing : " + foodId + ", Gathering Ingredients from Pantry");
+        this.consoleLog(this.name +" doing: " + order.id + ', ' + order.menuItem.name + ", Gathering Ingredients from Pantry");
     }
-    async #cleaningIngredients(foodId) {
+    async #cleaningIngredients(order) {
         await sleepAsync(2000);
-        this.consoleLog(this.name +" doing : " + foodId + ", Cleaning ingredients");
+        this.consoleLog(this.name +" doing: " + order.id + ', ' + order.menuItem.name + ", Cleaning ingredients");
     }
-    async #slicingIngredients(foodId) {
+    async #slicingIngredients(order) {
         await sleepAsync(2000);
-        this.consoleLog(this.name +" doing : " + foodId + ", Slicing ingredients");
+        this.consoleLog(this.name +" doing: " + order.id + ', ' + order.menuItem.name + ", Slicing ingredients");
     }
 
-    async _blendingIngredients(foodId) {
+    async _blendingIngredients(order) {
         throw new Error('Subclasses must implement the _blendingIngredients method.');
     } //abstract and protected method, must be overriden in sublasses (note: no abstrac modifier in js, but it should be an absract method here)
 
-    async _heatTreatment(foodId) {
+    async _heatTreatment(order) {
         throw new Error('Subclasses must implement the _heatTreatment method.');
     } //abstract and protected method, must be overriden in subclasses (note: no abstrac modifier in js, but it should be absract method here)
 
-    async #servingFoodOnAPlate(foodId) {
+    async #servingFoodOnAPlate(order) {
         await sleepAsync(1000);
-        this.consoleLog(this.name +" doing : " + foodId + ", Serving food on a plate");
+        this.consoleLog(this.name +" doing: " + order.id + ', ' + order.menuItem.name + ", Serving food on a plate");
     }
     consoleLog(message) {
         let decoratedMessage = Config.getTemplatingColours('FgGreen') + "Employee: " + Config.getTemplatingColours('FgYellow')+ message + Config.getTemplatingColours('Reset') ;
         console.log(decoratedMessage);
-        this.#logger.log(decoratedMessage);
+        this.#logger.log(message);
     }
 }
 
@@ -62,13 +62,13 @@ export class NormalChef extends KitchenEmployee {
         this.type = 'normal';
     }
     
-    async _blendingIngredients(foodId) {
+    async _blendingIngredients(order) {
         await sleepAsync(3000);
-        this.consoleLog(this.name +" doing : " + foodId +  ", Marinating meat and seasoning garnishes ");
+        this.consoleLog(this.name +" doing: " + order.id + ', ' + order.menuItem.name +  ", Marinating meat and seasoning garnishes ");
     } 
-    async _heatTreatment(foodId) {
+    async _heatTreatment(order) {
         await sleepAsync(4000);
-        this.consoleLog(this.name +" doing : " + foodId + ", Grilling meat and cooking side dishes ");
+        this.consoleLog(this.name +" doing: " + order.id + ', ' + order.menuItem.name + ", Grilling meat and cooking side dishes ");
     }
 
 }
@@ -80,13 +80,13 @@ export class PastryChef extends KitchenEmployee {
         this.type = 'pastry';
     }
 
-    async _blendingIngredients(foodId) {
+    async _blendingIngredients(order) {
         await sleepAsync(3000);
-        this.consoleLog(this.name +" doing : " + foodId + ", Beating eggs, sugaring, kneading yeast dough ");
+        this.consoleLog(this.name +" doing: " + order.id + ', ' + order.menuItem.name + ", Beating eggs, sugaring, kneading yeast dough ");
     } 
-    async _heatTreatment(foodId) {
+    async _heatTreatment(order) {
         await sleepAsync(4000);
-        this.consoleLog(this.name +" doing : " + foodId + ", Baking ");
+        this.consoleLog(this.name +" doing: " + order.id + ', ' + order.menuItem.name + ", Baking ");
     }
 }
 /*

@@ -29,7 +29,8 @@ class Restaurant {
 
     consoleLog(message) {
         let decoratedMessage = Config.getTemplatingColours('FgWhite') + "Restaurant: " + Config.getTemplatingColours('FgGray')+ message + Config.getTemplatingColours('Reset') ;
-        this.logger.log(decoratedMessage);
+        console.log(decoratedMessage);
+        this.logger.log(message);
     }
 }
 
