@@ -33,17 +33,24 @@ export class GuestArea {
 
     async work () {
         this.consoleLog('GuestArea starts working');
-        let maxOrderNumber = 5;
+        let maxOrderNumber = 20;
         let orderNumber = 0;
+        let receivedOrders = 0;
         while (orderNumber < maxOrderNumber) {
             orderNumber++;
             // let food = this.randomMenuItem();
             let order = new Order(this.today + "-" + orderNumber, this.randomMenuItem());
             this.messageBroker(order);
-            await sleepAsync(5000);
+            await sleepAsync(3000);
         }
 
-        this.messageListener();
+        while (receivedOrders < orderNumber) {
+            let foodReceived = this.messageListener();
+            if (foodReceived) {
+                receivedOrders++;
+            }
+            await sleepAsync(2000);
+        }
         this.consoleLog('GuestArea\'s food ordering stops for today after ' + orderNumber + ' orders.');
     }
 
@@ -74,8 +81,10 @@ export class GuestArea {
             this.consoleLog(`Receiving from preparedMealQueue: id: ${order.id}, ${order.menuItem.name}`);
             order.status = 'served';
             this.guestIsEating(order);
+            return true;
         } catch (e) {
             this.consoleLog(`preparedMealQueue: ${e.message}`);
+            return false;
         }
     }
 
