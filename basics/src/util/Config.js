@@ -5,6 +5,7 @@ export class Config {
     static #loggingDir = "logs/";
     static #dataStoreDir = "dataStore/";
     static #paidOrders = "dataStore/paidOrders.json";
+    static #exchangeRates = "dataStore/exchangeRates.json";
 
     static #templatingColours = {
         Reset: "\x1b[0m",
@@ -37,5 +38,9 @@ export class Config {
 
     static getPaidOrdersPath() {
         return this.#projectRootDir + this.#paidOrders; 
+    }
+    
+    static getExhangeRatesPath() {
+        return this.#projectRootDir + this.#exchangeRates; 
     }
 }
