@@ -1,2 +1,6 @@
 {"id":1,"menuItem":{"id":"1a31474a-550b-4df8-8b51-5962dbb9a034","name":"Coffee","type":"sweet","estPrepTimeInMiliSec":1000,"priceInHuf":2000},"status":"eatenAndPaid","meal":"Coffee","actualId":null}
 {"id":1,"menuItem":{"id":"1a31474a-550b-4df8-8b51-5962dbb9a034","name":"Coffee","type":"sweet","estPrepTimeInMiliSec":1000,"priceInHuf":2000},"status":"eatenAndPaid","meal":"Coffee"}
+{"id":1,"menuItem":{"id":"9692cf90-dccc-4d6f-985c-3ef919a59db6","name":"chocolate","type":"sweet","estPrepTimeInMiliSec":3000,"priceInHuf":2000},"status":"eatenAndPaid","meal":"chocolate"}
+{"id":"20250326_-1","menuItem":{"id":"848c1c0e-b7e8-4646-8141-189cefe72908","name":"Coffee","type":"sweet","estPrepTimeInMiliSec":1000,"priceInHuf":2000},"status":"eatenAndPaid","meal":"Coffee"}
+{"id":"20250326-1","menuItem":{"id":"524e04d5-8205-4384-bd14-b207148dd2e0","name":"cake","type":"sweet","estPrepTimeInMiliSec":5000,"priceInHuf":2000},"status":"eatenAndPaid","meal":"cake"}
+{"id":"20250326-1","menuItem":{"id":"524e04d5-8205-4384-bd14-b207148dd2e0","name":"cake","type":"sweet","estPrepTimeInMiliSec":5000,"priceInHuf":2000},"status":"eatenAndPaid","meal":"cake"}

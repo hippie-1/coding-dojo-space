@@ -73,7 +73,7 @@ export class KitchenArea {
 
     async foodPreparation (order, chef) {
         order.status = 'preparation started';
-        await chef.prepareingDish(order.menuItem.name);
+        await chef.prepareingDish(order);
         this.finished(order, chef);
     }
     
@@ -144,7 +144,7 @@ export class KitchenArea {
     consoleLog(message) {
         let decoratedMessage = Config.getTemplatingColours('FgCyan') + "Kitchen: " + Config.getTemplatingColours('FgBlue')+ message + Config.getTemplatingColours('Reset') ;
         console.log(decoratedMessage);
-        this.logger.log(decoratedMessage);
+        this.logger.log(message);
     }
 
 }

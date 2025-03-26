@@ -74,4 +74,37 @@ export function uuidv4() {
     });
 }
 
+export function formatDateTime(date) {
+    let month = '' + (date.getMonth() + 1);
+    let day = '' + date.getDate() + '_';
+    let year = date.getFullYear();
+    let hour = date.getHours() + "h";
+    let min = date.getMinutes() + "m";
+    let sec = date.getSeconds() + "s";
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+    if (hour.length < 2) 
+        hour = '0' + hour;
+    if (min.length < 2) 
+        min = '0' + min;        
+    if (sec.length < 2) 
+        sec = '0' + sec;         
+    return [year, month, day, hour, min, sec].join('');
+}
+
+export function formatDate(date) {
+    let month = '' + (date.getMonth() + 1);
+    let day = '' + date.getDate();
+    let year = date.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('');
+}
 
