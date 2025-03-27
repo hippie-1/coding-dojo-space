@@ -60,6 +60,6 @@ export class Config {
 }
 
 //test:
-const colours = Config.getAllCustomTemplatingColours();
-console.log(colours.join(", "));
+//const colours = Config.getAllCustomTemplatingColours();
+//console.log(colours.join(", "));
 
