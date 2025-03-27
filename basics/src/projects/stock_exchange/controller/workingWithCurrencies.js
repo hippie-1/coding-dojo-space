@@ -2,7 +2,7 @@ import * as fs from 'node:fs';
 import { Config } from '../../../util/Config.js';
 import { Currency } from '../model/currency.js';
 
-function loadExchangeRates () {
+export function loadExchangeRates () {
         try {
             let currenciesPlainText = fs.readFileSync(Config.getExhangeRatesPath(), 'utf8');
             if (currenciesPlainText) {
@@ -20,6 +20,7 @@ function loadExchangeRates () {
         }
 }
 
+/*
 const currencies = loadExchangeRates();
 
 const chfArray = currencies.filter(element => element.currencyName == 'CHF')
@@ -44,4 +45,4 @@ console.log(maxValue);
     }
     return maxValue;
   }
-
+*/
