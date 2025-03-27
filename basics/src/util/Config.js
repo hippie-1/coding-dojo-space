@@ -58,8 +58,3 @@ export class Config {
         return this.#projectRootDir + this.#exchangeRates; 
     }
 }
-
-//test:
-//const colours = Config.getAllCustomTemplatingColours();
-//console.log(colours.join(", "));
-
