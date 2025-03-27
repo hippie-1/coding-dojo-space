@@ -91,7 +91,7 @@ export function BubbleSorting (originalNumberArray) {
   return arrayOfNumbers;
 }
 
-export function SimpleSwapSorting (originalNumberArray) {
+export function SimpleSwapSorting (originalNumberArray) { // Egyszerű cserés rendezés
   console.log("Simple-swap sorting starting");
   numberOfComparationSteps = 0;
   numberOfElementExchanges = 0;
@@ -116,7 +116,7 @@ export function SimpleSwapSorting (originalNumberArray) {
   return arrayOfNumbers;
 }
 
-export function InsertionSorting (originalNumberArray) {
+export function InsertionSorting (originalNumberArray) { // Beszúró rendezés
   console.log("Insertion sorting starting");
   numberOfComparationSteps = 0;
   numberOfElementExchanges = 0;
@@ -157,7 +157,7 @@ export function InsertionSorting (originalNumberArray) {
 // }
 
 export function MaxValueBasedSorting (originalNumberArray) {
-  console.log("Max value based sorting staring");
+  console.log("Max value based sorting staring"); // Maximumkiválasztásos rendezés
   numberOfComparationSteps = 0;
   numberOfElementExchanges = 0;
   var startTime = Date.now();
