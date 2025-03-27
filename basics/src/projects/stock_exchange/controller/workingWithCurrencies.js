@@ -2,7 +2,6 @@ import * as fs from 'node:fs';
 import { Config } from '../../../util/Config.js';
 import { Currency } from '../model/currency.js';
 
-
 function loadExchangeRates () {
         try {
             let currenciesPlainText = fs.readFileSync(Config.getExhangeRatesPath(), 'utf8');
@@ -31,21 +30,18 @@ console.log(yesterdayCurrencyRates);
 console.log();
 const numberArray = [5, 8, 2, 18, 128, 96, 357, 41 ,42, 51];
 const strArray = ['alfa', 'beta', 'theta', 'gamma', 'omega', 'delta'];
-const maxValue = Max(yesterdayCurrencyRates);
-console.log("Max value: ", maxValue);
+const maxValue = MaxByAnyProperty(yesterdayCurrencyRates, 'currencyName');
+//console.log("Max value: ", maxValue);
+const testResult = yesterdayCurrencyRates[3].compareTo(yesterdayCurrencyRates[3]);
+console.log(maxValue);
 
-
-export function Max (originalObjectArray) {
+  export function MaxByAnyProperty (originalObjectArray, property) {
     let maxValue = originalObjectArray[0];
-    for (let i=0; i<originalObjectArray.length-1; i++) {
-      if (originalObjectArray[i].compareTo(maxValue) > 0) {
+    for (let i=0; i<originalObjectArray.length; i++) {
+      if (originalObjectArray[i].compareTo(maxValue, property) > 0) {
               maxValue = originalObjectArray[i];
       }
     }
     return maxValue;
   }
-
-  const floatNumStr = "412.8";
-  const floatNum = Number.parseFloat(floatNumStr);
-  console.log(floatNum);
 

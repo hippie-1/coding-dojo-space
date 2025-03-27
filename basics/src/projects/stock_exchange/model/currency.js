@@ -10,12 +10,32 @@ export class Currency {
         this.currencyName = currencyName;
         this.exchangeRate = exchangeRate;
     }
-    
-    compareTo(obj) {
-        if (obj instanceof Currency) {
-            if (this.exchangeRate > obj.exchangeRate) return 1;
-            if (this.exchangeRate == obj.exchangeRate) return 0;
-            if (this.exchangeRate < obj.exchangeRate) return -1;
+
+    compareTo(obj, key='exchangeRate') {
+        if (!( obj instanceof Currency)) {
+            throw new Error('Class cast exception, try with Currency instanse')
         }
+        let keys = Object.keys(this);
+        let keysToBeCompared = keys.find(elementkey => elementkey == key);
+        let result = 0;
+        if (this[keysToBeCompared] > obj[keysToBeCompared]) result = 1;
+        if (this[keysToBeCompared] == obj[keysToBeCompared]) result = 0;
+        if (this[keysToBeCompared] < obj[keysToBeCompared]) result = -1;
+        return result;
+    }
+
+    equals (obj) {
+        if (!( obj instanceof Currency)) {
+            return false;
+        }
+        let keys = Object.keys(this);
+        for (let i=0; i<keys.length; i++) {
+            if (this[keys[i]] !== obj[keys[i]]) {
+                return false;
+            }
+        }
+        return true;
+
+
     }
 }
