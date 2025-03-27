@@ -28,6 +28,20 @@ export class Config {
         return this.#templatingColours;
     }
 
+    static getCustomTemplatingColours(colourCode) { 0-255
+        return  `\x1b[38;5;${colourCode}m`;  //38 meand foreground, 5 means some colourset, we can add the 3rd code to identify the colour
+    }
+
+    static getAllCustomTemplatingColours() { //in the 0-255 scale
+        let colours = [];
+        for (let i=0; i<255; i++) {
+            let colourCodeText = "colourCode:"+ i;
+            let coluredText = Config.getCustomTemplatingColours(i) + colourCodeText + Config.getTemplatingColours('Reset');
+            colours.push(coluredText);
+        }
+        return colours;
+    }
+
     static getLogDirPath() {
         return this.#projectRootDir + this.#loggingDir;;
     }
@@ -44,3 +58,7 @@ export class Config {
         return this.#projectRootDir + this.#exchangeRates; 
     }
 }
+
+//test:
+const colours = Config.getAllCustomTemplatingColours();
+console.log(colours.join(", "));
