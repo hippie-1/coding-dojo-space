@@ -12,25 +12,12 @@ class Shape {  //absract
         return "I am an abstract method";
     }
 
-    valami (v) {
-        return v;
-    }
-
   }
-  
   class Circle extends Shape {
     radius;
     constructor(name, radius){
        super(name);
        this.radius = radius;
-    }
-
-    valami (v) {
-        return "cccccc";
-    }
-
-    valami (v, v2) {
-        return "cccccc" + v2;
     }
     getArea() {
         return Math.PI * Math.pow(this.radius, 2);
@@ -47,14 +34,9 @@ class Shape {  //absract
        this.length = length;
        this.width = width;
      }
-
      getArea() {
         return this.length * this.width;
      }
-
-     valami (v) {
-        return "rrrrr";
-    }
   
   } 
   
@@ -66,6 +48,4 @@ class Shape {  //absract
   console.log(bigCircle.toStirng());
   console.log(square.toStirng());
 
-  console.log(smallCircle.valami("vatl"));
-  console.log(smallCircle.valami("vatl", "valt2"));
-  console.log(square.valami("valt"));
+
