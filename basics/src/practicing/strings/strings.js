@@ -34,15 +34,15 @@ var lastIndexOfString = string1.lastIndexOf('L');
 //console.log(lastIndexOfString)
 
 
-function stringToHash(string) {
+export function stringToHash(string) {
 
     let hash = 0;
 
     if (string.length == 0) return hash;
 
-    for (i = 0; i < string.length; i++) {
-        char = string.charCodeAt(i);
-        console.log("CHAR: ", char);
+    for (let i = 0; i < string.length; i++) {
+        let char = string.charCodeAt(i);
+        //console.log("CHAR: ", char);
         hash = ((hash << 5) - hash) + char;
         hash = hash & hash;
     }
@@ -51,8 +51,8 @@ function stringToHash(string) {
 }
 
 // String printing in hash
-let gfg = "Viada Réka"
-console.log(stringToHash(gfg));
+//let gfg = "Viada Réka"
+//console.log(stringToHash(gfg));
 
 
 class Letter {
@@ -74,8 +74,8 @@ class Letter {
     }
 }
 
-
+/*
 let letter =  new Letter('NAV', 'Vida Reka', 2);
 console.log("LETTER HASH:" , letter.createHashToLetter2());
-
+*/
 

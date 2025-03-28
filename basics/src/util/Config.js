@@ -58,3 +58,9 @@ export class Config {
         return this.#projectRootDir + this.#exchangeRates; 
     }
 }
+
+
+let allColours = Config.getAllCustomTemplatingColours();
+console.log(allColours.join(", "));
+let brown = Config.getCustomTemplatingColours(98);
+console.log(brown + "magashegyseg" + Config. getTemplatingColours('Reset'));
