@@ -246,7 +246,7 @@ export function linearSearchBySmallerCondition (arrayInput, element) {
 
   //1. where to insert
   for (let i=0; i<arr.length; i++) {
-    console.log(i);  
+    //console.log(i);  
     if (arr[i]>element) { //condition: >
       relevantIndex = i;
       return relevantIndex;
@@ -289,7 +289,7 @@ export function removeElement(arrayInput, elementIndex) {
   return arr;
 }
 
-export function insertSortedArray(arrayInput, element) {
+export function insertSortedArray(arrayInput, element) { //insert into a sorted array
 
   let arr = arrayInput.slice(); 
 

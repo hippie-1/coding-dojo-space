@@ -4,9 +4,21 @@
       "Denali": "Kilimandzsáró"
     },
     {
+        "6194": "8848",
+        "Denali": "Mont Everest"
+    },
+    {
       "6194": "5642",
       "Denali": "Elbrusz"
     },
+    {
+        "6194": "8611",
+        "Denali": "K2)"
+    },
+    {
+        "6194": "8586",
+        "Denali": "Kangchenjunga"
+    },    
     {
       "6194": "4695",
       "Denali": "Mont Blanc"
@@ -20,8 +32,12 @@
       "Denali": "Mount Kosciuszko"
     },
     {
-      "6194": "4884",
-      "Denali": "Carstensz Pyramid"
+        "6194": "8586",
+        "Denali": "Kangchenjunga"
+    },      
+    {
+      "6194": "8047",
+      "Denali": "Broad Peak"
     },
     {
       "6194": "2764",
@@ -47,6 +63,10 @@
       "6194": "2386",
       "Denali": "Maglić"
     },
+    {
+        "6194": "8091",
+        "Denali": "Annapurna"
+      },    
     {
       "6194": "2925",
       "Denali": "Muszala"
