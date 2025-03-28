@@ -10,7 +10,7 @@ export function elementExchange(array, index1, index2) {
   array[index2]= tempValue;
 }
 
-export function Counting (originalNumberArray) {
+export function CountingOnNegativeNumbers (originalNumberArray) {
   let counterOfNegativeNumbers = 0;
   for (let i=0; i<originalNumberArray.length; i++) {
       if (originalNumberArray[i] < 0) {
@@ -196,18 +196,18 @@ export function LinearSearch (originalNumberArray, searchValue) {
 }
 
 export function BinarySearchIterative (sortedArrayOfNumbers, searchValue) {
-  console.log('Binary search starting')
+  //console.log('Binary search starting')
 
   let lowestValue = sortedArrayOfNumbers[0];
   let lowestIndex = sortedArrayOfNumbers.indexOf(lowestValue); // szimplán 0 is lehetne
   let highestValue = sortedArrayOfNumbers[sortedArrayOfNumbers.length-1];
   let highestIndex = sortedArrayOfNumbers.indexOf(highestValue); // sortedArrayOfNumbers.length -1 is lehetne
-  console.log('1st LOWEST: ' + lowestValue + ', 1st HIGHEST: ' + highestValue);
+  //console.log('1st LOWEST: ' + lowestValue + ', 1st HIGHEST: ' + highestValue);
 
   while (lowestIndex <= highestIndex) {
     let midIndex = Math.floor(lowestIndex + (highestIndex - lowestIndex) / 2);
     let midValue = sortedArrayOfNumbers[midIndex];
-    console.log('MIDindex: ' + midIndex + ', MIDvalue: ' + midValue)
+    //console.log('MIDindex: ' + midIndex + ', MIDvalue: ' + midValue)
 
     if (midValue == searchValue) {
       return midIndex;
