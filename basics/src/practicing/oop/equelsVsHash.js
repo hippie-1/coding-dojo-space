@@ -41,11 +41,13 @@ class Person { //entity
     id; //eg1: Belugy szem.sz. Mo-n unique, eg2: uuid
     name;
     haircolor;
+    eyecolor;
 
-    constructor(id, name, haircolor) {
+    constructor(id, name, haircolor, eyecolor) {
         this.id = id;
         this.name = name;
         this.haircolor = haircolor;
+        this.eyecolor = eyecolor;
     }
     
     equals(obj) {
@@ -61,7 +63,11 @@ class Person { //entity
         return true;
     }
     hashcode() {
-        return 1; //not nice
+        return 7 + stringToHash(this.name) + stringToHash(this.haircolor) + stringToHash(this.eyecolor); 
+        //The same hashcode will be calculated - which is ok
+            //Person1: Zsuzsa fekete hajú és barna szemű
+            //Person2: Zsusza barna hajú és fekete szemű
+        //Problem: Id should be included in hashcode calculation because equals works with it
     }
     toString() {
         return "Nice person with id: " + this.id +  ", and name: " + this.name + " and haircolor: " + this.haircolor;
