@@ -48,12 +48,12 @@ export function elementExchange(array, index1, index2) {
   array[index2] = tempValue;
 }
 
-export function InsertionSorting (originalObjectArray, searchedProperty) { // Beszúró rendezés
+export function InsertionSorting (originalObjectArray, property) { // Beszúró rendezés
 
   let arrayOfObjects = originalObjectArray.slice();
   for (let i=1; i<arrayOfObjects.length; i++) {
     let j = i-1;
-    while (j >= 0 && arrayOfObjects[j].compareTo(arrayOfObjects[j+1], searchedProperty) > 0) {
+    while (j >= 0 && arrayOfObjects[j].compareTo(arrayOfObjects[j+1], property) > 0) {
       elementExchange(arrayOfObjects, j, j+1);
       j = j-1
     }
@@ -82,12 +82,12 @@ export function BinarySearchIterative (sortedArrayOfNumbers, searchObject) {
   let lowestIndex = 0;
   let highestValue = sortedArrayOfNumbers[sortedArrayOfNumbers.length-1];
   let highestIndex = sortedArrayOfNumbers.length-1;
-  console.log('LOWEST before sorting: ' + lowestValue + ', HIGHEST before sorting: ' + highestValue);
+  // console.log('LOWEST before sorting: ' + lowestValue + ', HIGHEST before sorting: ' + highestValue);
   
   while (lowestIndex <= highestIndex) {
     let midIndex = Math.floor(lowestIndex + (highestIndex - lowestIndex) / 2);
     let midObject = sortedArrayOfNumbers[midIndex];
-    console.log('MIDindex: ' + midIndex + ', MIDObject: ' + JSON.stringify(midObject));
+    // console.log('MIDindex: ' + midIndex + ', MIDObject: ' + JSON.stringify(midObject));
 
     if (midObject.equals(searchObject)) {
       return midIndex;

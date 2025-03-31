@@ -6,6 +6,7 @@ export class Config {
     static #dataStoreDir = "dataStore/";
     static #paidOrders = "dataStore/paidOrders.json";
     static #exchangeRates = "dataStore/exchangeRates.json";
+    static #geoPoints = "dataStore/geoPoints.json";
 
     static #templatingColours = {
         Reset: "\x1b[0m",
@@ -57,10 +58,15 @@ export class Config {
     static getExhangeRatesPath() {
         return this.#projectRootDir + this.#exchangeRates; 
     }
+
+    static getGeoPointsPath() {
+        return this.#projectRootDir + this.#geoPoints; 
+    }
 }
 
-
+/*
 let allColours = Config.getAllCustomTemplatingColours();
 console.log(allColours.join(", "));
 let brown = Config.getCustomTemplatingColours(98);
 console.log(brown + "magashegyseg" + Config. getTemplatingColours('Reset'));
+*/
