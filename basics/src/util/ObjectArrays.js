@@ -82,12 +82,12 @@ export function BinarySearchIterative (sortedArrayOfNumbers, searchObject) {
   let lowestIndex = 0;
   let highestValue = sortedArrayOfNumbers[sortedArrayOfNumbers.length-1];
   let highestIndex = sortedArrayOfNumbers.length-1;
-  console.log('LOWEST before sorting: ' + lowestValue + ', HIGHEST before sorting: ' + highestValue);
+  // console.log('LOWEST before sorting: ' + lowestValue + ', HIGHEST before sorting: ' + highestValue);
   
   while (lowestIndex <= highestIndex) {
     let midIndex = Math.floor(lowestIndex + (highestIndex - lowestIndex) / 2);
     let midObject = sortedArrayOfNumbers[midIndex];
-    console.log('MIDindex: ' + midIndex + ', MIDObject: ' + JSON.stringify(midObject));
+    // console.log('MIDindex: ' + midIndex + ', MIDObject: ' + JSON.stringify(midObject));
 
     if (midObject.equals(searchObject)) {
       return midIndex;

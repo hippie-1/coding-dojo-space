@@ -1,7 +1,7 @@
 import * as fs from 'node:fs';
 import { Config } from '../../util/Config.js';
 import { GeoPoint } from './model/geoPoint.js';
-import { InsertionSorting, elementExchange } from '../../util/ObjectArrays.js';
+import { InsertionSorting, BinarySearchIterative, elementExchange } from '../../util/ObjectArrays.js';
 
 export function loadGeoPoints () {
         try {
@@ -119,18 +119,41 @@ function BucketsToString (arrayOfHeightRangeBuckets) {
     bucketNames.map(bucketName => bucketToString(bucketName, arrayOfHeightRangeBuckets[bucketName]));
 }
 
-    // toString(getColourCodeOfTheRelevantBucket(e.height))
 function bucketToString(bucketName, bucket) {
     const colourCodeOfBucket = getColourCodeOfTheRelevantBucket(bucketName);
     console.log(`\n${bucketName}:`);
     bucket.map(geoPoint => console.log(geoPoint.toString(colourCodeOfBucket)));
 }
 
+function searchIndexOfHeightByCheckingOnlyInTheRightBucket(arrayOfHeightRangeBuckets, GeoPointToFind) {
+    console.log("Start finding a GeoPoint: " + GeoPointToFind);
+    let nameOfTheRelevantBucket = getNameOfTheRelevantBucket(GeoPointToFind.getHeight()); 
+    console.log("Name of the bucket find the elem: " + nameOfTheRelevantBucket);
+    if (nameOfTheRelevantBucket==null) {
+        console.log("The given GeoPoint does not fit to any bucket");
+        return -1;
+    }
+
+    let elementsInBucket = arrayOfHeightRangeBuckets[nameOfTheRelevantBucket];
+    let foundIndex = BinarySearchIterative(elementsInBucket, GeoPointToFind); //searching in the relevant bucket only
+    if (foundIndex > -1) {
+        console.log("The relevant bucket was checked and GeoPoint was found in " + nameOfTheRelevantBucket + " at position: " + foundIndex );
+        return foundIndex;
+    };
+    console.log("The relevant bucket was checked but the given GeoPoint was not found");
+    return -1;
+}
+
 const loadedGeoPoints = loadGeoPoints();
 const countedHeights = countingByHeight(loadedGeoPoints, 8000)
 const sortedGeoPoints = InsertionSorting (loadedGeoPoints);
 const bucketedGeoPoints = ArrayToBuckets(sortedGeoPoints);
-console.log(bucketedGeoPoints);
-
+// console.log(bucketedGeoPoints);
+console.log("...................");
 BucketsToString (bucketedGeoPoints);
+console.log("...................");
+console.log(sortedGeoPoints[55]);
+console.log("...................");
+const indexOfSearchedGeoPoint = searchIndexOfHeightByCheckingOnlyInTheRightBucket(bucketedGeoPoints, sortedGeoPoints[55]);
+console.log(indexOfSearchedGeoPoint);
 
