@@ -105,7 +105,9 @@ function insertNewGeoPoint (arrayOfHeightRangeBuckets, newGeoPoint) {
     elementsInTheBucket.push(newGeoPoint);
     elementsInTheBucket = InsertionSorting(elementsInTheBucket);
     arrayOfHeightRangeBuckets[nameOfTheBucketToPutTheNewValueInto] = elementsInTheBucket;
+    return arrayOfHeightRangeBuckets;
 }
+
 
 function ArrayToBuckets (arrayOfGeoPoints) {
     let arrayOfBucketedGeoPoints = [];
@@ -144,16 +146,20 @@ function searchIndexOfHeightByCheckingOnlyInTheRightBucket(arrayOfHeightRangeBuc
     return -1;
 }
 
+
 const loadedGeoPoints = loadGeoPoints();
-const countedHeights = countingByHeight(loadedGeoPoints, 8000)
+const countedHeights = countingByHeight(loadedGeoPoints, 8000);
 const sortedGeoPoints = InsertionSorting (loadedGeoPoints);
 const bucketedGeoPoints = ArrayToBuckets(sortedGeoPoints);
 // console.log(bucketedGeoPoints);
 console.log("...................");
 BucketsToString (bucketedGeoPoints);
 console.log("...................");
-console.log(sortedGeoPoints[55]);
-console.log("...................");
-const indexOfSearchedGeoPoint = searchIndexOfHeightByCheckingOnlyInTheRightBucket(bucketedGeoPoints, sortedGeoPoints[55]);
-console.log(indexOfSearchedGeoPoint);
-
+// console.log(sortedGeoPoints[55]);
+// console.log("...................");
+// const indexOfSearchedGeoPoint = searchIndexOfHeightByCheckingOnlyInTheRightBucket(bucketedGeoPoints, sortedGeoPoints[55]);
+// console.log(indexOfSearchedGeoPoint);
+insertNewGeoPoint(bucketedGeoPoints, new GeoPoint('Prédikálószék', 619));
+insertNewGeoPoint(bucketedGeoPoints, new GeoPoint('Kőris', 709));
+insertNewGeoPoint(bucketedGeoPoints, new GeoPoint('Tátra', 2654));
+console.log(bucketedGeoPoints);

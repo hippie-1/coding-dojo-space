@@ -135,21 +135,6 @@ function insertNewHeight (arrayOfHeightRangeBuckets, newHeight) {
     arrayOfHeightRangeBuckets[nameOfTheBucketToPutTheNewValueInto] = elementsInTheBucket;
 }
 
-function searchIndexOfHeightByGoingThroughAllTheBuckets(arrayOfHeightRangeBuckets, heigthValueToFind) {
-    const heightRangesBucketKeys = Object.keys(arrayOfHeightRangeBuckets);
-    console.log("Start finding a heightValue: " + heigthValueToFind);
-    for (let i=0; i<heightRangesBucketKeys.length; i++) { //going through all the buckets
-        let key = heightRangesBucketKeys[i];
-        let elementsInRange = arrayOfHeightRangeBuckets[key];
-        let foundIndex = BinarySearchIterative(elementsInRange, heigthValueToFind);
-        if (foundIndex > -1) {
-            console.log("All the bucketets were checked and element was found in " + key + " at position: " + foundIndex );
-            return;
-        };
-    }
-    console.log("All the bucketets were checked but the element was not found");
-}
-
 function searchIndexOfHeightByCheckingOnlyInTheRightBucket(arrayOfHeightRangeBuckets, heigthValueToFind) {
     console.log("Start finding a heightValue: " + heigthValueToFind);
     let nameOfTheRelevantBucket = getNameOfTheRelevantBucket(heigthValueToFind); 
