@@ -108,3 +108,22 @@ export function formatDate(date) {
     return [year, month, day].join('');
 }
 
+export function stringToHash(string) {
+
+    let hash = 0;
+
+    if (string.length == 0) return hash;
+
+    for (let i = 0; i < string.length; i++) {
+        let char = string.charCodeAt(i);
+        //console.log("CHAR: ", char);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash;
+    }
+
+    return hash;
+}
+
+// String printing in hash
+//let gfg = "Viada Réka"
+//console.log(stringToHash(gfg));

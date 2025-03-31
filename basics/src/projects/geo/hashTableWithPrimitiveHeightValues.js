@@ -124,7 +124,6 @@ function getNameOfTheRelevantBucket(height) {
 }
 
 function insertNewHeight (arrayOfHeightRangeBuckets, newHeight) {
-    const heightRangesBucketKeys = Object.keys(arrayOfHeightRangeBuckets);
     console.log("Start inserting new height: " + newHeight);
     let nameOfTheBucketToPutTheNewValueInto = getNameOfTheRelevantBucket(newHeight);
     console.log("Name of the bucket to put the new value into: " + nameOfTheBucketToPutTheNewValueInto);
@@ -152,7 +151,6 @@ function searchIndexOfHeightByGoingThroughAllTheBuckets(arrayOfHeightRangeBucket
 }
 
 function searchIndexOfHeightByCheckingOnlyInTheRightBucket(arrayOfHeightRangeBuckets, heigthValueToFind) {
-    const heightRangesBucketKeys = Object.keys(arrayOfHeightRangeBuckets);
     console.log("Start finding a heightValue: " + heigthValueToFind);
     let nameOfTheRelevantBucket = getNameOfTheRelevantBucket(heigthValueToFind); 
     console.log("Name of the bucket find the elem: " + nameOfTheRelevantBucket);
@@ -211,6 +209,8 @@ searchIndexOfHeightByCheckingOnlyInTheRightBucket(arrayOfHeightRangeBuckets, 861
 searchIndexOfHeightByCheckingOnlyInTheRightBucket(arrayOfHeightRangeBuckets, 9000);
 console.log("...................");
 insertNewHeight(arrayOfHeightRangeBuckets, 313);
+insertNewHeight(arrayOfHeightRangeBuckets, 8091);
+insertNewHeight(arrayOfHeightRangeBuckets, 1014);
 console.log("PRINT function console log:");
 print1(arrayOfHeightRangeBuckets);
 

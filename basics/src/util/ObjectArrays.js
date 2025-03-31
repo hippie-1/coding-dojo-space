@@ -48,12 +48,12 @@ export function elementExchange(array, index1, index2) {
   array[index2] = tempValue;
 }
 
-export function InsertionSorting (originalObjectArray, searchedProperty) { // Beszúró rendezés
+export function InsertionSorting (originalObjectArray, property) { // Beszúró rendezés
 
   let arrayOfObjects = originalObjectArray.slice();
   for (let i=1; i<arrayOfObjects.length; i++) {
     let j = i-1;
-    while (j >= 0 && arrayOfObjects[j].compareTo(arrayOfObjects[j+1], searchedProperty) > 0) {
+    while (j >= 0 && arrayOfObjects[j].compareTo(arrayOfObjects[j+1], property) > 0) {
       elementExchange(arrayOfObjects, j, j+1);
       j = j-1
     }
