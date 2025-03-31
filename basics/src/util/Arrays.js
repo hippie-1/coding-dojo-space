@@ -18,14 +18,9 @@ export function sumFor (originalNumberArray) {
   return sumFor;
 }
 
-
 export function sumReduce (originalNumberArray) {
   return originalNumberArray.reduce((acc, curr) => acc + curr, 0 );
 }
-
-const sumForTest = sumFor([1, 2, 3, 5, 8]);
-const sumReduceTest = sumReduce([1, 2, 3, 5, 8]);
-console.log(sumForTest, sumReduceTest)
 
 export function CountingOnNegativeNumbers (originalNumberArray) {
   let counterOfNegativeNumbers = 0;

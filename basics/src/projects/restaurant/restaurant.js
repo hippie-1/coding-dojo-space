@@ -1,4 +1,5 @@
 import { Queue } from '../../util/DataStructures/Queue.js';
+import { LinkedQueue } from '../../util/DataStructures/QueueLinkedImplementation.js';
 import { GuestArea } from './guestArea.js';
 import { KitchenArea } from './kitchen.js';
 import { Config } from '../../util/Config.js';
@@ -13,9 +14,9 @@ class Restaurant {
     preparedMealQueue;
 
     constructor () {
-        this.restaurantQueue1 = new Queue();
-        this.restaurantQueue2 = new Queue();
-        this.preparedMealQueue = new Queue(30);
+        this.restaurantQueue1 = new LinkedQueue();
+        this.restaurantQueue2 = new LinkedQueue();
+        this.preparedMealQueue = new LinkedQueue(30);
         this.logger = Logger.getInstance("restaurant");
         this.newKitchen= new KitchenArea(this.restaurantQueue1, this.restaurantQueue2, this.preparedMealQueue);
         this.newGuestArea = new GuestArea(this.restaurantQueue1, this.restaurantQueue2, this.preparedMealQueue);
