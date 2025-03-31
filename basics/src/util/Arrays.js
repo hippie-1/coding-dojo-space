@@ -10,6 +10,23 @@ export function elementExchange(array, index1, index2) {
   array[index2]= tempValue;
 }
 
+export function sumFor (originalNumberArray) {
+  let sumFor = 0;
+  for (let i=0; i<originalNumberArray.length; i++) {
+    sumFor += originalNumberArray[i];
+  }
+  return sumFor;
+}
+
+
+export function sumReduce (originalNumberArray) {
+  return originalNumberArray.reduce((acc, curr) => acc + curr, 0 );
+}
+
+const sumForTest = sumFor([1, 2, 3, 5, 8]);
+const sumReduceTest = sumReduce([1, 2, 3, 5, 8]);
+console.log(sumForTest, sumReduceTest)
+
 export function CountingOnNegativeNumbers (originalNumberArray) {
   let counterOfNegativeNumbers = 0;
   for (let i=0; i<originalNumberArray.length; i++) {
