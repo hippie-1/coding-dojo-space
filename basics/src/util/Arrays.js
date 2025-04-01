@@ -252,8 +252,8 @@ export function BinarySearchRecursive (sortedArrayOfNumbers, lowestIndex, highes
 }
 
 
-export function linearSearchBySmallerCondition (arrayInput, element) {
-  let arr = arrayInput.slice();
+export function linearSearchBySmallerCondition (sortedArrayInput, element) {
+  let arr = sortedArrayInput.slice();
   let relevantIndex = 0;
 
   //1. where to insert
