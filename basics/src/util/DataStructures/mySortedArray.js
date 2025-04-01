@@ -2,20 +2,18 @@ import { myArray } from "./myArray.js";
 import { BinarySearchIterative, shiftArrayElementsRight, linearSearchBySmallerCondition } from '../Arrays.js';
 
 export class mySortedArray extends myArray{
-    #dataStore;
 
     constructor() {
         super();
-        this.#dataStore = [];
     }
 
     push(element) { //original function is insertSortedArray()
         if (this.isEmpty()) {
-            this.#dataStore.push(element);
+            this._dataStore.push(element);
         } else {
-            let relevantIndex = linearSearchBySmallerCondition(this.#dataStore, element);
-            this.#dataStore = shiftArrayElementsRight(this.#dataStore, relevantIndex); 
-            this.#dataStore[relevantIndex] = element;
+            let relevantIndex = linearSearchBySmallerCondition(this._dataStore, element);
+            this._dataStore = shiftArrayElementsRight(this._dataStore, relevantIndex); 
+            this._dataStore[relevantIndex] = element;
         }
     }
 
@@ -23,7 +21,7 @@ export class mySortedArray extends myArray{
         if (this.isEmpty()) {
             throw new Error('private array is empty')
         } else { 
-            return BinarySearchIterative(this.#dataStore, searchValue)
+            return BinarySearchIterative(this._dataStore, searchValue)
         }
     }
 

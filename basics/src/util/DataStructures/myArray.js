@@ -1,19 +1,19 @@
 export class myArray {
-    #dataStore;
+    _dataStore;
 
     constructor() {
-        this.#dataStore = [];
+        this._dataStore = [];
     }
 
     push(newValue) {
-        this.#dataStore.push(newValue);
+        this._dataStore.push(newValue);
     }
 
     getValue(index) {
         if (this.isEmpty()) {
             throw new Error('private array is empty')
         } else {
-            return this.#dataStore[index];
+            return this._dataStore[index];
         }
     }
 
@@ -23,19 +23,19 @@ export class myArray {
         if (this.isEmpty()) {
             throw new Error('private array is empty')
         } else {
-            for (let i=index; i<this.#dataStore.length-1; i++) {
-                this.#dataStore[i] = this.#dataStore[i+1];
-                this.#dataStore.pop();
+            for (let i=index; i<this._dataStore.length-1; i++) {
+                this._dataStore[i] = this._dataStore[i+1];
+                this._dataStore.pop();
             }
         }
     }
 
     getSize() {
-         return this.#dataStore.length;
+         return this._dataStore.length;
     }
 
     isEmpty() {
-        return this.#dataStore.length == 0;
+        return this._dataStore.length == 0;
     }
     
     getIndex(searchValue) {
@@ -43,8 +43,8 @@ export class myArray {
             throw new Error('private array is empty')
         } else { // using linear search here:
             let indexOfLinearSearch = -1;
-            for (let i=0; i<this.#dataStore.length; i++) {
-                if (this.#dataStore[i] == searchValue) {
+            for (let i=0; i<this._dataStore.length; i++) {
+                if (this._dataStore[i] == searchValue) {
                     indexOfLinearSearch = i;
                     return indexOfLinearSearch;
                 }
@@ -64,7 +64,7 @@ export class myArray {
     
     
     toString() {
-        console.log(this.#dataStore);
+        console.log(this._dataStore);
     }
 }
 
