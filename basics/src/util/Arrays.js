@@ -263,7 +263,8 @@ export function linearSearchBySmallerCondition (sortedArrayInput, element) {
       relevantIndex = i;
       return relevantIndex;
     }
-  }    
+  }
+  return arr.length;
 }
 
 export function shiftArrayElementsLeft(arrayInput, relevantIndex) { //between the relevantIndex and the last index
