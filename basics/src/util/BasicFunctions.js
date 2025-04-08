@@ -125,5 +125,5 @@ export function stringToHash(string) {
 }
 
 // String printing in hash
-//let gfg = "Viada Réka"
-//console.log(stringToHash(gfg));
+    // let gfg = "Viada Réka"
+    // console.log(stringToHash(gfg));
