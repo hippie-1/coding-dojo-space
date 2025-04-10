@@ -194,6 +194,32 @@ export function MaxValueBasedSorting (originalNumberArray) {
   return arrayOfNumbers;
 }
 
+export function quickSort(originalNumberArray, start=0, end=originalNumberArray.length-1) {
+  let i = start;
+  let j = end;
+  let pivot = originalNumberArray[Math.floor((i + j) / 2)];
+
+  while (i <= j) {
+      while (originalNumberArray[i] < pivot) {
+          i++;
+      }
+      while (originalNumberArray[j] > pivot) {
+          j--;
+      }
+      if (i <= j) {
+          elementExchange(originalNumberArray, i, j);
+          i++;
+          j--;
+      }
+  }
+  if (start < j) {
+      quickSort(originalNumberArray, start, j);
+  }
+  if (i < end) {
+      quickSort(originalNumberArray, i, end);
+  }
+}
+
 //Searching algorithms
 
 export function LinearSearch (originalNumberArray, searchValue) {
