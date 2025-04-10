@@ -1,3 +1,4 @@
+import { stringToHash } from '../../../../src/util/BasicFunctions.js';
 export class Currency {
     baseCurrencyName;
     date;
@@ -35,7 +36,10 @@ export class Currency {
             }
         }
         return true;
+    }
 
-
+    hashCode () {
+        let hashCode = stringToHash(this.baseCurrencyName + this.date + this.currencyName + this.exchangeRate);
+                return hashCode;
     }
 }

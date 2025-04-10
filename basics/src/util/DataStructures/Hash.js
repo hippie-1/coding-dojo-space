@@ -1,3 +1,6 @@
+// DEV-121
+
+import { Currency } from "../../projects/stock_exchange/model/currency.js";
 import { stringToHash } from "../BasicFunctions.js";
 
 export class Hashtable {
@@ -14,9 +17,11 @@ export class Hashtable {
 
     keyToInteger (key) {
         if (typeof key == 'object') {
-            key = JSON.stringify(key);
-            // console.log(typeof key);
-            // key = Math.abs(Math.floor(key));
+            if (typeof key.hashCode === 'function') {
+                key = key.hashCode();
+            } else {
+                key = JSON.stringify(key);
+            }
         }
         if (typeof key == 'string') {
             key = stringToHash(key);
@@ -63,16 +68,19 @@ export class Hashtable {
 
 
     const test = new Hashtable(13);
-    console.log(test.keyToInteger({'valamikulcs': 'valamiérték'}))
-    console.log(test.insert('Vida Reka', '+36201234567'));
-    console.log(test.insert('Polgar Peter', '+36207654321'));
-    console.log(test.insert('Gacs Gyongyi', '+362089101112'));
-    console.log(test.insert({'valamikulcs': 'valamiérték'}, '+36201234567'));
-    test.toString();
-    console.log(test.get('Polgar Peter'));
-    console.log(test.remove('Vida Reka'));
-    console.log(test.insert('Polgar-Vida Reka', '+36201234567'));
-    console.log(test.get('Polgar-Vida Reka'));
-    console.log(test.remove('Gacs Gyongyi'));
-    console.log(test.remove('xs'));
+    // console.log(test.keyToInteger({'valamikulcs': 'valamiérték'}))
+    // console.log(test.insert('Vida Reka', '+36201234567'));
+    // console.log(test.insert('Polgar Peter', '+36207654321'));
+    // console.log(test.insert('Gacs Gyongyi', '+362089101112'));
+    // console.log(test.insert({'valamikulcs': 'valamiérték'}, '+36201234567'));
+    // test.toString();
+    // console.log(test.get('Polgar Peter'));
+    // console.log(test.remove('Vida Reka'));
+    // console.log(test.insert('Polgar-Vida Reka', '+36201234567'));
+    // console.log(test.get('Polgar-Vida Reka'));
+    // console.log(test.remove('Gacs Gyongyi'));
+    // console.log(test.remove('xs'));
+    console.log(test.insert(new Currency(new Date(), 'EUR', 408)), 'EUR');
+    console.log(test.insert(new Currency(new Date(), 'USD', 430)));
+    console.log(test.insert(new Currency(new Date(), 'NOK', 35)));
     test.toString();
