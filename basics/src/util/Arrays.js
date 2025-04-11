@@ -152,21 +152,32 @@ export function InsertionSorting (originalNumberArray) { // Beszúró rendezés
   return arrayOfNumbers;
 }
 
-// export function MinimumSelectionSorting (originalNumberArray) {
-//   console.log("Minimum-selection sorting starting");
-//   numberOfComparationSteps = 0;
-//   numberOfElementExchanges = 0;
+export function MinimumSelectionSorting (originalNumberArray) {
+  console.log("Minimum-selection sorting starting");
+  numberOfComparationSteps = 0;
+  numberOfElementExchanges = 0;
+  var startTime = Date.now();
 
-//   var arrayOfNumbers = originalNumberArray.slice();
-//   for (let i=0; i<arrayOfNumbers.length; i++) {
-//     let min = i;
-//     for (let j=i+1; j<=arrayOfNumbers.length; j++) {
-//       if(arrayOfNumbers[min] > arrayOfNumbers[j]) {
-//         min = j;
-//       }
-//     }
-//   }
-// }
+  var arrayOfNumbers = originalNumberArray.slice();
+  for (let i=0; i<arrayOfNumbers.length; i++) {
+    let minIndex = i;
+    for (let j=i+1; j<=arrayOfNumbers.length; j++) {
+      if(arrayOfNumbers[minIndex] > arrayOfNumbers[j]) {
+        numberOfElementExchanges++;
+        minIndex = j;
+      }
+    }
+    elementExchange(arrayOfNumbers, minIndex, i);
+  }
+  var endTime = Date.now();
+  var duration = endTime-startTime;
+  console.log("Minimum selection sorting ended with numberOfComparationSteps:" + numberOfComparationSteps + ", numberOfElementExchanges:" + numberOfElementExchanges + " duration:" + duration + "ms");
+  saveAlgorithmLog("MinimumSelectionSorting", originalNumberArray.length, numberOfComparationSteps, numberOfElementExchanges, endTime-startTime);
+
+  return arrayOfNumbers;
+}
+
+console.log(MinimumSelectionSorting([-11, 8, -2, 3, -3, 7, 0, 16, 5, 12, 1, -15, 15, 85, 17, -21, 49, 96, -18, 18, 26, 9, 20, -20, 7, 35, 42, -4, 62, 78, 92, 95, 21, 13, 23, 28, 42, 19, 6, 24, 33, 32]))
 
 export function MaxValueBasedSorting (originalNumberArray) {
   console.log("Max value based sorting staring"); // Maximumkiválasztásos rendezés
@@ -336,3 +347,4 @@ export function insertSortedArray(arrayInput, element) { //insert into a sorted 
   arr[relevantIndex] = element; //3. the value of the relevant index = element
   return arr; //4. return modified arra
 }
+
