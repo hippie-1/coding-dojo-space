@@ -10,7 +10,7 @@ class MenuItem {
     estPrepTimeInMiliSec;
     priceInHuf;  
     
-    constructor (id, name, estPrepTimeInMiliSec, priceInHuf=2000) {
+    constructor (id, name, estPrepTimeInMiliSec=6000, priceInHuf=2000) {
         this.id = id;
         this.name = name;
         this.estPrepTimeInMiliSec = estPrepTimeInMiliSec;
@@ -18,7 +18,7 @@ class MenuItem {
     }
 }
 
-class Sweetness extends MenuItem {
+export class Sweetness extends MenuItem {
 
     constructor (id, name, estPrepTimeInMiliSec) {
         super(id, name, estPrepTimeInMiliSec);
@@ -26,7 +26,7 @@ class Sweetness extends MenuItem {
     }
 
 }
-class NormalFood extends MenuItem {
+export class NormalFood extends MenuItem {
 
     constructor (id, name, estPrepTimeInMiliSec) {
         super(id, name, estPrepTimeInMiliSec);

@@ -12,17 +12,25 @@ export class KitchenEmployee {
     constructor (id, name) {
         this.id = id;
         this.name = name;
-        this.#logger = Logger.getInstance("employee");
+        //this.#logger = Logger.getInstance("employee");
     }
 
     async prepareingDish(order) { //template method design patter - all subclasses follows this template, the abstract methods must be implemented in subclasses
-        await this.#gatheringIngredients(order);
+        this.#gatheringIngredients(order).then((value) => 
+            this.#cleaningIngredients(order)).then((value) => 
+                this.#slicingIngredients(order)).then((value) => 
+                    this._blendingIngredients(order)).then((value) => 
+                        this._heatTreatment(order)).then((value) => 
+                            this.#servingFoodOnAPlate(order));
+
+/*
         await this.#cleaningIngredients(order);
         await this.#slicingIngredients(order);
         await this._blendingIngredients(order); //protected (_ char shows it) because it cannot be invoked publicly only this class or the subclassess can call it       
         await this._heatTreatment(order); //protected (_ char shows it) because it cannot be invoked publicly only this class or the subclassess can call it       
         await this.#servingFoodOnAPlate(order); 
-    }
+*/
+        }
     async #gatheringIngredients(order) { //private method since the food can be prepared by colling the public preparingDish only
         await sleepAsync(1000);
         this.consoleLog(this.name +" doing: " + order.id + ', ' + order.menuItem.name + ", Gathering Ingredients from Pantry");
@@ -51,7 +59,7 @@ export class KitchenEmployee {
     consoleLog(message) {
         let decoratedMessage = Config.getTemplatingColours('FgGreen') + "Employee: " + Config.getTemplatingColours('FgYellow')+ message + Config.getTemplatingColours('Reset') ;
         console.log(decoratedMessage);
-        this.#logger.log(message);
+        //this.#logger.log(message);
     }
 }
 
