@@ -86,10 +86,23 @@ export class KitchenArea {
         }
         order.status = 'prepared';
         order.meal = order.menuItem.name;
-        this.preparedMealQueue.push(order);
+        this.preparedMealToQueue(order);
         this.consoleLog("Chef " + chef.name + " has finished id: " + order.id + ' ' + order.menuItem.name + " preparation and goes to the end of the queue and waits for the next task");
     }
-      
+    
+    async preparedMealToQueue(order) {
+        let pushedToPreparedMealQueue = false;
+        while (!pushedToPreparedMealQueue)
+            try {
+                this.preparedMealQueue.push(order);
+                this.consoleLog(`Feeding to prepared meal queue: id: ${order.id}, ${order.menuItem.name}`);
+                pushedToPreparedMealQueue = true;
+            } catch (e) {
+                this.consoleLog(`Prepared queue ${e.message}`);
+                await sleepAsync(1000);
+            }  
+    }
+
     messageListener () { //consume food order
         let order = null;
         if (Math.random() < 0.5) {
